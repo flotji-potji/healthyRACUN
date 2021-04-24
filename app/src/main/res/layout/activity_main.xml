@@ -1,24 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/nutritioncard"
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:layout_margin="15dp"
-            >
+            android:layout_margin="15dp">
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/piechart"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="15dp"
+                android:layout_gravity="bottom"
+                />
+
+            <TextView
+                android:id="@+id/nutritionInfoText"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_margin="15dp"
+                android:text="Todays nutrition intake"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textColor="@color/cardview_dark_background"
+                android:textStyle="bold"/>
+
+
         </androidx.cardview.widget.CardView>
+
+
         <androidx.cardview.widget.CardView
+            android:id="@+id/mealcard"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_margin="15dp"
@@ -26,6 +48,7 @@
 
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:id="@+id/bmicard"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_margin="15dp">
