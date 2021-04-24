@@ -1,7 +1,7 @@
 package com.example.android.myfishy.Misc;
 
-
-// BMR (Basal Metabolic Rate) = (height in centimetres x 6.25) + (weight in kilograms x 9.99) – (age x 4.92) – 161.
+// MALE :BMR (Basal Metabolic Rate) = (height in centimeters x 6.25) + (weight in kilograms x 9.99) – (age x 4.92) + 5.
+// FEMALE :BMR (Basal Metabolic Rate) = (height in centimetres x 6.25) + (weight in kilograms x 9.99) – (age x 4.92) – 161.
 // MALE : (sedentary) TDEE (Total Daily Energy Expenditure) = BMR * 1.1
 // FEMALE : (sedentary) TDEE (Total Daily Energy Expenditure) = BMR * 1.2
 
@@ -33,22 +33,16 @@ public class CalorieRechner {
         this.alter = alter;
         this.geschlecht = geschlecht;
 
-        int BMR = (int) ((groesse * 6.25) + (gewicht * 9.99) - (alter * 4.92) - 116);
-        if (geschlecht == "männlich"){
+
+        if (geschlecht.equals("männlich")){
+            int BMR = (int) ((groesse * 6.25) + (gewicht * 9.99) - (alter * 4.92) + 5);
             TDEE = (int) (BMR * 1.1);
         } else {
+            int BMR = (int) ((groesse * 6.25) + (gewicht * 9.99) - (alter * 4.92) - 116);
             TDEE = (int) (BMR * 1.2);
         }
         MacroSplit();
-        /*%    calCarb = (int) (TDEE * 0.55);
-        calFat = (int) (TDEE * 0.28);
-        calProt = (int) (TDEE * 0.17);
-        gCarb = calCarb / 4;
-        gFat = calFat / 9;
-        gProt = calProt / 4;
-        System.out.printf("Tägliche Kalorien bei %d, davon %d g Kohlehydrate, %d g Fette, %d g Proteine", TDEE,gCarb,gFat,gProt);
 
-         */
     }
 
     private void MacroSplit() {
