@@ -1,11 +1,8 @@
 package com.example.android.myfishy.db.entities;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import java.sql.Date;
 
 @Entity(tableName = "user")
 public class User {
@@ -18,7 +15,7 @@ public class User {
 
     private String surname;
 
-    private Date birthday;
+    private long birthday;
 
     private String gender;
 
@@ -26,7 +23,19 @@ public class User {
 
     private float height;
 
-    public User(@NonNull String username, String firstname, String surname, Date birthday, String gender, float weight, float height) {
+    /**
+     *
+     * Ist ein cooler Konstruktor.
+     *
+     * @param username ist der name
+     * @param firstname
+     * @param surname
+     * @param birthday
+     * @param gender
+     * @param weight
+     * @param height
+     */
+    public User(@NonNull String username, String firstname, String surname, long birthday, String gender, float weight, float height) {
         this.username = username;
         this.firstname = firstname;
         this.surname = surname;
@@ -49,7 +58,7 @@ public class User {
         return surname;
     }
 
-    public Date getBirthday() {
+    public long getBirthday() {
         return birthday;
     }
 
