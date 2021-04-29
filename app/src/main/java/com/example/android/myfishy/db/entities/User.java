@@ -1,11 +1,67 @@
 package com.example.android.myfishy.db.entities;
 
-//TODO: richtigen Identifier hinzufügen, um als Tabelle kenn zu zeichnen
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.sql.Date;
+
+@Entity(tableName = "user")
 public class User {
 
-    //TODO: richtige Attribute aus ER-Diagramm hinzufügen. Attribute sollen private sein und mit richtigen Identifiern versehen werden.
+    @PrimaryKey
+    @NonNull
+    private String username;
 
-    //TODO: Konstruktor mit erstellten Attributen erzeugen
+    private String firstname;
 
-    //TODO: getter-Methoden aus erstellten Attributen erzeugen
+    private String surname;
+
+    private Date birthday;
+
+    private String gender;
+
+    private float weight;
+
+    private float height;
+
+    public User(@NonNull String username, String firstname, String surname, Date birthday, String gender, float weight, float height) {
+        this.username = username;
+        this.firstname = firstname;
+        this.surname = surname;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.weight = weight;
+        this.height = height;
+    }
+
+    @NonNull
+    public String getUsername() {
+        return username;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public float getHeight() {
+        return height;
+    }
 }
