@@ -18,7 +18,7 @@ public class Nourishment {
     private float calories;
     private float fat;
     private float saturated_fatty_acids;
-    private float unsaturated_fatty_acids
+    private float unsaturated_fatty_acids;
     private float carbohydrates_all;
     private float simple_sugars;
     private float etoh;
@@ -33,6 +33,33 @@ public class Nourishment {
     private float iron;
     private float protein;
 
+    /**
+     *
+     *
+     *
+     * @param nourishment_id
+     * @param meal_id
+     * @param nourishment_category
+     * @param nourishment_name
+     * @param nourishment_synonym
+     * @param calories
+     * @param fat
+     * @param saturated_fatty_acids
+     * @param unsaturated_fatty_acids
+     * @param carbohydrates_all
+     * @param simple_sugars
+     * @param etoh
+     * @param h20
+     * @param table_salt
+     * @param sodium
+     * @param chlorine
+     * @param magnesium
+     * @param potassium
+     * @param calcium
+     * @param phosphor
+     * @param iron
+     * @param protein
+     */
     public Nourishment(@NonNull int nourishment_id, int meal_id,String nourishment_category,String nourishment_name,String nourishment_synonym, float calories, float fat, float saturated_fatty_acids, float unsaturated_fatty_acids, float carbohydrates_all, float simple_sugars, float etoh, float h20, float table_salt, float sodium, float chlorine, float magnesium, float potassium, float calcium, float phosphor, float iron, float protein) {
         this.nourishment_id = nourishment_id;
         this.meal_id = meal_id;
