@@ -31,6 +31,29 @@ public class NutritionFactTable {
     private float iron;
     private float protein;
 
+    /**
+     *
+     * @param nourishment_category category of nourishment
+     * @param nourishment_name came of nourishment
+     * @param nourishment_synonym various synonyms for nourishment
+     * @param calories energy of nourishment in [kJ]
+     * @param fat
+     * @param saturated_fatty_acids
+     * @param unsaturated_fatty_acids
+     * @param carbohydrates_all
+     * @param simple_sugars
+     * @param etoh
+     * @param h20
+     * @param table_salt
+     * @param sodium
+     * @param chlorine
+     * @param magnesium
+     * @param potassium
+     * @param calcium
+     * @param phosphor
+     * @param iron
+     * @param protein
+     */
     public NutritionFactTable(String nourishment_category, String nourishment_name,
                               String nourishment_synonym, float calories, float fat, float saturated_fatty_acids,
                               float unsaturated_fatty_acids, float carbohydrates_all, float simple_sugars, float etoh,
