@@ -6,6 +6,9 @@ import androidx.room.*;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 import com.example.android.myfishy.db.entities.*;
+import com.example.android.myfishy.utilities.ExtractCSV;
+
+import java.io.FileNotFoundException;
 
 @Database(
         entities = {
@@ -33,7 +36,11 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
+                try {
+                    ExtractCSV ex = new ExtractCSV("rsc/nutrition.csv");
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }).start();
     }
