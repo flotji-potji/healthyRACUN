@@ -1,0 +1,125 @@
+@startuml
+
+!define table(x) class x << (T,#FFAAAA) >>
+!define primary_key(x) <u>x</u>
+hide methods
+hide stereotypes
+
+table(user) {
+    *primary_key(username) : String
+    --
+    firstname : String
+    surname : String
+    birthday : Date
+    gender : String
+    weight : float
+    height : float
+}
+
+table(diet) {
+    *primary_key(diet_id) : int <<generated>>
+    --
+    *username : int
+    condition_name : String
+    diet_name : String
+    nourishment_category : String
+    table_salt : float
+    sodium : float
+    potassium : float
+    calcium : float
+    phosphor : float
+    protein : float
+    calories : float
+    liquid_intake : float
+}
+
+table(meal) {
+    *primary_key(meal_id) : int <<generated>>
+    --
+    *username : int
+    meal_name : String
+    meal_type : String
+    date_added : Date
+}
+
+table(nourishment) {
+    *primary_key(nourishment_id) : int <<generated>>
+    --
+    *meal_id : int
+    nourishment_name : String
+    nourishment_synonym : String
+    nourishment_category : String
+    calories : float
+    fats : float
+    saturated_fatty_acids : float
+    unsaturated_fatty_acids : float
+    carbohydrates_all : float
+    simple_sugars : float
+    etoh : float
+    h2o : float
+    table_salt : float
+    sodium : float
+    chlorine : float
+    magnesium : float
+    potassium : float
+    calcium : float
+    phosphor : float
+    iron : float
+    proteins : float
+}
+
+table(dietary_restriction_table) {
+    *primary_key(diet_plan_id) : int <<generated>>
+    --
+    condition_name : String
+    diet_name : String
+    nourishment_category : String
+    table_salt : float
+    sodium : float
+    potassium : float
+    calcium : float
+    phosphor : float
+    proteins : float
+    calories : float
+    liquid_intake : float
+}
+
+table(nutrition_fact_table) {
+    *primary_key(nutrition_id) : int <<generated>>
+    --
+    nourishment_name : String
+    nourishment_synonym : String
+    nourishment_category : String
+    calories : float
+    fats : float
+    saturated_fatty_acids : float
+    unsaturated_fatty_acids : float
+    carbohydrates_all : float
+    simple_sugars : float
+    etoh : float
+    h2o : float
+    table_salt : float
+    sodium : float
+    chlorine : float
+    magnesium : float
+    potassium : float
+    calcium : float
+    phosphor : float
+    iron : float
+    protein : float
+}
+
+<> diamond1
+<> diamond2
+<> diamond3
+
+user "1" -- diamond1
+diamond1 -- "n" diet
+
+user "1" -- diamond2
+diamond2 -- "n" meal
+
+meal "1" -- diamond3
+diamond3 -- "n" nourishment
+
+@enduml

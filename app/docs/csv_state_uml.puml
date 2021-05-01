@@ -1,0 +1,17 @@
+@startuml
+
+[*] --> DELIMITER : start
+DELIMITER --> DELIMITER : char = ' ; '
+DELIMITER --> STRING_CHAR : char = ' " '
+DELIMITER --> CELL_CONTENT : valid char
+
+CELL_CONTENT --> DELIMITER : char = ' ; '
+CELL_CONTENT --> CELL_CONTENT : valid char
+
+STRING_CHAR --> STRING_CONTENT : valid char
+STRING_CHAR --> DELIMITER : char = ' ; '
+
+STRING_CONTENT --> STRING_CONTENT : valid char
+STRING_CONTENT --> STRING_CHAR : char = ' " '
+
+@enduml
