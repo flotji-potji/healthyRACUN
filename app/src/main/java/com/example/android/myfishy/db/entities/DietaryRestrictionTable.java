@@ -22,10 +22,9 @@ public class DietaryRestrictionTable {
     private float calories;
     private float liquid_intake;
 
-    public DietaryRestrictionTable(int diet_plan_id, String condition_name, String diet_name,
+    public DietaryRestrictionTable(String condition_name, String diet_name,
                                    String nourishment_category, float table_salt, float sodium, float potassium,
                                    float calcium, float phosphor, float protein, float calories, float liquid_intake) {
-        this.diet_plan_id = diet_plan_id;
         this.condition_name = condition_name;
         this.diet_name = diet_name;
         this.nourishment_category = nourishment_category;
