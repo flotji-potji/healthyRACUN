@@ -15,7 +15,7 @@ public class NutritionFactTable {
     private float calories;
     private float fat;
     private float saturated_fatty_acids;
-    private float unsaturated_fatty_acids
+    private float unsaturated_fatty_acids;
     private float carbohydrates_all;
     private float simple_sugars;
     private float etoh;
