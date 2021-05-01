@@ -1,4 +1,4 @@
-package com.example.android.myfishy.Misc;
+package com.example.android.myfishy.utilities;
 
 // MALE :BMR (Basal Metabolic Rate) = (height in centimeters x 6.25) + (weight in kilograms x 9.99) – (age x 4.92) + 5.
 // FEMALE :BMR (Basal Metabolic Rate) = (height in centimetres x 6.25) + (weight in kilograms x 9.99) – (age x 4.92) – 161.
