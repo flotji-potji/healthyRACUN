@@ -10,12 +10,12 @@ public class Meal {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     private int meal_id;
-    private int username;
+    private String username;
     private String meal_name;
     private String meal_type;
     private long date_added;
 
-    public Meal(@NonNull int meal_id, int username, String meal_name, String meal_type, long date_added) {
+    public Meal(@NonNull int meal_id, String username, String meal_name, String meal_type, long date_added) {
         this.meal_id = meal_id;
         this.username = username;
         this.meal_name = meal_name;
@@ -27,7 +27,7 @@ public class Meal {
         return meal_id;
     }
 
-    public int getUsername() {
+    public String getUsername() {
         return username;
     }
 

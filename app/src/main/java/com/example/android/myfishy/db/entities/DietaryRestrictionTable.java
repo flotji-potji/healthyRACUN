@@ -38,6 +38,10 @@ public class DietaryRestrictionTable {
         this.liquid_intake = liquid_intake;
     }
 
+    public void setDiet_plan_id(int diet_plan_id) {
+        this.diet_plan_id = diet_plan_id;
+    }
+
     public int getDiet_plan_id() {
         return diet_plan_id;
     }

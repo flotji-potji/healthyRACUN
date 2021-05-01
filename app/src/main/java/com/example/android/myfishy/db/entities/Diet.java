@@ -4,15 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.sql.Date;
-
 @Entity(tableName = "diet")
 public class Diet {
 
     @PrimaryKey
     @NonNull
     private int diet_id;
-    private int username;
+    private String username;
     private String condition_name;
     private String diet_name;
     private String nourishment_category;
@@ -25,7 +23,7 @@ public class Diet {
     private float calories;
     private float liquid_intake;
 
-    public Diet(@NonNull int diet_id, int username, String condition_name, String diet_name,
+    public Diet(@NonNull int diet_id, String username, String condition_name, String diet_name,
                 String nourishment_category, float table_salt, float sodium, float potassium,
                 float calcium, float phosphor, float protein, float calories, float liquid_intake) {
         this.username = username;
@@ -47,7 +45,7 @@ public class Diet {
         return diet_id;
     }
 
-    public int getUsername() {
+    public String getUsername() {
         return username;
     }
 

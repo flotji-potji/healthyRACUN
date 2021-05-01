@@ -81,6 +81,10 @@ public class NutritionFactTable {
         this.protein = protein;
     }
 
+    public void setNutrition_id(int nutrition_id) {
+        this.nutrition_id = nutrition_id;
+    }
+
     public int getNutrition_id() {
         return nutrition_id;
     }
