@@ -1,38 +1,52 @@
-package com.example.android.myfishy.Misc;
+package com.example.android.myfishy.db.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "dietary_restriciton_table")
+@Entity(tableName = "dietary_restriction_table")
 public class DietaryRestrictionTable {
     @PrimaryKey
     @NonNull
     private int diet_plan_id;
+
     private String condition_name;
+
     private String diet_name;
+
     private String nourishment_category;
+
     private float table_salt;
+
     private float sodium;
+
     private float potassium;
+
     private float calcium;
+
     private float phosphor;
+
     private float protein;
+
     private float calories;
+
     private float liquid_intake;
 
-    public DietaryRestrictionTable(String condition_name, String nourishment_category, String diet_name, float table_salt, float sodium, float potassium, float calcium, float phosphor, float protein, float liquid_intake) {
-        this.condition_name=condition_name;
-        this.diet_name=diet_name;
+    public DietaryRestrictionTable(int diet_plan_id, String condition_name, String diet_name,
+                                   String nourishment_category, float table_salt, float sodium, float potassium,
+                                   float calcium, float phosphor, float protein, float calories, float liquid_intake) {
+        this.diet_plan_id = diet_plan_id;
+        this.condition_name = condition_name;
+        this.diet_name = diet_name;
         this.nourishment_category = nourishment_category;
-        this.calories = calories;
         this.table_salt = table_salt;
         this.sodium = sodium;
         this.potassium = potassium;
         this.calcium = calcium;
         this.phosphor = phosphor;
         this.protein = protein;
-        this.liquid_intake=liquid_intake;
+        this.calories = calories;
+        this.liquid_intake = liquid_intake;
     }
 
     public int getDiet_plan_id() {

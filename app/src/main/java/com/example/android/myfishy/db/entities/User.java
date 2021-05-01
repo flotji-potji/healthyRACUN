@@ -10,32 +10,15 @@ public class User {
     @PrimaryKey
     @NonNull
     private String username;
-
     private String firstname;
-
     private String surname;
-
     private long birthday;
-
     private String gender;
-
     private float weight;
-
     private float height;
 
-    /**
-     *
-     * Ist ein cooler Konstruktor.
-     *
-     * @param username ist der name
-     * @param firstname
-     * @param surname
-     * @param birthday
-     * @param gender
-     * @param weight
-     * @param height
-     */
-    public User(@NonNull String username, String firstname, String surname, long birthday, String gender, float weight, float height) {
+    public User(@NonNull String username, String firstname, String surname, long birthday, String gender,
+                float weight, float height) {
         this.username = username;
         this.firstname = firstname;
         this.surname = surname;

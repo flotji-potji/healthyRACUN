@@ -25,6 +25,24 @@ public class Diet {
     private float calories;
     private float liquid_intake;
 
+    public Diet(@NonNull int diet_id, int username, String condition_name, String diet_name,
+                String nourishment_category, float table_salt, float sodium, float potassium,
+                float calcium, float phosphor, float protein, float calories, float liquid_intake) {
+        this.username = username;
+        this.diet_id = diet_id;
+        this.condition_name = condition_name;
+        this.diet_name = diet_name;
+        this.nourishment_category = nourishment_category;
+        this.table_salt = table_salt;
+        this.sodium = sodium;
+        this.potassium = potassium;
+        this.calcium = calcium;
+        this.phosphor = phosphor;
+        this.protein = protein;
+        this.calories = calories;
+        this.liquid_intake = liquid_intake;
+    }
+
     public int getDiet_id() {
         return diet_id;
     }
@@ -77,21 +95,4 @@ public class Diet {
         return liquid_intake;
     }
 
-    public Diet(@NonNull int diet_id, int username, String condition_name, String diet_name,
-                String nourishment_category, float table_salt, float sodium, float potassium,
-                float calcium, float phosphor, float protein, float calories, float liquid_intake) {
-        this.username = username;
-        this.diet_id = diet_id;
-        this.condition_name = condition_name;
-        this.diet_name = diet_name;
-        this.nourishment_category = nourishment_category;
-        this.table_salt = table_salt;
-        this.sodium = sodium;
-        this.potassium = potassium;
-        this.calcium = calcium;
-        this.phosphor = phosphor;
-        this.protein = protein;
-        this.calories = calories;
-        this.liquid_intake = liquid_intake;
-    }
 }

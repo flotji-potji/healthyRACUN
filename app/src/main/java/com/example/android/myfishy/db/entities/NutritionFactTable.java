@@ -1,4 +1,4 @@
-package com.example.android.myfishy.Misc;
+package com.example.android.myfishy.db.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "nutrition_fact_table")
 public class NutritionFactTable {
+
     @PrimaryKey
     @NonNull
     private int nutrition_id;
@@ -30,8 +31,12 @@ public class NutritionFactTable {
     private float iron;
     private float protein;
 
-    public NutritionFactTable(@NonNull int nutrition_id, String nourishment_category,String nourishment_name,String nourishment_synonym, float calories, float fat, float saturated_fatty_acids, float unsaturated_fatty_acids, float carbohydrates_all, float simple_sugars, float etoh, float h20, float table_salt, float sodium, float chlorine, float magnesium, float potassium, float calcium, float phosphor, float iron, float protein) {
-        this.nutrition_id= nutrition_id;
+    public NutritionFactTable(int nutrition_id, String nourishment_category, String nourishment_name,
+                              String nourishment_synonym, float calories, float fat, float saturated_fatty_acids,
+                              float unsaturated_fatty_acids, float carbohydrates_all, float simple_sugars, float etoh,
+                              float h20, float table_salt, float sodium, float chlorine, float magnesium,
+                              float potassium, float calcium, float phosphor, float iron, float protein) {
+        this.nutrition_id = nutrition_id;
         this.nourishment_category = nourishment_category;
         this.nourishment_name = nourishment_name;
         this.nourishment_synonym = nourishment_synonym;
@@ -54,7 +59,7 @@ public class NutritionFactTable {
         this.protein = protein;
     }
 
-    public int getNourishment_id() {
+    public int getNutrition_id() {
         return nutrition_id;
     }
 
