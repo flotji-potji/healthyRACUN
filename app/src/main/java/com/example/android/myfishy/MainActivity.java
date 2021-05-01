@@ -1,9 +1,12 @@
 package com.example.android.myfishy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -19,6 +22,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private PieChart pieChart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +31,18 @@ public class MainActivity extends AppCompatActivity {
         pieChart = findViewById(R.id.piechart);
         setupPieChart();
         loadPieChart();
+
+        CardView nutCard = findViewById(R.id.nutritioncard);
+
+        nutCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent getNut = new Intent(getApplicationContext(), Nutrition.class);
+                startActivity(getNut);
+            }
+        });
     }
+
 
     private void setupPieChart(){
         pieChart.setDrawHoleEnabled(true);
@@ -76,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         pieChart.animateY(600, Easing.EaseInOutQuad);
 
     }
+
+
 
 
 }

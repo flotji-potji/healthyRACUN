@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="30dp"
+   >
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        />
+
+    <EditText
+        android:id="@+id/setName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:text="Age"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/setAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="setUserAge"
+        />
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:text="Weight"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/setWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:text="Height"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/setHeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:text="Gender"
+        android:layout_height="wrap_content"/>
+    <Spinner
+        android:layout_gravity="center"
+        android:id="@+id/setGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/genderItems"
+        android:textAlignment="center"
+        >
+
+    </Spinner>
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:text="Illness"
+        android:layout_height="wrap_content"/>
+    <Spinner
+        android:id="@+id/setIll"
+        android:layout_gravity="center"
+        android:entries="@array/illnessItems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        />
+    <Button
+        android:layout_gravity="center"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="Create profile"
+        />
+
+
+
+
+
+</LinearLayout>
