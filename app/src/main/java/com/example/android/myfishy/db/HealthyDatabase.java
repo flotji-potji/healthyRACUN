@@ -4,7 +4,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.room.*;
 import androidx.sqlite.db.SupportSQLiteDatabase;
-import androidx.sqlite.db.SupportSQLiteOpenHelper;
+import com.example.android.myfishy.R;
 import com.example.android.myfishy.db.entities.*;
 import com.example.android.myfishy.utilities.ExtractCSV;
 
@@ -18,9 +18,12 @@ import java.io.FileNotFoundException;
         version = 1)
 public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
 
+
     public abstract HealthyDao healthyDao();
 
     private static HealthyDatabase INSTANCE;
+
+    private static Context con;
 
     private static RoomDatabase.Callback sRoomDatabaseCallback =
             new Callback() {
@@ -37,7 +40,8 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
             @Override
             public void run() {
                 try {
-                    ExtractCSV ex = new ExtractCSV("rsc/nutrition.csv");
+                    ExtractCSV ex = new ExtractCSV(con.getResources().openRawResource(R.raw.nutrition_table));
+
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -46,6 +50,7 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
     }
 
     public static HealthyDatabase getDatabase(final Context context) {
+        con = context;
         if (INSTANCE == null) {
             synchronized (HealthyDatabase.class) {
                 if (INSTANCE == null) {

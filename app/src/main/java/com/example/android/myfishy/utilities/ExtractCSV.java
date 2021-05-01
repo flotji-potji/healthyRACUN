@@ -2,10 +2,7 @@ package com.example.android.myfishy.utilities;
 
 import android.util.Pair;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +10,8 @@ public class ExtractCSV {
 
     private BufferedReader br;
 
-    public ExtractCSV(String filePath) throws FileNotFoundException {
-        br = new BufferedReader(new FileReader(filePath));
+    public ExtractCSV(InputStream is) throws FileNotFoundException {
+        br = new BufferedReader(new InputStreamReader(is));
     }
 
     private List<String> next() throws IOException {
