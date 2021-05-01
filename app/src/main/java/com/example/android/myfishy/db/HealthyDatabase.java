@@ -9,6 +9,8 @@ import com.example.android.myfishy.db.entities.*;
 import com.example.android.myfishy.utilities.ExtractCSV;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 
 @Database(
         entities = {
@@ -41,8 +43,12 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
             public void run() {
                 try {
                     ExtractCSV ex = new ExtractCSV(con.getResources().openRawResource(R.raw.nutrition_table));
+                    List<String> csvRow = ex.next();
+                    while (!csvRow.isEmpty()){
 
-                } catch (FileNotFoundException e) {
+                        csvRow = ex.next();
+                    }
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }

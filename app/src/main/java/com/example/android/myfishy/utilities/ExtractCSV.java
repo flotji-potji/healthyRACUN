@@ -8,23 +8,23 @@ import java.util.List;
 
 public class ExtractCSV {
 
-    private BufferedReader br;
+    private static BufferedReader br;
 
     public ExtractCSV(InputStream is) throws FileNotFoundException {
         br = new BufferedReader(new InputStreamReader(is));
     }
 
-    private List<String> next() throws IOException {
+    public static List<String> next() throws IOException {
         char[] charLine = br.readLine().toCharArray();
         List<String> res = new ArrayList<>();
         CharState state = CharState.DELIMITER;
         String cellContext = "";
         Pair<CharState, String> ret;
-        for (int i = 0; i < charLine.length; i++){
+        for (int i = 0; i < charLine.length; i++) {
             ret = state.handleChar(charLine, i, cellContext);
             state = ret.first;
             cellContext = ret.second;
-            if (state == CharState.DELIMITER){
+            if (state == CharState.DELIMITER) {
                 res.add(cellContext);
                 cellContext = "";
             }
@@ -32,5 +32,7 @@ public class ExtractCSV {
         res.add(cellContext);
         return res;
     }
+
+
 
 }

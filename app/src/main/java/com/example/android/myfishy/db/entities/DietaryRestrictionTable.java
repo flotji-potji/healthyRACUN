@@ -6,30 +6,20 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "dietary_restriction_table")
 public class DietaryRestrictionTable {
-    @PrimaryKey
+
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     private int diet_plan_id;
-
     private String condition_name;
-
     private String diet_name;
-
     private String nourishment_category;
-
     private float table_salt;
-
     private float sodium;
-
     private float potassium;
-
     private float calcium;
-
     private float phosphor;
-
     private float protein;
-
     private float calories;
-
     private float liquid_intake;
 
     public DietaryRestrictionTable(int diet_plan_id, String condition_name, String diet_name,

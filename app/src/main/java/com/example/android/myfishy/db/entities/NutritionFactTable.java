@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "nutrition_fact_table")
 public class NutritionFactTable {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     private int nutrition_id;
     private String nourishment_category;
