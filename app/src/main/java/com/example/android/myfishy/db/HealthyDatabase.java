@@ -42,17 +42,24 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
             @Override
             public void run() {
                 try {
-                    ExtractCSV ex = new ExtractCSV(con.getResources().openRawResource(R.raw.nutrition_table));
-                    List<String> csvRow = ex.next();
-                    while (!csvRow.isEmpty()){
-
-                        csvRow = ex.next();
-                    }
+                    populateNutritionFactTable(mDao);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
+
+    private static void populateNutritionFactTable(HealthyDao healthyDao) throws IOException {
+        ExtractCSV ex = new ExtractCSV(con.getResources().openRawResource(R.raw.nutrition_table));
+        List<String> csvRow = ex.next();
+        int currLine = 0;
+        while (!csvRow.isEmpty()) {
+            currLine++;
+            if (currLine > 3)
+                healthyDao.insertNutritionFactTable(ex.getNutritionFactTableRow(csvRow));
+            csvRow = ex.next();
+        }
     }
 
     public static HealthyDatabase getDatabase(final Context context) {
