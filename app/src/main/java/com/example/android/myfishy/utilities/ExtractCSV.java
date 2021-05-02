@@ -66,120 +66,188 @@ public class ExtractCSV {
         try {
             calories = Float.parseFloat(line.get(CALORIES_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            calories = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(CALORIES_COLUMN).contains("<"))
+                calories = (-1) * Float.parseFloat(line.get(CALORIES_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(CALORIES_COLUMN).contains(">"))
+                calories = Float.parseFloat(line.get(CALORIES_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                calories = -1;
         }
         float fat;
         try {
             fat = Float.parseFloat(line.get(FAT_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            fat = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(FAT_COLUMN).contains("<"))
+                fat = (-1) * Float.parseFloat(line.get(FAT_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(FAT_COLUMN).contains(">"))
+                fat = Float.parseFloat(line.get(FAT_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                fat = -1;
         }
         float saturated_fatty_acids;
         try {
             saturated_fatty_acids = Float.parseFloat(line.get(SATURATED_FATTY_ACIDS_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            saturated_fatty_acids = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(SATURATED_FATTY_ACIDS_COLUMN).contains("<"))
+                saturated_fatty_acids = (-1) * Float.parseFloat(line.get(SATURATED_FATTY_ACIDS_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(SATURATED_FATTY_ACIDS_COLUMN).contains(">"))
+                saturated_fatty_acids = Float.parseFloat(line.get(SATURATED_FATTY_ACIDS_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                saturated_fatty_acids = -1;
         }
         float unsaturated_fatty_acids;
         try {
             unsaturated_fatty_acids = Float.parseFloat(line.get(UNSATURATED_FATTY_ACIDS_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            unsaturated_fatty_acids = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(UNSATURATED_FATTY_ACIDS_COLUMN).contains("<"))
+                unsaturated_fatty_acids = (-1) * Float.parseFloat(line.get(UNSATURATED_FATTY_ACIDS_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(UNSATURATED_FATTY_ACIDS_COLUMN).contains(">"))
+                unsaturated_fatty_acids = Float.parseFloat(line.get(UNSATURATED_FATTY_ACIDS_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                unsaturated_fatty_acids = -1;
         }
         float carbohydrates_all;
         try {
             carbohydrates_all = Float.parseFloat(line.get(CARBOHYDRATES_ALL_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            carbohydrates_all = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(CARBOHYDRATES_ALL_COLUMN).contains("<"))
+                carbohydrates_all = (-1) * Float.parseFloat(line.get(CARBOHYDRATES_ALL_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(CARBOHYDRATES_ALL_COLUMN).contains(">"))
+                carbohydrates_all = Float.parseFloat(line.get(CARBOHYDRATES_ALL_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                carbohydrates_all = -1;
         }
         float simple_sugars;
         try {
             simple_sugars = Float.parseFloat(line.get(SIMPLE_SUGARS_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            simple_sugars = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(SIMPLE_SUGARS_COLUMN).contains("<"))
+                simple_sugars = (-1) * Float.parseFloat(line.get(SIMPLE_SUGARS_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(SIMPLE_SUGARS_COLUMN).contains(">"))
+                simple_sugars = Float.parseFloat(line.get(SIMPLE_SUGARS_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                simple_sugars = -1;
         }
         float etoh;
         try {
             etoh = Float.parseFloat(line.get(ETOH_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            etoh = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(ETOH_COLUMN).contains("<"))
+                etoh = (-1) * Float.parseFloat(line.get(ETOH_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(ETOH_COLUMN).contains(">"))
+                etoh = Float.parseFloat(line.get(ETOH_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                etoh = -1;
         }
         float h2o;
         try {
             h2o = Float.parseFloat(line.get(H2O_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            h2o = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(H2O_COLUMN).contains("<"))
+                h2o = (-1) * Float.parseFloat(line.get(H2O_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(H2O_COLUMN).contains(">"))
+                h2o = Float.parseFloat(line.get(H2O_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                h2o = -1;
         }
         float table_salt;
         try {
             table_salt = Float.parseFloat(line.get(TABLE_SALT_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            table_salt = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(TABLE_SALT_COLUMN).contains("<"))
+                table_salt = (-1) * Float.parseFloat(line.get(TABLE_SALT_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(TABLE_SALT_COLUMN).contains(">"))
+                table_salt = Float.parseFloat(line.get(TABLE_SALT_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                table_salt = -1;
         }
         float sodium = 0;
         try {
             sodium = Float.parseFloat(line.get(SODIUM_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            sodium = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(SODIUM_COLUMN).contains("<"))
+                sodium = (-1) * Float.parseFloat(line.get(SODIUM_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(SODIUM_COLUMN).contains(">"))
+                sodium = Float.parseFloat(line.get(SODIUM_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                sodium = -1;
         }
         float chlorine;
         try {
             chlorine = Float.parseFloat(line.get(CHLORINE_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            chlorine = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(CHLORINE_COLUMN).contains("<"))
+                chlorine = (-1) * Float.parseFloat(line.get(CHLORINE_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(CHLORINE_COLUMN).contains(">"))
+                chlorine = Float.parseFloat(line.get(CHLORINE_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                chlorine = -1;
         }
         float magnesium;
         try {
             magnesium = Float.parseFloat(line.get(MAGNESIUM_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            magnesium = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(MAGNESIUM_COLUMN).contains("<"))
+                magnesium = (-1) * Float.parseFloat(line.get(MAGNESIUM_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(MAGNESIUM_COLUMN).contains(">"))
+                magnesium = Float.parseFloat(line.get(MAGNESIUM_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                magnesium = -1;
         }
         float potassium;
         try {
             potassium = Float.parseFloat(line.get(POTASSIUM_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            potassium = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(POTASSIUM_COLUMN).contains("<"))
+                potassium = (-1) * Float.parseFloat(line.get(POTASSIUM_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(POTASSIUM_COLUMN).contains(">"))
+                potassium = Float.parseFloat(line.get(POTASSIUM_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                potassium = -1;
         }
         float calcium;
         try {
             calcium = Float.parseFloat(line.get(CALCIUM_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            calcium = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(CALCIUM_COLUMN).contains("<"))
+                calcium = (-1) * Float.parseFloat(line.get(CALCIUM_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(CALCIUM_COLUMN).contains(">"))
+                calcium = Float.parseFloat(line.get(CALCIUM_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                calcium = -1;
         }
         float phosphor;
         try {
             phosphor = Float.parseFloat(line.get(PHOSPHOR_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            phosphor = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(PHOSPHOR_COLUMN).contains("<"))
+                phosphor = (-1) * Float.parseFloat(line.get(PHOSPHOR_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(PHOSPHOR_COLUMN).contains(">"))
+                phosphor = Float.parseFloat(line.get(PHOSPHOR_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                phosphor = -1;
         }
         float iron;
         try {
-            iron = Float.parseFloat(line.get(CALORIES_COLUMN).replace(",", "."));
+            iron = Float.parseFloat(line.get(IRON_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            iron = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(IRON_COLUMN).contains("<"))
+                iron = (-1) * Float.parseFloat(line.get(IRON_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(IRON_COLUMN).contains(">"))
+                iron = Float.parseFloat(line.get(IRON_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                iron = -1;
         }
         float protein;
         try {
             protein = Float.parseFloat(line.get(PROTEIN_COLUMN).replace(",", "."));
         } catch (NumberFormatException e) {
-            protein = -1;
-            Log.e(EXTRACT_CSV_TAG, e.getMessage());
+            if (line.get(PROTEIN_COLUMN).contains("<"))
+                protein = (-1) * Float.parseFloat(line.get(PROTEIN_COLUMN).replace(",", ".").replace("<", ""));
+            else if (line.get(PROTEIN_COLUMN).contains(">"))
+                protein = Float.parseFloat(line.get(PROTEIN_COLUMN).replace(",", ".").replace(">", ""));
+            else
+                protein = -1;
         }
 
         return new NutritionFactTable(
