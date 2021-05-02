@@ -20,12 +20,11 @@ import java.util.List;
         version = 1)
 public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
 
-
     public abstract HealthyDao healthyDao();
 
-    private static HealthyDatabase INSTANCE;
+    private static ExtractCSV ex;
 
-    private static Context con;
+    private static HealthyDatabase INSTANCE;
 
     private static RoomDatabase.Callback sRoomDatabaseCallback =
             new Callback() {
@@ -51,7 +50,6 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
     }
 
     private static void populateNutritionFactTable(HealthyDao healthyDao) throws IOException {
-        ExtractCSV ex = new ExtractCSV(con.getResources().openRawResource(R.raw.nutrition_table));
         List<String> csvRow = ex.next();
         int currLine = 0;
         while (!csvRow.isEmpty()) {
@@ -62,8 +60,8 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
         }
     }
 
-    public static HealthyDatabase getDatabase(final Context context) {
-        con = context;
+    public static HealthyDatabase getDatabase(final Context context) throws IOException {
+        ex = new ExtractCSV(context);
         if (INSTANCE == null) {
             synchronized (HealthyDatabase.class) {
                 if (INSTANCE == null) {

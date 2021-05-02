@@ -1,7 +1,9 @@
 package com.example.android.myfishy.utilities;
 
+import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
+import com.example.android.myfishy.R;
 import com.example.android.myfishy.db.entities.NutritionFactTable;
 
 import java.io.*;
@@ -35,8 +37,8 @@ public class ExtractCSV {
     private final short IRON_COLUMN = 116;
     private final short PROTEIN_COLUMN = 41;
 
-    public ExtractCSV(InputStream is) throws IOException {
-        br = new BufferedReader(new InputStreamReader(is));
+    public ExtractCSV(Context context) throws IOException {
+        br = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.nutrition_table)));
     }
 
     public List<String> next() throws IOException {

@@ -1,5 +1,6 @@
 package com.example.android.myfishy;
 
+import android.content.Context;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private PieChart pieChart;
+    private static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
