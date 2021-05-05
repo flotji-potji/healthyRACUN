@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+Alice --> Alice: is present
+UI -> DB: initialisation
+Alice --> UI: opens app
+UI -> Alice: enter credentials
+Alice --> UI: enters user credentials and \npatient records
+UI -> DB: stores user credentials \nin table "user" and \npatient records in table "diet"
+
+...
+
+Alice --> UI: "normal usage"
+Alice --> UI: adds meal
+UI -> NutritionCheck: is meal valid for patient
+NutritionCheck -> UI: meal valid or not valid
+
+...
+
+UI -> DB: store meal if valid
+
+...
+
+UI -> Alice: warn user for invalid meal \nif meal's not valid
+
+@enduml
