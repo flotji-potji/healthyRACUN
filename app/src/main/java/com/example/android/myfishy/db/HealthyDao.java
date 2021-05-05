@@ -41,4 +41,13 @@ public interface HealthyDao {
     @Transaction
     @Query("SELECT * FROM user WHERE username = :username")
     LiveData<List<UserGotDiets>> getUserGotDiets(String username);
+
+    @Query("SELECT * FROM dietary_restriction_table")
+    LiveData<List<DietaryRestrictionTable>> getDietaryRestrictionTable();
+
+    @Query("SELECT * FROM nutrition_fact_table")
+    LiveData<List<NutritionFactTable>> getNutritionFactTable();
+
+    @Query("SELECT * FROM user WHERE username = :username")
+    LiveData<User> getUser(String username);
 }
