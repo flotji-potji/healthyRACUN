@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private PieChart pieChart;
-    private static Context context;
+    private static String currUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    public static String getCurrUser() {
+        return currUser;
+    }
 
 
 }

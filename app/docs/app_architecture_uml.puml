@@ -1,0 +1,71 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+package "Activity/Fragments" {
+
+    object Activity {
+        MainActivity
+    }
+
+    object Fragment {
+        SplashScreenFragment
+        ProfileFormFragment
+        HomeFragment
+        MealLoggingFragment
+        AddQuickMealFragment
+        NutritionAlarmFragment
+        ProfileFragment
+    }
+
+}
+
+package "ViewModels" {
+
+    object Classes {
+        SplashScreenViewModel
+        ProfileFormViewModel
+        HomeViewModel
+        MealLoggingViewModel
+        AddQuickMealViewModel
+        NutritionAlarmViewModel
+        ProfileViewModel
+    }
+
+}
+
+node "Repository" {
+
+    class HealthyRepository {
+        healthyDao : HealthyDao
+        netData : NetData
+        --
+        getNutritionFactTable() : LiveData<List<NutritionFactTable>>
+        geDietaryRestrictionTable() : LiveData<List<DietaryRestrictionTable>>
+    }
+
+}
+
+node "RoomDatabase" {
+
+    package "HealthyDatabase" {
+
+        database "sqlite" {
+
+        }
+
+    }
+
+}
+
+cloud "Inet" {
+
+
+
+}
+
+"Activity/Fragments" ---> "ViewModels"
+"ViewModels" --> "Repository"
+HealthyRepository ---> "RoomDatabase"
+HealthyRepository ---> "Inet"
+
+@enduml
