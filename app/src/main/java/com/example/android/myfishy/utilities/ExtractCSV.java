@@ -3,6 +3,7 @@ package com.example.android.myfishy.utilities;
 import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
+
 import com.example.android.myfishy.R;
 import com.example.android.myfishy.db.entities.NutritionFactTable;
 
@@ -60,6 +61,26 @@ public class ExtractCSV {
         }
         res.add(cellContext);
         return res;
+    }
+
+    public float getDataCellFromLine(List<String> line, int position) {
+        float cell;
+        String cellString = line.get(position).replace(",", ".");
+        try {
+            cell = Float.parseFloat(cellString);
+        } catch (NumberFormatException e) {
+            if (cellString.contains("<"))
+                cell = (-1) * Float.parseFloat(cellString.replace("<", ""));
+            else if (cellString.contains(">"))
+                cell = Float.parseFloat(cellString.replace(">", ""));
+            else
+                cell = -1;
+        }
+        return cell;
+    }
+
+    public String getStringCellFromLine(List<String> line, int position){
+        return null;
     }
 
     public NutritionFactTable getNutritionFactTableRow(List<String> line) {
