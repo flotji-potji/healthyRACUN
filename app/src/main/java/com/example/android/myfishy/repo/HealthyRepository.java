@@ -29,6 +29,8 @@ public class HealthyRepository {
     public static final String QUICK_ADD_MEAL_FRAGMENT_TAG = "QUICK_ADD_MEAL_FRAGMENT_CLASS";
     public static final String NUTRITION_ALARM_FRAGMENT_TAG = "NUTRITION_ALARM_FRAGMENT_CLASS";
     public static final String PROFILE_FRAGMENT_TAG = "PROFILE_FRAGMENT_CLASS";
+    public static final String CREATE_MEAL_FRAGMENT_TAG = "CREATE_MEAL_FRAGMENT_CLASS";
+    public static final String ADD_NOURISHMENT_FRAGMENT_TAG = "ADD_NOURISHMENT_FRAGMENT_CLASS";
 
     // -------  private class attributes: ---------- //
     // ------------ DB attributes: ----------------- //
@@ -66,6 +68,9 @@ public class HealthyRepository {
                 case SPLASH_SCREEN_FRAGMENT_TAG:
                     userTable = healthyDao.getUser(MainActivity.getCurrUser());
                     break;
+                case PROFILE_FORM_FRAGMENT_TAG:
+                    dietaryRestrictionTable = healthyDao.getDietaryRestrictionTable();
+                    break;
                 case HOME_FRAGMENT_TAG:
                     userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
                     userJoinsMeal = healthyDao.getUserEatMeals(MainActivity.getCurrUser());
@@ -80,10 +85,37 @@ public class HealthyRepository {
                     userTable = healthyDao.getUser(MainActivity.getCurrUser());
                     userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
                     break;
+                case ADD_NOURISHMENT_FRAGMENT_TAG:
+                    nutritionFactTable = healthyDao.getNutritionFactTable();
+                    userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
+                    break;
             }
         } catch (IOException e){
             Log.e(HEALTHY_REPOSITORY_TAG, e.getMessage());
         }
     }
 
+    public LiveData<List<MealConsistsOfNourishments>> getMealJoinsNourishment() {
+        return mealJoinsNourishment;
+    }
+
+    public LiveData<List<UserEatMeals>> getUserJoinsMeal() {
+        return userJoinsMeal;
+    }
+
+    public LiveData<List<UserGotDiets>> getUserJoinsDiet() {
+        return userJoinsDiet;
+    }
+
+    public LiveData<List<DietaryRestrictionTable>> getDietaryRestrictionTable() {
+        return dietaryRestrictionTable;
+    }
+
+    public LiveData<List<NutritionFactTable>> getNutritionFactTable() {
+        return nutritionFactTable;
+    }
+
+    public LiveData<User> getUserTable() {
+        return userTable;
+    }
 }
