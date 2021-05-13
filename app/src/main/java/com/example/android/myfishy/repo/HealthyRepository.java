@@ -2,17 +2,18 @@ package com.example.android.myfishy.repo;
 
 import android.app.Application;
 import android.util.Log;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import com.example.android.myfishy.MainActivity;
+import com.example.android.myfishy.Nutrition;
 import com.example.android.myfishy.db.HealthyDao;
 import com.example.android.myfishy.db.HealthyDatabase;
-import com.example.android.myfishy.db.entities.DietaryRestrictionTable;
-import com.example.android.myfishy.db.entities.NutritionFactTable;
-import com.example.android.myfishy.db.entities.User;
+import com.example.android.myfishy.db.entities.*;
 import com.example.android.myfishy.db.relations.MealConsistsOfNourishments;
 import com.example.android.myfishy.db.relations.UserEatMeals;
 import com.example.android.myfishy.db.relations.UserGotDiets;
 
+import javax.xml.transform.sax.TransformerHandler;
 import java.io.IOException;
 import java.util.List;
 
@@ -47,6 +48,22 @@ public class HealthyRepository {
     private LiveData<List<DietaryRestrictionTable>> dietaryRestrictionTable;
     private LiveData<List<NutritionFactTable>> nutritionFactTable;
     private LiveData<User> userTable;
+    // --------- DB entity classes --------------- //
+    private Diet dietEntity;
+    private final String dietClassName = Diet.class.getSimpleName();
+    private DietaryRestrictionTable dietaryRestrictionTableEntity;
+    private final String dietaryRestrictionTableClassName = DietaryRestrictionTable.class.getSimpleName();
+    private Meal mealEntity;
+    private final String mealClassName = Meal.class.getSimpleName();
+    private Nourishment nourishmentEntity;
+    private final String nourishmentClassName = Nourishment.class.getSimpleName();
+    private NutritionFactTable nutritionFactTableEntity;
+    private final String nutritionFactTableClassName = NutritionFactTable.class.getSimpleName();
+    private User userEntity;
+    private final String userClassName = User.class.getSimpleName();
+    private final String mealConsistsOfNourishmentClassName = MealConsistsOfNourishments.class.getSimpleName();
+    private final String userEatMealsClassName = UserEatMeals.class.getSimpleName();
+    private final String userGotDietsClassName = UserGotDiets.class.getSimpleName();
 
     /**
      * Class is responsible for all related data handling activities
@@ -98,7 +115,6 @@ public class HealthyRepository {
     }
 
     public LiveData<List<MealConsistsOfNourishments>> getMealJoinsNourishment() {
-
         return mealJoinsNourishment;
     }
 
@@ -122,5 +138,48 @@ public class HealthyRepository {
         return userTable;
     }
 
+    public void insertDiet(Diet diet) {
+        insertEntityAsyncTask(healthyDao, diet);
+    }
 
+    public void insertDietaryRestrictionTable(DietaryRestrictionTable dietaryRestrictionTable) {
+        insertEntityAsyncTask(healthyDao, dietaryRestrictionTable);
+    }
+
+    public void insertMeal(Meal meal) {
+        insertEntityAsyncTask(healthyDao, meal);
+    }
+
+    public void insertNourishment(Nourishment nourishment) {
+        insertEntityAsyncTask(healthyDao, nourishment);
+    }
+
+    public void insertNutritionFactTable(NutritionFactTable nutritionFactTable) {
+        insertEntityAsyncTask(healthyDao, nutritionFactTable);
+    }
+
+    public void insertUser(User user) {
+        insertEntityAsyncTask(healthyDao, user);
+    }
+
+    private void insertEntityAsyncTask(final HealthyDao healthyDao, final Object data) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final String dataClassName = data.getClass().getSimpleName();
+
+                if (dataClassName.equals(dietClassName))
+                    healthyDao.insertDiet((Diet) data);
+                else if (dataClassName.equals(dietaryRestrictionTableClassName))
+                    healthyDao.insertDietaryRestrictionTable((DietaryRestrictionTable) data);
+                else if (dataClassName.equals(mealClassName))
+                    healthyDao.insertMeal((Meal) data);
+                else if (dataClassName.equals(nourishmentClassName))
+                    healthyDao.insertNourishment((Nourishment) data);
+                else if (dataClassName.equals(userClassName))
+                    healthyDao.insertUser((User) data);
+
+            }
+        }).start();
+    }
 }
