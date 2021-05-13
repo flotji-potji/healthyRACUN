@@ -44,7 +44,13 @@ public class HealthyRepository {
     private LiveData<List<NutritionFactTable>> nutritionFactTable;
     private LiveData<User> userTable;
 
-
+    /**
+     *
+     * Class is responsible for all related data handling activities
+     *
+     * @param application needed to initiate DB instance
+     * @param viewModelTag given input decides on which resources should be loaded
+     */
     public HealthyRepository(Application application, String viewModelTag) {
         // ------- DB initialisation code Block: ----------- //
         try {

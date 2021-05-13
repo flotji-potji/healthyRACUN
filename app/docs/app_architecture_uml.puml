@@ -15,6 +15,8 @@ package "Activity/Fragments" {
         AddQuickMealFragment
         NutritionAlarmFragment
         ProfileFragment
+        CreateMealFragment
+        AddNourishmentFragment
     }
 
 }
@@ -29,6 +31,8 @@ package "ViewModels" {
         AddQuickMealViewModel
         NutritionAlarmViewModel
         ProfileViewModel
+        CreateMealViewModel
+        AddNourishmentViewModel
     }
 
 }
