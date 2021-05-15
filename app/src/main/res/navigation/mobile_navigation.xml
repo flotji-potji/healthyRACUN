@@ -12,14 +12,27 @@
             tools:layout="@layout/fragment_home"/>
 
     <fragment
-            android:id="@+id/navigation_dashboard"
+            android:id="@+id/navigation_meal_logging"
             android:name="com.example.android.myfishy.ui.meal_logging.MealLoggingFragment"
-            android:label="@string/title_dashboard"
-            tools:layout="@layout/fragment_dashboard"/>
+            android:label="@string/title_meal_logging"
+            tools:layout="@layout/fragment_meal_logging"/>
 
     <fragment
-            android:id="@+id/navigation_notifications"
+            android:id="@+id/navigation_add_quick_meal"
+            android:name="com.example.android.myfishy.ui.quickadd.AddQuickMealFragment"
+            android:label="@string/title_add_quick_meal"
+            tools:layout="@layout/fragment_add_quick_meal"/>
+
+    <fragment
+            android:id="@+id/navigation_nutrition_alarm"
             android:name="com.example.android.myfishy.ui.nutrition_alarm.NutritionAlarmFragment"
-            android:label="@string/title_notifications"
-            tools:layout="@layout/fragment_notifications"/>
+            android:label="@string/title_nutrition_alarm"
+            tools:layout="@layout/fragment_nutrition_alarm"/>
+
+    <fragment
+            android:id="@+id/navigation_profile"
+            android:name="com.example.android.myfishy.ui.profile.ProfileFragment"
+            android:label="@string/title_profile"
+            tools:layout="@layout/fragment_profile"/>
+
 </navigation>

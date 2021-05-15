@@ -6,4 +6,8 @@
     <string name="title_notifications">Notifications</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_meal_logging">Mahlzeit</string>
+    <string name="title_nutrition_alarm">Nachrichten</string>
+    <string name="title_add_quick_meal">Essen hinzufügen</string>
+    <string name="title_profile">Profil</string>
 </resources>

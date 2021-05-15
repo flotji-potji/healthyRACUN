@@ -12,22 +12,21 @@
         <activity
                 android:name=".MainActivity"
                 android:label="@string/title_activity_main">
-        </activity>
-        <activity android:name=".ProfileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Nutrition"/>
-        <activity
-                android:name=".ui.splashscreen.SplashScreenFragment"
-                android:theme="@style/SplashScreen">
+        <activity android:name=".ProfileActivity">
+
         </activity>
+        <activity android:name=".Nutrition"/>
         <activity
                 android:name=".MaxActivity"
                 android:theme="@style/AppTheme"/>
+
+
     </application>
 
 </manifest>
