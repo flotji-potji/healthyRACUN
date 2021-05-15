@@ -2,10 +2,8 @@ package com.example.android.myfishy.repo;
 
 import android.app.Application;
 import android.util.Log;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
-import com.example.android.myfishy.MainActivity;
-import com.example.android.myfishy.Nutrition;
+import com.example.android.myfishy.MaxActivity;
 import com.example.android.myfishy.db.HealthyDao;
 import com.example.android.myfishy.db.HealthyDatabase;
 import com.example.android.myfishy.db.entities.*;
@@ -13,7 +11,6 @@ import com.example.android.myfishy.db.relations.MealConsistsOfNourishments;
 import com.example.android.myfishy.db.relations.UserEatMeals;
 import com.example.android.myfishy.db.relations.UserGotDiets;
 
-import javax.xml.transform.sax.TransformerHandler;
 import java.io.IOException;
 import java.util.List;
 
@@ -85,28 +82,28 @@ public class HealthyRepository {
                 case MAIN_ACTIVITY_TAG:
                     break;
                 case SPLASH_SCREEN_TAG:
-                    userTable = healthyDao.getUser(MainActivity.getCurrUser());
+                    userTable = healthyDao.getUser(MaxActivity.getCurrUser());
                     break;
                 case PROFILE_FORM_TAG:
                     dietaryRestrictionTable = healthyDao.getDietaryRestrictionTable();
                     break;
                 case HOME_TAG:
-                    userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
-                    userJoinsMeal = healthyDao.getUserEatMeals(MainActivity.getCurrUser());
+                    userJoinsDiet = healthyDao.getUserGotDiets(MaxActivity.getCurrUser());
+                    userJoinsMeal = healthyDao.getUserEatMeals(MaxActivity.getCurrUser());
                     break;
                 case MEAL_LOGGING_TAG:
-                    userJoinsMeal = healthyDao.getUserEatMeals(MainActivity.getCurrUser());
+                    userJoinsMeal = healthyDao.getUserEatMeals(MaxActivity.getCurrUser());
                     break;
                 case NUTRITION_ALARM_TAG:
-                    userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
+                    userJoinsDiet = healthyDao.getUserGotDiets(MaxActivity.getCurrUser());
                     break;
                 case PROFILE_TAG:
-                    userTable = healthyDao.getUser(MainActivity.getCurrUser());
-                    userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
+                    userTable = healthyDao.getUser(MaxActivity.getCurrUser());
+                    userJoinsDiet = healthyDao.getUserGotDiets(MaxActivity.getCurrUser());
                     break;
                 case ADD_NOURISHMENT_TAG:
                     nutritionFactTable = healthyDao.getNutritionFactTable();
-                    userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
+                    userJoinsDiet = healthyDao.getUserGotDiets(MaxActivity.getCurrUser());
                     break;
             }
         } catch (IOException e) {

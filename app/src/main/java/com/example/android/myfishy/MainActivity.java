@@ -1,102 +1,28 @@
 package com.example.android.myfishy;
 
-import android.content.Context;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-
-import com.github.mikephil.charting.animation.Easing;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
-import java.util.ArrayList;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
-
-    private PieChart pieChart;
-    private static String currUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        pieChart = findViewById(R.id.piechart);
-        setupPieChart();
-        loadPieChart();
-
-        CardView nutCard = findViewById(R.id.nutritioncard);
-
-        nutCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent getNut = new Intent(getApplicationContext(), Nutrition.class);
-                startActivity(getNut);
-            }
-        });
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navView, navController);
     }
-
-
-    private void setupPieChart(){
-        pieChart.setDrawHoleEnabled(true);
-        pieChart.setUsePercentValues(true);
-        pieChart.setEntryLabelTextSize(12);
-        pieChart.setEntryLabelColor(Color.BLACK);
-//        pieChart.setCenterText("Data");
-//        pieChart.setCenterTextSize(24);
-        pieChart.getDescription().setEnabled(false);
-
-        Legend l = pieChart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
-        l.setDrawInside(false);
-        l.setEnabled(true);
-    }
-    private void loadPieChart(){
-
-        ArrayList<PieEntry> entries = new ArrayList<>();
-
-
-        //value: daten die mitgegeben werden, um anzuzeigen wv der nährstoffe eingenommen wurdem
-        entries.add(new PieEntry(0.4f, "Potassium"));
-        entries.add(new PieEntry(0.3f, "Iron"));
-        entries.add(new PieEntry(0.1f, "Kalium"));
-        entries.add(new PieEntry(0.2f, "Calcium"));
-
-        //colors liste wurde erstellt um die entries in farben einzukategorisieren.
-        ArrayList<Integer> colors = new ArrayList<>();
-        for(int color: ColorTemplate.MATERIAL_COLORS)
-        {
-            colors.add(color);
-        }
-
-        PieDataSet dataSet = new PieDataSet(entries, "Nutritions:");
-        dataSet.setColors(colors);
-        PieData data = new PieData(dataSet);
-        data.setDrawValues(true);
-        data.setValueFormatter(new PercentFormatter(pieChart));
-        data.setValueTextSize(12f);
-        data.setValueTextColor(Color.BLACK);
-
-        pieChart.setData(data);
-        pieChart.invalidate();
-        pieChart.animateY(600, Easing.EaseInOutQuad);
-
-    }
-
-    public static String getCurrUser() {
-        return currUser;
-    }
-
 
 }
