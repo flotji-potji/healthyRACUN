@@ -6,18 +6,24 @@ package com.example.android.myfishy.utilities;
 // FEMALE : (sedentary) TDEE (Total Daily Energy Expenditure) = BMR * 1.2
 
 // Gram per Calorie per Macronutrient --> 1g Carb - 4 kcal; 1g Fat - 9 kcal; 1g Protein - 4 kcal;
+
+//Diabetes:
 // Macro Split Diabetes Melitus --> Crb: 45-65%; Fts: 20-35% Prtn: 10-35% (>> C55;F28;P17) (https://www.straighthealthcare.com/diabetic-diet.html)
+
+//Chronische Darmentzündungen
+//Macro Split CED/IBS: --> Crb: 48%; Fts: 35%; Prtn: 17% (den Split hab ich mir in Kombination mit folgenem Journal bissi aus der Nase gezogen >> https://doi.org/10.3892/mmr.2013.1565)
 
 public class CalorieRechner {
     public static void main(String[] args) {
-        CalorieRechner test = new CalorieRechner(83,178,25,"männlich");
-
+        CalorieRechner test = new CalorieRechner(83,178,25,"männlich", "Diabetes Typ 1");
 
     }
+
     private int groesse;
     private int gewicht;
     private int alter;
     private String geschlecht;
+    private String erkrankung;
     private int BMR;
     private int TDEE;
     private int calCarb;
@@ -27,7 +33,7 @@ public class CalorieRechner {
     private int gProt;
     private int gFat;
 
-    public CalorieRechner(int gewicht, int groesse, int alter, String geschlecht){
+    public CalorieRechner(int gewicht, int groesse, int alter, String geschlecht, String erkrankung){
         this.gewicht = gewicht;
         this.groesse = groesse;
         this.alter = alter;
@@ -41,14 +47,29 @@ public class CalorieRechner {
             int BMR = (int) ((groesse * 6.25) + (gewicht * 9.99) - (alter * 4.92) - 116);
             TDEE = (int) (BMR * 1.2);
         }
-        MacroSplit();
+        if (erkrankung.equals("Diabetes Typ 1" || "Diabetes Typ 2")){
+            MacroSplitDiabetes();
+        } else if (erkrankung.equals("Morbus Crohn" || "Colitis Ulcerosa")){
+            MacroSplitCED();
+        }
+
+        CalorieConversion();
 
     }
 
-    private void MacroSplit() {
-        calCarb = (int) (TDEE * 0.55);
-        calFat = (int) (TDEE * 0.28);
-        calProt = (int) (TDEE * 0.17);
+        private void MacroSplitDiabetes() {
+            calCarb = (int) (TDEE * 0.55);
+            calFat = (int) (TDEE * 0.28);
+            calProt = (int) (TDEE * 0.17);
+        }
+
+        private void MacroSplitCED() {
+            calCarb = (int) (TDEE * 0.48);
+            calFat = (int) (TDEE * 0.35);
+            calProt = (int) (TDEE * 0.17);
+        }
+
+        private void CalorieConversion() {
         gCarb = calCarb / 4;
         gFat = calFat / 9;
         gProt = calProt / 4;
@@ -56,7 +77,7 @@ public class CalorieRechner {
     }
 
 
-    public int getGroesse() {
+ /*   public int getGroesse() {
         return groesse;
     }
 
@@ -109,5 +130,5 @@ public class CalorieRechner {
         this.TDEE = TDEE;
         MacroSplit();
     }
-
+*/
 }
