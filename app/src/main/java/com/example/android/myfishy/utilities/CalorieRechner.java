@@ -47,9 +47,9 @@ public class CalorieRechner {
             int BMR = (int) ((groesse * 6.25) + (gewicht * 9.99) - (alter * 4.92) - 116);
             TDEE = (int) (BMR * 1.2);
         }
-        if (erkrankung.equals("Diabetes Typ 1" || "Diabetes Typ 2")){
+        if (erkrankung.equals("Diabetes Typ 1") || erkrankung.equals("Diabetes Typ 2")){
             MacroSplitDiabetes();
-        } else if (erkrankung.equals("Morbus Crohn" || "Colitis Ulcerosa")){
+        } else if (erkrankung.equals("Morbus Crohn") || erkrankung.equals("Colitis Ulcerosa")){
             MacroSplitCED();
         }
 
