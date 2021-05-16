@@ -19,6 +19,7 @@ public class CalorieRechner {
 
     }
 
+
     private int groesse;
     private int gewicht;
     private int alter;
@@ -33,13 +34,17 @@ public class CalorieRechner {
     private int gProt;
     private int gFat;
 
+
     public CalorieRechner(int gewicht, int groesse, int alter, String geschlecht, String erkrankung){
         this.gewicht = gewicht;
         this.groesse = groesse;
         this.alter = alter;
         this.geschlecht = geschlecht;
 
-
+/**
+ * @param BMR = jene Kalorien die man einfach nur durchs "Existieren" verbrennt (Atming, Verdauung & co)
+ * @param TDEE = Gesamter Kalorieverbrauch; BMR mit physischem Aktivitätsgrad faktorisiert
+ */
         if (geschlecht.equals("männlich")){
             int BMR = (int) ((groesse * 6.25) + (gewicht * 9.99) - (alter * 4.92) + 5);
             TDEE = (int) (BMR * 1.1);
