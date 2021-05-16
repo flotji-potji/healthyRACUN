@@ -15,7 +15,7 @@ public interface HealthyDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertDiet(Diet diet);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertDietaryRestrictionTable(DietaryRestrictionTable dietaryRestrictionTable);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -24,7 +24,7 @@ public interface HealthyDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertNourishment(Nourishment nourishment);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertNutritionFactTable(NutritionFactTable nutritionFactTable);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -50,4 +50,7 @@ public interface HealthyDao {
 
     @Query("SELECT * FROM user WHERE username = :username")
     LiveData<User> getUser(String username);
+
+    @Query("SELECT nourishment_name FROM nutrition_fact_table")
+    LiveData<List<String>> getNourishmentNamesFromNutritionFactTable();
 }

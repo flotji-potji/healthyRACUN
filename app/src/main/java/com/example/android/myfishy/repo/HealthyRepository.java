@@ -3,6 +3,7 @@ package com.example.android.myfishy.repo;
 import android.app.Application;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
+import com.example.android.myfishy.MainActivity;
 import com.example.android.myfishy.MaxActivity;
 import com.example.android.myfishy.db.HealthyDao;
 import com.example.android.myfishy.db.HealthyDatabase;
@@ -28,6 +29,9 @@ public class HealthyRepository {
     public static final String PROFILE_TAG = "CLASS_PROFILE";
     public static final String CREATE_MEAL_TAG = "CLASS_CREATE_MEAL";
     public static final String ADD_NOURISHMENT_TAG = "CLASS_ADD_NOURISHMENT";
+    public static final String VIEW_MODEL_TAG = "_VIEW_MODEL";
+    public static final String FRAGMENT_TAG = "_FRAGMENT";
+    public static final String ACTIVITY_TAG = "_ACTIVITY";
 
     // ----- Class private global attributes ------- //
     private String currentViewModel;
@@ -45,6 +49,8 @@ public class HealthyRepository {
     private LiveData<List<DietaryRestrictionTable>> dietaryRestrictionTable;
     private LiveData<List<NutritionFactTable>> nutritionFactTable;
     private LiveData<User> userTable;
+    // --------- DB column entity queries -------- //
+    private LiveData<List<String>> nourishmentNamesFromNutritionFactTable;
     // --------- DB entity classes --------------- //
     private Diet dietEntity;
     private final String dietClassName = Diet.class.getSimpleName();
@@ -70,7 +76,7 @@ public class HealthyRepository {
      */
     public HealthyRepository(Application application, String viewModelTag) {
         // ------- DB initialisation code Block: ----------- //
-        currentViewModel = viewModelTag.replace("_VIEW_MODEL", "");
+        currentViewModel = viewModelTag.replace(VIEW_MODEL_TAG, "");
         try {
             // obtain HealthyDatabase object and initialise with application reference
             HealthyDatabase db = HealthyDatabase.getDatabase(application);
@@ -82,33 +88,40 @@ public class HealthyRepository {
                 case MAIN_ACTIVITY_TAG:
                     break;
                 case SPLASH_SCREEN_TAG:
-                    userTable = healthyDao.getUser(MaxActivity.getCurrUser());
+                    userTable = healthyDao.getUser(MainActivity.getCurrUser());
                     break;
                 case PROFILE_FORM_TAG:
                     dietaryRestrictionTable = healthyDao.getDietaryRestrictionTable();
                     break;
                 case HOME_TAG:
-                    userJoinsDiet = healthyDao.getUserGotDiets(MaxActivity.getCurrUser());
-                    userJoinsMeal = healthyDao.getUserEatMeals(MaxActivity.getCurrUser());
+                    userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
+                    userJoinsMeal = healthyDao.getUserEatMeals(MainActivity.getCurrUser());
                     break;
                 case MEAL_LOGGING_TAG:
-                    userJoinsMeal = healthyDao.getUserEatMeals(MaxActivity.getCurrUser());
+                    nutritionFactTable = healthyDao.getNutritionFactTable(); // TODO: remove after testing is done
+                    nourishmentNamesFromNutritionFactTable = healthyDao.getNourishmentNamesFromNutritionFactTable(); // TODO: remove after testing is done
+                    userJoinsMeal = healthyDao.getUserEatMeals(MainActivity.getCurrUser());
                     break;
                 case NUTRITION_ALARM_TAG:
-                    userJoinsDiet = healthyDao.getUserGotDiets(MaxActivity.getCurrUser());
+                    userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
                     break;
                 case PROFILE_TAG:
-                    userTable = healthyDao.getUser(MaxActivity.getCurrUser());
-                    userJoinsDiet = healthyDao.getUserGotDiets(MaxActivity.getCurrUser());
+                    userTable = healthyDao.getUser(MainActivity.getCurrUser());
+                    userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
                     break;
                 case ADD_NOURISHMENT_TAG:
                     nutritionFactTable = healthyDao.getNutritionFactTable();
-                    userJoinsDiet = healthyDao.getUserGotDiets(MaxActivity.getCurrUser());
+                    nourishmentNamesFromNutritionFactTable = healthyDao.getNourishmentNamesFromNutritionFactTable();
+                    userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
                     break;
             }
         } catch (IOException e) {
             Log.e(HEALTHY_REPOSITORY_TAG, e.getMessage());
         }
+    }
+
+    public static String buildTag(String baseTag, String endTag){
+        return String.format(baseTag, endTag);
     }
 
     public LiveData<List<MealConsistsOfNourishments>> getMealJoinsNourishment() {
@@ -133,6 +146,10 @@ public class HealthyRepository {
 
     public LiveData<User> getUserTable() {
         return userTable;
+    }
+
+    public LiveData<List<String>> getNourishmentNamesFromNutritionFactTable(){
+        return nourishmentNamesFromNutritionFactTable;
     }
 
     public void insertDiet(Diet diet) {

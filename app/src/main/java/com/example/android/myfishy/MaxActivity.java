@@ -22,7 +22,6 @@ import java.util.ArrayList;
 public class MaxActivity extends AppCompatActivity {
 
     private PieChart pieChart;
-    private static String currUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,9 +92,6 @@ public class MaxActivity extends AppCompatActivity {
 
     }
 
-    public static String getCurrUser() {
-        return currUser;
-    }
 
 
 }

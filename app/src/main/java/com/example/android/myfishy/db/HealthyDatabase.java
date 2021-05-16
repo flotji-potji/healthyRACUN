@@ -31,6 +31,7 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
                 @Override
                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                     super.onCreate(db);
+                    populateDb(INSTANCE);
                 }
             };
 

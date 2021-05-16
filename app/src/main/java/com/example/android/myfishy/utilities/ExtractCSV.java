@@ -42,7 +42,9 @@ public class ExtractCSV {
     }
 
     public List<String> next() throws IOException {
-        char[] charLine = br.readLine().toCharArray();
+        String line= br.readLine();
+        Log.e(EXTRACT_CSV_TAG, line);
+        char[] charLine = line.toCharArray();
         List<String> res = new ArrayList<>();
         CharState state = CharState.DELIMITER;
         String cellContext = "";
