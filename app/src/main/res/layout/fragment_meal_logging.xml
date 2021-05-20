@@ -1,36 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".ui.meal_logging.MealLoggingFragment">
 
-    <TextView
-            android:id="@+id/text_dashboard"
+    <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/recycler"
-            android:visibility="invisible"/>
+            android:background="@color/color_white"
+            android:padding="@dimen/fragment_padding">
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/recycler_item"/>
+        <androidx.cardview.widget.CardView
+                android:id="@+id/cardView_breakfast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/cardView_style">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/lineaLayout_cardView_style"
+                        android:gravity="top">
+
+                    <TextView
+                            android:id="@+id/textView_cardView_breakfast_label"
+                            style="@style/text_view_bold"
+                            android:text="@string/label_breakfast"/>
+
+                </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/cardView_lunch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardView_breakfast"
+                style="@style/cardView_style">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/lineaLayout_cardView_style"
+                    android:gravity="top">
+
+                <TextView
+                        android:id="@+id/textView_cardView_lunch_label"
+                        style="@style/text_view_bold"
+                        android:text="@string/label_lunch"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/cardView_dinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardView_lunch"
+                style="@style/cardView_style">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/lineaLayout_cardView_style"
+                    android:gravity="top">
+
+                <TextView
+                        android:id="@+id/textView_cardView_dinner_label"
+                        style="@style/text_view_bold"
+                        android:text="@string/label_dinner"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+</ScrollView>

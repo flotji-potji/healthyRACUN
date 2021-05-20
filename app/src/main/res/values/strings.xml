@@ -10,4 +10,7 @@
     <string name="title_nutrition_alarm">Nachrichten</string>
     <string name="title_add_quick_meal">Essen hinzufügen</string>
     <string name="title_profile">Profil</string>
+    <string name="label_breakfast">Frühstück</string>
+    <string name="label_lunch">Mittagessen</string>
+    <string name="label_dinner">Abendessen</string>
 </resources>
