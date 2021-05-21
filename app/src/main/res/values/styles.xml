@@ -15,14 +15,15 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAppearance">
-            @android:style/TextAppearance.Large</item>
+            @android:style/TextAppearance.Large
+        </item>
         <item name="android:background">#AECFFF</item>
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:padding">16dp</item>
         <item name="android:textColor">#000000</item>
     </style>
-    
+
     <style name="cardView_style">
         <item name="cardCornerRadius">@dimen/cardView_cornerRadius</item>
         <item name="android:layout_marginTop">@dimen/cardView_marginTop</item>
@@ -41,5 +42,14 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/textView_textSize</item>
     </style>
-    
+
+    <!-- no action bar theme -->
+    <style name="NoActionBar" parent="@style/Theme.AppCompat.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
 </resources>
