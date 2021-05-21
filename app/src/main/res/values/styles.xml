@@ -35,12 +35,15 @@
         <item name="android:padding">@dimen/cardView_padding</item>
     </style>
 
-    <!-- big bold text style -->
-    <style name="text_view_bold">
+    <!-- text style for overlaying text -->
+    <style name="text_view_image_view_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/textView_textSize</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginStart">10dp</item>
     </style>
 
     <!-- no action bar theme -->
@@ -50,6 +53,62 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- image view style for card views -->
+    <style name="image_view_card_view_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/image_view_card_view_height</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <!-- button style supposed to be attached to image view -->
+    <style name="button_image_view_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button_round_theme</item>
+        <item name="android:drawableStart">@drawable/ic_add_24</item>
+        <item name="android:drawableTint">@color/color_white</item>
+        <item name="android:text">@string/label_button_add</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingStart">5dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:layout_marginBottom">-20dp</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:layout_alignParentEnd">true</item>
+    </style>
+
+    <style name="text_view_image_view_subheading_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:text">@string/label_text_view_meal_logging_card_view</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <!-- horizontal line view style -->
+    <style name="view_horizontal_line_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/horizontal_line</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="text_view_meal_logging_meal_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:text">@string/label_meal_logging_template</item>
     </style>
 
 </resources>

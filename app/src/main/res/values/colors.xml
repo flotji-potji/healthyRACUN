@@ -7,4 +7,7 @@
     <!-- Background colours -->
     <color name="color_white">#ededf2</color>
 
+    <!-- horizontal line colour -->
+    <color name="horizontal_line">#E3E0E0</color>
+
 </resources>

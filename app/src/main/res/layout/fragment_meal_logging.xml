@@ -4,14 +4,15 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:context=".ui.meal_logging.MealLoggingFragment">
 
-    <RelativeLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/color_white"
-            android:padding="@dimen/fragment_padding">
+            android:padding="@dimen/fragment_padding"
+            android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
                 android:id="@+id/cardView_breakfast"
@@ -19,18 +20,141 @@
                 android:layout_height="wrap_content"
                 style="@style/cardView_style">
 
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:id="@+id/imageView_cardView_breakfast"
+                        android:src="@drawable/image_view_card_view_breakfast"
+                        style="@style/image_view_card_view_style"/>
+
+                <TextView
+                        android:id="@+id/textView_cardView_breakfast_title"
+                        style="@style/text_view_image_view_style"
+                        android:text="@string/label_breakfast"
+                        android:layout_alignBottom="@id/imageView_cardView_breakfast"/>
+
+                <Button
+                        android:id="@+id/button_cardView_breakfast"
+                        style="@style/button_image_view_style"
+                        android:layout_alignBottom="@id/imageView_cardView_breakfast"/>
+
+                <TextView
+                        android:id="@+id/textView_cardView_breakfast_subtitle"
+                        android:layout_below="@id/imageView_cardView_breakfast"
+                        style="@style/text_view_image_view_subheading_style"/>
+
                 <LinearLayout
+                        android:id="@+id/constraintLayout_cardView_breakfast"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/lineaLayout_cardView_style"
-                        android:gravity="top">
+                        android:layout_below="@id/textView_cardView_breakfast_subtitle"
+                        android:orientation="vertical">
 
-                    <TextView
-                            android:id="@+id/textView_cardView_breakfast_label"
-                            style="@style/text_view_bold"
-                            android:text="@string/label_breakfast"/>
+                    <View
+                            android:id="@+id/horizontalLine_cardView_breakfast_line_1"
+                            style="@style/view_horizontal_line_style"/>
+
+                    <LinearLayout
+                            android:id="@+id/relativeLayout_cardView_breakfast_meal_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/cardView_padding"
+                            android:layout_marginStart="10dp"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/textView_cardView_breakfast_meal_1"
+                                android:layout_weight="9"
+                                style="@style/text_view_meal_logging_meal_style"/>
+
+                        <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_button_add"
+                                android:drawableStart="@drawable/ic_add_16"
+                                android:drawableTint="@color/colorPrimary"
+                                android:textSize="14sp"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                    <View
+                            android:id="@+id/horizontalLine_cardView_breakfast_line_2"
+                            style="@style/view_horizontal_line_style"/>
+
+                    <LinearLayout
+                            android:id="@+id/relativeLayout_cardView_breakfast_meal_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/cardView_padding"
+                            android:layout_marginStart="10dp"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/textView_cardView_breakfast_meal_2"
+                                style="@style/text_view_meal_logging_meal_style"
+                                android:layout_weight="9"/>
+
+                        <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_button_add"
+                                android:drawableStart="@drawable/ic_add_16"
+                                android:drawableTint="@color/colorPrimary"
+                                android:textSize="14sp"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                    <View
+                            android:id="@+id/horizontalLine_cardView_breakfast_line_3"
+                            style="@style/view_horizontal_line_style"/>
+
+                    <LinearLayout
+                            android:id="@+id/relativeLayout_cardView_breakfast_meal_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/cardView_padding"
+                            android:layout_marginStart="10dp"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/textView_cardView_breakfast_meal_3"
+                                style="@style/text_view_meal_logging_meal_style"
+                                android:layout_weight="9"/>
+
+                        <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_button_add"
+                                android:drawableStart="@drawable/ic_add_16"
+                                android:drawableTint="@color/colorPrimary"
+                                android:textSize="14sp"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                    <View
+                            android:id="@+id/horizontalLine_cardView_breakfast_line_4"
+                            style="@style/view_horizontal_line_style"/>
+
+                    <Button
+                            android:id="@+id/button_cardView_breakfast_more_otions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="@string/label_button_show_more_options"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_gravity="center"/>
 
                 </LinearLayout>
+
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -38,21 +162,143 @@
                 android:id="@+id/cardView_lunch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/cardView_breakfast"
                 style="@style/cardView_style">
 
-            <LinearLayout
+            <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/lineaLayout_cardView_style"
-                    android:gravity="top">
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:id="@+id/imageView_cardView_lunch"
+                        android:src="@drawable/image_view_card_view_lunch"
+                        style="@style/image_view_card_view_style"/>
 
                 <TextView
-                        android:id="@+id/textView_cardView_lunch_label"
-                        style="@style/text_view_bold"
-                        android:text="@string/label_lunch"/>
+                        android:id="@+id/textView_cardView_lunch_title"
+                        style="@style/text_view_image_view_style"
+                        android:text="@string/label_lunch"
+                        android:layout_alignBottom="@id/imageView_cardView_lunch"/>
 
-            </LinearLayout>
+                <Button
+                        android:id="@+id/button_cardView_lunch"
+                        style="@style/button_image_view_style"
+                        android:layout_alignBottom="@id/imageView_cardView_lunch"/>
+
+                <TextView
+                        android:id="@+id/textView_cardView_lunch_subtitle"
+                        android:layout_below="@id/imageView_cardView_lunch"
+                        style="@style/text_view_image_view_subheading_style"/>
+
+                <LinearLayout
+                        android:id="@+id/constraintLayout_cardView_lunch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView_cardView_lunch_subtitle"
+                        android:orientation="vertical">
+
+                    <View
+                            android:id="@+id/horizontalLine_cardView_lunch_line_1"
+                            style="@style/view_horizontal_line_style"/>
+
+                    <LinearLayout
+                            android:id="@+id/relativeLayout_cardView_lunch_meal_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/cardView_padding"
+                            android:layout_marginStart="10dp"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/textView_cardView_lunch_meal_1"
+                                android:layout_weight="9"
+                                style="@style/text_view_meal_logging_meal_style"/>
+
+                        <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_button_add"
+                                android:drawableStart="@drawable/ic_add_16"
+                                android:drawableTint="@color/colorPrimary"
+                                android:textSize="14sp"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                    <View
+                            android:id="@+id/horizontalLine_cardView_lunch_line_2"
+                            style="@style/view_horizontal_line_style"/>
+
+                    <LinearLayout
+                            android:id="@+id/relativeLayout_cardView_lunch_meal_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/cardView_padding"
+                            android:layout_marginStart="10dp"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/textView_cardView_lunch_meal_2"
+                                style="@style/text_view_meal_logging_meal_style"
+                                android:layout_weight="9"/>
+
+                        <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_button_add"
+                                android:drawableStart="@drawable/ic_add_16"
+                                android:drawableTint="@color/colorPrimary"
+                                android:textSize="14sp"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                    <View
+                            android:id="@+id/horizontalLine_cardView_lunch_line_3"
+                            style="@style/view_horizontal_line_style"/>
+
+                    <LinearLayout
+                            android:id="@+id/relativeLayout_cardView_lunch_meal_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/cardView_padding"
+                            android:layout_marginStart="10dp"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/textView_cardView_lunch_meal_3"
+                                style="@style/text_view_meal_logging_meal_style"
+                                android:layout_weight="9"/>
+
+                        <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_button_add"
+                                android:drawableStart="@drawable/ic_add_16"
+                                android:drawableTint="@color/colorPrimary"
+                                android:textSize="14sp"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                    <View
+                            android:id="@+id/horizontalLine_cardView_lunch_line_4"
+                            style="@style/view_horizontal_line_style"/>
+
+                    <Button
+                            android:id="@+id/button_cardView_lunch_more_otions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="@string/label_button_show_more_options"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -60,25 +306,147 @@
                 android:id="@+id/cardView_dinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/cardView_lunch"
                 style="@style/cardView_style">
 
-            <LinearLayout
+            <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/lineaLayout_cardView_style"
-                    android:gravity="top">
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:id="@+id/imageView_cardView_dinner"
+                        android:src="@drawable/image_view_card_view_dinner"
+                        style="@style/image_view_card_view_style"/>
 
                 <TextView
-                        android:id="@+id/textView_cardView_dinner_label"
-                        style="@style/text_view_bold"
-                        android:text="@string/label_dinner"/>
+                        android:id="@+id/textView_cardView_dinner_title"
+                        style="@style/text_view_image_view_style"
+                        android:text="@string/label_dinner"
+                        android:layout_alignBottom="@id/imageView_cardView_dinner"/>
 
-            </LinearLayout>
+                <Button
+                        android:id="@+id/button_cardView_dinner"
+                        style="@style/button_image_view_style"
+                        android:layout_alignBottom="@id/imageView_cardView_dinner"/>
+
+                <TextView
+                        android:id="@+id/textView_cardView_dinner_subtitle"
+                        android:layout_below="@id/imageView_cardView_dinner"
+                        style="@style/text_view_image_view_subheading_style"/>
+
+                <LinearLayout
+                        android:id="@+id/constraintLayout_cardView_dinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textView_cardView_dinner_subtitle"
+                        android:orientation="vertical">
+
+                    <View
+                            android:id="@+id/horizontalLine_cardView_dinner_line_1"
+                            style="@style/view_horizontal_line_style"/>
+
+                    <LinearLayout
+                            android:id="@+id/relativeLayout_cardView_dinner_meal_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/cardView_padding"
+                            android:layout_marginStart="10dp"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/textView_cardView_dinner_meal_1"
+                                android:layout_weight="9"
+                                style="@style/text_view_meal_logging_meal_style"/>
+
+                        <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_button_add"
+                                android:drawableStart="@drawable/ic_add_16"
+                                android:drawableTint="@color/colorPrimary"
+                                android:textSize="14sp"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                    <View
+                            android:id="@+id/horizontalLine_cardView_dinner_line_2"
+                            style="@style/view_horizontal_line_style"/>
+
+                    <LinearLayout
+                            android:id="@+id/relativeLayout_cardView_dinner_meal_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/cardView_padding"
+                            android:layout_marginStart="10dp"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/textView_cardView_dinner_meal_2"
+                                style="@style/text_view_meal_logging_meal_style"
+                                android:layout_weight="9"/>
+
+                        <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_button_add"
+                                android:drawableStart="@drawable/ic_add_16"
+                                android:drawableTint="@color/colorPrimary"
+                                android:textSize="14sp"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                    <View
+                            android:id="@+id/horizontalLine_cardView_dinner_line_3"
+                            style="@style/view_horizontal_line_style"/>
+
+                    <LinearLayout
+                            android:id="@+id/relativeLayout_cardView_dinner_meal_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/cardView_padding"
+                            android:layout_marginStart="10dp"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/textView_cardView_dinner_meal_3"
+                                style="@style/text_view_meal_logging_meal_style"
+                                android:layout_weight="9"/>
+
+                        <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/label_button_add"
+                                android:drawableStart="@drawable/ic_add_16"
+                                android:drawableTint="@color/colorPrimary"
+                                android:textSize="14sp"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                    <View
+                            android:id="@+id/horizontalLine_cardView_dinner_line_4"
+                            style="@style/view_horizontal_line_style"/>
+
+                    <Button
+                            android:id="@+id/button_cardView_dinner_more_otions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="@string/label_button_show_more_options"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </ScrollView>

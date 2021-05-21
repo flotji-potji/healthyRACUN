@@ -13,4 +13,8 @@
     <string name="label_breakfast">Frühstück</string>
     <string name="label_lunch">Mittagessen</string>
     <string name="label_dinner">Abendessen</string>
+    <string name="label_button_add">Hinzufügen</string>
+    <string name="label_text_view_meal_logging_card_view">Noch nichts hinzugefügt</string>
+    <string name="label_meal_logging_template">Karotten sind gut</string>
+    <string name="label_button_show_more_options">Mehr Mahlzeiten anzeigen</string>
 </resources>
