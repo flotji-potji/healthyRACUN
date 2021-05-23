@@ -4,13 +4,12 @@ import android.app.Application;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
 import com.example.android.myfishy.MainActivity;
-import com.example.android.myfishy.MaxActivity;
 import com.example.android.myfishy.db.HealthyDao;
 import com.example.android.myfishy.db.HealthyDatabase;
 import com.example.android.myfishy.db.entities.*;
 import com.example.android.myfishy.db.relations.MealConsistsOfNourishments;
-import com.example.android.myfishy.db.relations.UserEatMeals;
-import com.example.android.myfishy.db.relations.UserGotDiets;
+import com.example.android.myfishy.db.relations.UserEatsMeals;
+import com.example.android.myfishy.db.relations.UserHasDiets;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,6 +31,13 @@ public class HealthyRepository {
     public static final String VIEW_MODEL_TAG = "_VIEW_MODEL";
     public static final String FRAGMENT_TAG = "_FRAGMENT";
     public static final String ACTIVITY_TAG = "_ACTIVITY";
+    // -- Meal entity related meal type attributes - //
+    public static final int MEAL_TYPE_BREAKFAST = 1;
+    public static final int MEAL_TYPE_LUNCH = 2;
+    public static final int MEAL_TYPE_DINNER = 3;
+    public static final int MEAL_TYPE_DRINK = 4;
+    public static final int MEAL_TYPE_SNACK = 5;
+
 
     // ----- Class private global attributes ------- //
     private String currentViewModel;
@@ -43,8 +49,8 @@ public class HealthyRepository {
     // ------- DB entities object attributes ------- //
     // ------- DB joined entities queries ---------- //
     private LiveData<List<MealConsistsOfNourishments>> mealJoinsNourishment;
-    private LiveData<List<UserEatMeals>> userJoinsMeal;
-    private LiveData<List<UserGotDiets>> userJoinsDiet;
+    private LiveData<List<UserEatsMeals>> userJoinsMeal;
+    private LiveData<List<UserEatsMeals>> userJoinsDiet;
     // --------- DB full entity queries ----------- //
     private LiveData<List<DietaryRestrictionTable>> dietaryRestrictionTable;
     private LiveData<List<NutritionFactTable>> nutritionFactTable;
@@ -65,8 +71,8 @@ public class HealthyRepository {
     private User userEntity;
     private final String userClassName = User.class.getSimpleName();
     private final String mealConsistsOfNourishmentClassName = MealConsistsOfNourishments.class.getSimpleName();
-    private final String userEatMealsClassName = UserEatMeals.class.getSimpleName();
-    private final String userGotDietsClassName = UserGotDiets.class.getSimpleName();
+    private final String userEatMealsClassName = UserEatsMeals.class.getSimpleName();
+    private final String userGotDietsClassName = UserHasDiets.class.getSimpleName();
 
     /**
      * Class is responsible for all related data handling activities
@@ -98,8 +104,6 @@ public class HealthyRepository {
                     userJoinsMeal = healthyDao.getUserEatMeals(MainActivity.getCurrUser());
                     break;
                 case MEAL_LOGGING_TAG:
-                    nutritionFactTable = healthyDao.getNutritionFactTable(); // TODO: remove after testing is done
-                    nourishmentNamesFromNutritionFactTable = healthyDao.getNourishmentNamesFromNutritionFactTable(); // TODO: remove after testing is done
                     userJoinsMeal = healthyDao.getUserEatMeals(MainActivity.getCurrUser());
                     break;
                 case NUTRITION_ALARM_TAG:
@@ -128,11 +132,11 @@ public class HealthyRepository {
         return mealJoinsNourishment;
     }
 
-    public LiveData<List<UserEatMeals>> getUserJoinsMeal() {
+    public LiveData<List<UserEatsMeals>> getUserJoinsMeal() {
         return userJoinsMeal;
     }
 
-    public LiveData<List<UserGotDiets>> getUserJoinsDiet() {
+    public LiveData<List<UserEatsMeals>> getUserJoinsDiet() {
         return userJoinsDiet;
     }
 

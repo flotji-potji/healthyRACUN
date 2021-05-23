@@ -12,10 +12,10 @@ public class Meal {
     private int meal_id;
     private String username;
     private String meal_name;
-    private String meal_type;
+    private int meal_type;
     private long date_added;
 
-    public Meal(@NonNull int meal_id, String username, String meal_name, String meal_type, long date_added) {
+    public Meal(@NonNull int meal_id, String username, String meal_name, int meal_type, long date_added) {
         this.meal_id = meal_id;
         this.username = username;
         this.meal_name = meal_name;
@@ -35,7 +35,7 @@ public class Meal {
         return meal_name;
     }
 
-    public String getMeal_type() {
+    public int getMeal_type() {
         return meal_type;
     }
 

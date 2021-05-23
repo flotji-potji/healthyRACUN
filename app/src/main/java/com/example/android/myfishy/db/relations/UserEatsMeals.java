@@ -7,7 +7,7 @@ import com.example.android.myfishy.db.entities.User;
 
 import java.util.List;
 
-public class UserEatMeals {
+public class UserEatsMeals {
 
     @Embedded
     public User user;
@@ -15,4 +15,11 @@ public class UserEatMeals {
     @Relation(parentColumn = "username", entityColumn = "username")
     public List<Meal> meals;
 
+    public User getUser() {
+        return user;
+    }
+
+    public List<Meal> getMeals() {
+        return meals;
+    }
 }

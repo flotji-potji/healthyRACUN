@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.*;
 import com.example.android.myfishy.db.entities.*;
 import com.example.android.myfishy.db.relations.MealConsistsOfNourishments;
-import com.example.android.myfishy.db.relations.UserEatMeals;
-import com.example.android.myfishy.db.relations.UserGotDiets;
+import com.example.android.myfishy.db.relations.UserEatsMeals;
 
 import java.util.List;
 
@@ -36,11 +35,11 @@ public interface HealthyDao {
 
     @Transaction
     @Query("SELECT * FROM user WHERE username = :username")
-    LiveData<List<UserEatMeals>> getUserEatMeals(String username);
+    LiveData<List<UserEatsMeals>> getUserEatMeals(String username);
 
     @Transaction
     @Query("SELECT * FROM user WHERE username = :username")
-    LiveData<List<UserGotDiets>> getUserGotDiets(String username);
+    LiveData<List<UserEatsMeals>> getUserGotDiets(String username);
 
     @Query("SELECT * FROM dietary_restriction_table")
     LiveData<List<DietaryRestrictionTable>> getDietaryRestrictionTable();

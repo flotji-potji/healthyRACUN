@@ -15,4 +15,11 @@ public class MealConsistsOfNourishments {
     @Relation(parentColumn = "meal_id", entityColumn = "meal_id")
     public List<Nourishment> nourishments;
 
+    public Meal getMeal() {
+        return meal;
+    }
+
+    public List<Nourishment> getNourishments() {
+        return nourishments;
+    }
 }

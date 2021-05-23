@@ -32,7 +32,7 @@
                 <TextView
                         android:id="@+id/textView_cardView_breakfast_title"
                         style="@style/text_view_image_view_style"
-                        android:text="@string/label_breakfast"
+                        android:text="@string/title_breakfast"
                         android:layout_alignBottom="@id/imageView_cardView_breakfast"/>
 
                 <Button
@@ -40,16 +40,31 @@
                         style="@style/button_image_view_style"
                         android:layout_alignBottom="@id/imageView_cardView_breakfast"/>
 
-                <TextView
-                        android:id="@+id/textView_cardView_breakfast_subtitle"
-                        android:layout_below="@id/imageView_cardView_breakfast"
-                        style="@style/text_view_image_view_subheading_style"/>
-
                 <LinearLayout
-                        android:id="@+id/constraintLayout_cardView_breakfast"
+                        android:id="@+id/linearLayout_cardView_below_image_breakfast"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/textView_cardView_breakfast_subtitle"
+                        android:padding="@dimen/fragment_padding"
+                        android:orientation="horizontal"
+                        android:layout_below="@id/imageView_cardView_breakfast">
+
+                    <TextView
+                            android:id="@+id/textView_cardView_breakfast_subtitle"
+                            style="@style/text_view_image_view_subheading_style"
+                            android:layout_weight="5"/>
+
+                    <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="8"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/linearLayout_cardView_below_subtitle_breakfast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/linearLayout_cardView_below_image_breakfast"
                         android:orientation="vertical">
 
                     <View
@@ -57,7 +72,6 @@
                             style="@style/view_horizontal_line_style"/>
 
                     <LinearLayout
-                            android:id="@+id/relativeLayout_cardView_breakfast_meal_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/cardView_padding"
@@ -86,7 +100,6 @@
                             style="@style/view_horizontal_line_style"/>
 
                     <LinearLayout
-                            android:id="@+id/relativeLayout_cardView_breakfast_meal_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/cardView_padding"
@@ -115,7 +128,6 @@
                             style="@style/view_horizontal_line_style"/>
 
                     <LinearLayout
-                            android:id="@+id/relativeLayout_cardView_breakfast_meal_3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/cardView_padding"
@@ -176,7 +188,7 @@
                 <TextView
                         android:id="@+id/textView_cardView_lunch_title"
                         style="@style/text_view_image_view_style"
-                        android:text="@string/label_lunch"
+                        android:text="@string/title_lunch"
                         android:layout_alignBottom="@id/imageView_cardView_lunch"/>
 
                 <Button
@@ -184,16 +196,31 @@
                         style="@style/button_image_view_style"
                         android:layout_alignBottom="@id/imageView_cardView_lunch"/>
 
-                <TextView
-                        android:id="@+id/textView_cardView_lunch_subtitle"
-                        android:layout_below="@id/imageView_cardView_lunch"
-                        style="@style/text_view_image_view_subheading_style"/>
-
                 <LinearLayout
-                        android:id="@+id/constraintLayout_cardView_lunch"
+                        android:id="@+id/linearLayout_cardView_below_image_lunch"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/textView_cardView_lunch_subtitle"
+                        android:padding="@dimen/fragment_padding"
+                        android:orientation="horizontal"
+                        android:layout_below="@id/imageView_cardView_lunch">
+
+                    <TextView
+                            android:id="@+id/textView_cardView_lunch_subtitle"
+                            style="@style/text_view_image_view_subheading_style"
+                            android:layout_weight="5"/>
+
+                    <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="8"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/linearLayout_cardView_below_subtitle_lunch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/linearLayout_cardView_below_image_lunch"
                         android:orientation="vertical">
 
                     <View
@@ -201,7 +228,6 @@
                             style="@style/view_horizontal_line_style"/>
 
                     <LinearLayout
-                            android:id="@+id/relativeLayout_cardView_lunch_meal_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/cardView_padding"
@@ -230,7 +256,6 @@
                             style="@style/view_horizontal_line_style"/>
 
                     <LinearLayout
-                            android:id="@+id/relativeLayout_cardView_lunch_meal_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/cardView_padding"
@@ -259,7 +284,6 @@
                             style="@style/view_horizontal_line_style"/>
 
                     <LinearLayout
-                            android:id="@+id/relativeLayout_cardView_lunch_meal_3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/cardView_padding"
@@ -320,7 +344,7 @@
                 <TextView
                         android:id="@+id/textView_cardView_dinner_title"
                         style="@style/text_view_image_view_style"
-                        android:text="@string/label_dinner"
+                        android:text="@string/title_dinner"
                         android:layout_alignBottom="@id/imageView_cardView_dinner"/>
 
                 <Button
@@ -328,16 +352,31 @@
                         style="@style/button_image_view_style"
                         android:layout_alignBottom="@id/imageView_cardView_dinner"/>
 
-                <TextView
-                        android:id="@+id/textView_cardView_dinner_subtitle"
-                        android:layout_below="@id/imageView_cardView_dinner"
-                        style="@style/text_view_image_view_subheading_style"/>
-
                 <LinearLayout
-                        android:id="@+id/constraintLayout_cardView_dinner"
+                        android:id="@+id/linearLayout_cardView_below_image_dinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/textView_cardView_dinner_subtitle"
+                        android:padding="@dimen/fragment_padding"
+                        android:orientation="horizontal"
+                        android:layout_below="@id/imageView_cardView_dinner">
+
+                    <TextView
+                            android:id="@+id/textView_cardView_dinner_subtitle"
+                            style="@style/text_view_image_view_subheading_style"
+                            android:layout_weight="5"/>
+
+                    <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="8"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/linearLayout_cardView_below_subtitle_dinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/linearLayout_cardView_below_image_dinner"
                         android:orientation="vertical">
 
                     <View
@@ -345,7 +384,6 @@
                             style="@style/view_horizontal_line_style"/>
 
                     <LinearLayout
-                            android:id="@+id/relativeLayout_cardView_dinner_meal_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/cardView_padding"
@@ -374,7 +412,6 @@
                             style="@style/view_horizontal_line_style"/>
 
                     <LinearLayout
-                            android:id="@+id/relativeLayout_cardView_dinner_meal_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/cardView_padding"
@@ -403,7 +440,6 @@
                             style="@style/view_horizontal_line_style"/>
 
                     <LinearLayout
-                            android:id="@+id/relativeLayout_cardView_dinner_meal_3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/cardView_padding"

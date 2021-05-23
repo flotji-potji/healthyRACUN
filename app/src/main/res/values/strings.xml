@@ -1,20 +1,35 @@
 <resources>
+    <!-- string area -->
+
     <string name="app_name">Healthy Eaterz</string>
     <string name="title_activity_main">MainActivity</string>
+    <!-- activity_main string area -->
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_meal_logging">Mahlzeit</string>
     <string name="title_nutrition_alarm">Nachrichten</string>
     <string name="title_add_quick_meal">Essen hinzufügen</string>
     <string name="title_profile">Profil</string>
-    <string name="label_breakfast">Frühstück</string>
-    <string name="label_lunch">Mittagessen</string>
-    <string name="label_dinner">Abendessen</string>
+    <!-- fragment_meal_logging area -->
+    <string name="title_breakfast">Frühstück</string>
+    <string name="title_lunch">Mittagessen</string>
+    <string name="title_dinner">Abendessen</string>
     <string name="label_button_add">Hinzufügen</string>
-    <string name="label_text_view_meal_logging_card_view">Noch nichts hinzugefügt</string>
+    <string name="subtitle_text_view_meal_logging_card_view_info_negative">Noch nichts hinzugefügt, jetzt hinzufügen:</string>
+    <string name="subtitle_text_view_meal_logging_card_view_info_positive">Zuletzt hinzugefügte Mahlzeiten:</string>
     <string name="label_meal_logging_template">Karotten sind gut</string>
     <string name="label_button_show_more_options">Mehr Mahlzeiten anzeigen</string>
+
+    <!-- string array area -->
+
+    <!-- fragment_meal_logging area -->
+    <string-array name="fragment_meal_logging_meal_title_strings">
+        <item>@string/title_breakfast</item>
+        <item>@string/title_lunch</item>
+        <item>@string/title_dinner</item>
+    </string-array>
+    <string-array name="fragment_meal_logging_meal_subtitle_strings">
+        <item>@string/subtitle_text_view_meal_logging_card_view_info_negative</item>
+        <item>@string/subtitle_text_view_meal_logging_card_view_info_positive</item>
+    </string-array>
+
 </resources>

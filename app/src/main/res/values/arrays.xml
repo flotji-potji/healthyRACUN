@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="fragment_meal_logging_meal_title_ids">
+        <item>@id/textView_cardView_breakfast_title</item>
+        <item>@id/textView_cardView_lunch_title</item>
+        <item>@id/textView_cardView_dinner_title</item>
+    </array>
+    <array name="fragment_meal_logging_meal_subtitle_ids">
+        <item>@id/textView_cardView_breakfast_subtitle</item>
+        <item>@id/textView_cardView_lunch_subtitle</item>
+        <item>@id/textView_cardView_dinner_subtitle</item>
+    </array>
+    <array name="fragment_meal_logging_breakfast_meal_ids">
+        <item>@id/textView_cardView_breakfast_meal_1</item>
+        <item>@id/textView_cardView_breakfast_meal_2</item>
+        <item>@id/textView_cardView_breakfast_meal_3</item>
+    </array>
+    <array name="fragment_meal_logging_lunch_meal_ids">
+        <item>@id/textView_cardView_lunch_meal_1</item>
+        <item>@id/textView_cardView_lunch_meal_2</item>
+        <item>@id/textView_cardView_lunch_meal_3</item>
+    </array>
+    <array name="fragment_meal_logging_dinner_meal_ids">
+        <item>@id/textView_cardView_dinner_meal_1</item>
+        <item>@id/textView_cardView_dinner_meal_2</item>
+        <item>@id/textView_cardView_dinner_meal_3</item>
+    </array>
+</resources>

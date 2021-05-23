@@ -1,12 +1,16 @@
 package com.example.android.myfishy.db;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import androidx.annotation.NavigationRes;
 import androidx.annotation.NonNull;
 import androidx.room.*;
+import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.android.myfishy.R;
 import com.example.android.myfishy.db.entities.*;
 import com.example.android.myfishy.utilities.ExtractCSV;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,7 +21,8 @@ import java.util.List;
                 Diet.class, DietaryRestrictionTable.class, Meal.class,
                 Nourishment.class, NutritionFactTable.class, User.class
         },
-        version = 1)
+        version = 2
+)
 public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
 
     public abstract HealthyDao healthyDao();
@@ -50,6 +55,19 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
         }).start();
     }
 
+    private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(@NonNull @NotNull SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE meal RENAME TO _meal_old");
+            database.execSQL("CREATE TABLE meal (" +
+                    "meal_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                    "meal_type INTEGER NOT NULL," +
+                    "username TEXT," +
+                    "meal_name TEXT," +
+                    "date_added INTEGER NOT NULL)");
+        }
+    };
+
     private static void populateNutritionFactTable(HealthyDao healthyDao) throws IOException {
         List<String> csvRow = ex.next();
         int currLine = 0;
@@ -61,6 +79,7 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
         }
     }
 
+
     public static HealthyDatabase getDatabase(final Context context) throws IOException {
         ex = new ExtractCSV(context);
         if (INSTANCE == null) {
@@ -70,6 +89,7 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
                             HealthyDatabase.class,
                             "healthy_database")
                             .addCallback(sRoomDatabaseCallback)
+                            .addMigrations(MIGRATION_1_2)
                             .build();
                 }
             }
