@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,14 +26,16 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setBackground(null);
         navView.getMenu().getItem(2).setEnabled(false);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_meal_logging, R.id.navigation_add_quick_meal, R.id.navigation_nutrition_alarm, R.id.navigation_profile)
-                .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createUserMeal();
+            }
+        });
     }
 
 
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         return currUser;
     }
 
-    public void createUserMeal(MenuItem item) {
+    public void createUserMeal() {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
                 MainActivity.this, R.style.BottomSheetDialogTheme
         );

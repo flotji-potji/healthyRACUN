@@ -12,11 +12,9 @@
             android:icon="@drawable/ic_baseline_food_bank_24"
             android:title="@string/title_meal_logging"/>
 
-
     <item
             android:id="@+id/navigation_add_quick_meal"
-            android:icon="@drawable/ic_add_24"
-            android:onClick="createUserMeal"
+            app:showAsAction="never"
             android:title="@string/title_add_quick_meal"/>
 
     <item
