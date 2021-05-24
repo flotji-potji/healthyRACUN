@@ -47,7 +47,7 @@
     </style>
 
     <!-- no action bar theme -->
-    <style name="NoActionBar" parent="@style/Theme.AppCompat.Light">
+    <style name="NoActionBar" parent="Theme.MaterialComponents.Light">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -68,11 +68,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/button_round_theme</item>
-        <item name="android:drawableStart">@drawable/ic_add_24</item>
-        <item name="android:drawableTint">@color/color_white</item>
         <item name="android:text">@string/label_button_add</item>
-        <item name="android:paddingEnd">10dp</item>
-        <item name="android:paddingStart">5dp</item>
         <item name="android:layout_marginEnd">10dp</item>
         <item name="android:layout_marginBottom">-20dp</item>
         <item name="android:textColor">@color/color_white</item>

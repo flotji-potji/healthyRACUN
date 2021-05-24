@@ -38,6 +38,7 @@
                 <Button
                         android:id="@+id/button_cardView_breakfast"
                         style="@style/button_image_view_style"
+                        app:icon="@drawable/ic_add_24"
                         android:layout_alignBottom="@id/imageView_cardView_breakfast"
                         android:onClick="createCustomMeal"/>
 
@@ -88,9 +89,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_button_add"
+                                app:icon="@drawable/ic_add_16"
                                 android:drawableStart="@drawable/ic_add_16"
                                 android:drawableTint="@color/colorPrimary"
-                                android:textSize="14sp"
                                 style="@style/Widget.MaterialComponents.Button.TextButton"
                                 android:layout_weight="1"/>
 
@@ -116,9 +117,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_button_add"
+                                app:icon="@drawable/ic_add_16"
                                 android:drawableStart="@drawable/ic_add_16"
                                 android:drawableTint="@color/colorPrimary"
-                                android:textSize="14sp"
                                 style="@style/Widget.MaterialComponents.Button.TextButton"
                                 android:layout_weight="1"/>
 
@@ -144,9 +145,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_button_add"
+                                app:icon="@drawable/ic_add_16"
                                 android:drawableStart="@drawable/ic_add_16"
                                 android:drawableTint="@color/colorPrimary"
-                                android:textSize="14sp"
                                 style="@style/Widget.MaterialComponents.Button.TextButton"
                                 android:layout_weight="1"/>
 
@@ -158,9 +159,8 @@
 
                     <Button
                             android:id="@+id/button_cardView_breakfast_more_otions"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="16sp"
                             android:text="@string/label_button_show_more_options"
                             style="@style/Widget.MaterialComponents.Button.TextButton"
                             android:layout_gravity="center"/>
@@ -195,6 +195,7 @@
                 <Button
                         android:id="@+id/button_cardView_lunch"
                         style="@style/button_image_view_style"
+                        app:icon="@drawable/ic_add_24"
                         android:layout_alignBottom="@id/imageView_cardView_lunch"
                         android:onClick="createCustomMeal"/>
 
@@ -245,9 +246,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_button_add"
+                                app:icon="@drawable/ic_add_16"
                                 android:drawableStart="@drawable/ic_add_16"
                                 android:drawableTint="@color/colorPrimary"
-                                android:textSize="14sp"
                                 style="@style/Widget.MaterialComponents.Button.TextButton"
                                 android:layout_weight="1"/>
 
@@ -273,9 +274,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_button_add"
+                                app:icon="@drawable/ic_add_16"
                                 android:drawableStart="@drawable/ic_add_16"
                                 android:drawableTint="@color/colorPrimary"
-                                android:textSize="14sp"
                                 style="@style/Widget.MaterialComponents.Button.TextButton"
                                 android:layout_weight="1"/>
 
@@ -301,9 +302,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_button_add"
+                                app:icon="@drawable/ic_add_16"
                                 android:drawableStart="@drawable/ic_add_16"
                                 android:drawableTint="@color/colorPrimary"
-                                android:textSize="14sp"
                                 style="@style/Widget.MaterialComponents.Button.TextButton"
                                 android:layout_weight="1"/>
 
@@ -315,7 +316,7 @@
 
                     <Button
                             android:id="@+id/button_cardView_lunch_more_otions"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:text="@string/label_button_show_more_options"
@@ -352,6 +353,7 @@
                 <Button
                         android:id="@+id/button_cardView_dinner"
                         style="@style/button_image_view_style"
+                        app:icon="@drawable/ic_add_24"
                         android:layout_alignBottom="@id/imageView_cardView_dinner"
                         android:onClick="createCustomMeal"/>
 
@@ -402,9 +404,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_button_add"
+                                app:icon="@drawable/ic_add_16"
                                 android:drawableStart="@drawable/ic_add_16"
                                 android:drawableTint="@color/colorPrimary"
-                                android:textSize="14sp"
                                 style="@style/Widget.MaterialComponents.Button.TextButton"
                                 android:layout_weight="1"/>
 
@@ -430,9 +432,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_button_add"
+                                app:icon="@drawable/ic_add_16"
                                 android:drawableStart="@drawable/ic_add_16"
                                 android:drawableTint="@color/colorPrimary"
-                                android:textSize="14sp"
                                 style="@style/Widget.MaterialComponents.Button.TextButton"
                                 android:layout_weight="1"/>
 
@@ -458,9 +460,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/label_button_add"
+                                app:icon="@drawable/ic_add_16"
                                 android:drawableStart="@drawable/ic_add_16"
                                 android:drawableTint="@color/colorPrimary"
-                                android:textSize="14sp"
                                 style="@style/Widget.MaterialComponents.Button.TextButton"
                                 android:layout_weight="1"/>
 
@@ -472,7 +474,7 @@
 
                     <Button
                             android:id="@+id/button_cardView_dinner_more_otions"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:text="@string/label_button_show_more_options"
