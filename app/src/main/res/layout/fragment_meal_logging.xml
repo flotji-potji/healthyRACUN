@@ -39,7 +39,7 @@
                         android:id="@+id/button_cardView_breakfast"
                         style="@style/button_image_view_style"
                         android:layout_alignBottom="@id/imageView_cardView_breakfast"
-                        android:onClick="createCostomMeal"/>
+                        android:onClick="createCustomMeal"/>
 
                 <LinearLayout
                         android:id="@+id/linearLayout_cardView_below_image_breakfast"
@@ -196,7 +196,7 @@
                         android:id="@+id/button_cardView_lunch"
                         style="@style/button_image_view_style"
                         android:layout_alignBottom="@id/imageView_cardView_lunch"
-                        android:onClick="createCostomMeal"/>
+                        android:onClick="createCustomMeal"/>
 
                 <LinearLayout
                         android:id="@+id/linearLayout_cardView_below_image_lunch"
@@ -353,7 +353,7 @@
                         android:id="@+id/button_cardView_dinner"
                         style="@style/button_image_view_style"
                         android:layout_alignBottom="@id/imageView_cardView_dinner"
-                        android:onClick="createCostomMeal"/>
+                        android:onClick="createCustomMeal"/>
 
                 <LinearLayout
                         android:id="@+id/linearLayout_cardView_below_image_dinner"

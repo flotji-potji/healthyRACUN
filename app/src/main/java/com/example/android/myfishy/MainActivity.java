@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import com.example.android.myfishy.ui.quickadd.AddQuickMealFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -45,20 +44,20 @@ public class MainActivity extends AppCompatActivity {
         View bottomSheetView = LayoutInflater.from(getApplicationContext())
                 .inflate(
                         R.layout.fragment_add_quick_meal,
-                        (LinearLayout) findViewById(R.id.bottom_sheet_container)
+                        (LinearLayout) findViewById(R.id.bottom_sheet_container_quick)
                 );
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
     }
 
-    public void createCostomMeal(View view) {
+    public void createCustomMeal(View view) {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
                 view.getContext(), R.style.BottomSheetDialogTheme
         );
         View bottomSheetView = LayoutInflater.from(getApplicationContext())
                 .inflate(
-                        R.layout.fragment_add_quick_meal,
-                        (LinearLayout) findViewById(R.id.bottom_sheet_container)
+                        R.layout.fragment_add_custom_meal,
+                        (LinearLayout) findViewById(R.id.bottom_sheet_container_custom)
                 );
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();

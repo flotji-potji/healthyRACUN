@@ -134,6 +134,13 @@ public class MealLoggingFragment extends Fragment {
             }
         }
 
+        breakfastMealListViewIds.recycle();
+        lunchMealListViewIds.recycle();
+        dinnerMealListViewIds.recycle();
+        mealTitleListStringIds.recycle();
+        mealTitleListViewIds.recycle();
+        mealSubTitleListStringIds.recycle();
+        mealSubTitleListViewIds.recycle();
         return root;
     }
 

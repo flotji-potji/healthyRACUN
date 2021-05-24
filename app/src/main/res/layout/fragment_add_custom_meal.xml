@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/bottom_sheet_container_quick"
+        android:id="@+id/bottom_sheet_container_custom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_sheet_round_corner_background"
@@ -19,34 +19,14 @@
             android:tint="@color/colorPrimary"/>
 
     <TextView
-            android:id="@+id/textView_bottomSheet_breakfast"
+            android:id="@+id/textView_bottomSheet_customMeal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="15dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="@string/title_breakfast_bottom_sheet_add_quick_meal"/>
-
-    <TextView
-            android:id="@+id/textView_bottomSheet_lunch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="15dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:text="@string/title_lunch_bottom_sheet_add_quick_meal"/>
-
-    <TextView
-            android:id="@+id/textView_bottomSheet_dinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="15dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:text="@string/title_dinner_bottom_sheet_add_quick_meal"/>
+            android:text="@string/title_add_manual_meal_bottom_sheet_add_quick_meal"/>
 
     <TextView
             android:id="@+id/textView_bottomSheet_barCode"
