@@ -1,14 +1,18 @@
 package com.example.android.myfishy;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import com.example.android.myfishy.ui.quickadd.AddQuickMealFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,4 +38,29 @@ public class MainActivity extends AppCompatActivity {
         return currUser;
     }
 
+    public void createUserMeal(MenuItem item) {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                MainActivity.this, R.style.BottomSheetDialogTheme
+        );
+        View bottomSheetView = LayoutInflater.from(getApplicationContext())
+                .inflate(
+                        R.layout.fragment_add_quick_meal,
+                        (LinearLayout) findViewById(R.id.bottom_sheet_container)
+                );
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
+    }
+
+    public void createCostomMeal(View view) {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                view.getContext(), R.style.BottomSheetDialogTheme
+        );
+        View bottomSheetView = LayoutInflater.from(getApplicationContext())
+                .inflate(
+                        R.layout.fragment_add_quick_meal,
+                        (LinearLayout) findViewById(R.id.bottom_sheet_container)
+                );
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
+    }
 }

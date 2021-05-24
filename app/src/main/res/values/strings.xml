@@ -18,6 +18,11 @@
     <string name="subtitle_text_view_meal_logging_card_view_info_positive">Zuletzt hinzugefügte Mahlzeiten:</string>
     <string name="label_meal_logging_template">Karotten sind gut</string>
     <string name="label_button_show_more_options">Mehr Mahlzeiten anzeigen</string>
+    <string name="title_add_manual_meal_bottom_sheet_add_quick_meal">Mahlzeit manuell eingeben</string>
+    <string name="title_breakfast_bottom_sheet_add_quick_meal">Frühstück manuell eingeben</string>
+    <string name="title_lunch_bottom_sheet_add_quick_meal">Mittagessen manuell eingeben</string>
+    <string name="title_dinner_bottom_sheet_add_quick_meal">Abendessen manuell eingeben</string>
+    <string name="title_scan_barcode_bottom_sheet_add_quick_meal">Barcode einscannen</string>
 
     <!-- string array area -->
 
