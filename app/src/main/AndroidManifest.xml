@@ -21,7 +21,8 @@
 
         <activity
                 android:name=".ui.create_meal.CreateMealActivity"
-                android:parentActivityName=".MainActivity">
+                android:parentActivityName=".MainActivity"
+                android:theme="@style/ActionBarTheme">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=

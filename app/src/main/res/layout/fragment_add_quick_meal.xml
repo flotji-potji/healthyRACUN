@@ -18,34 +18,37 @@
             android:layout_gravity="center"
             android:tint="@color/colorPrimary"/>
 
-    <TextView
+    <Button
             android:id="@+id/textView_bottomSheet_breakfast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="15dp"
-            android:textSize="18sp"
+            android:padding="@dimen/fragment_padding"
             android:textStyle="bold"
+            android:textSize="18sp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:text="@string/title_breakfast_bottom_sheet_add_quick_meal"/>
 
-    <TextView
+    <Button
             android:id="@+id/textView_bottomSheet_lunch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="15dp"
-            android:textSize="18sp"
             android:textStyle="bold"
+            android:textSize="18sp"
+            android:padding="@dimen/fragment_padding"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:text="@string/title_lunch_bottom_sheet_add_quick_meal"/>
 
-    <TextView
+    <Button
             android:id="@+id/textView_bottomSheet_dinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="15dp"
-            android:textSize="18sp"
             android:textStyle="bold"
+            android:textSize="18sp"
+            android:padding="@dimen/fragment_padding"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:text="@string/title_dinner_bottom_sheet_add_quick_meal"/>
 
     <TextView

@@ -23,6 +23,11 @@
     <string name="title_lunch_bottom_sheet_add_quick_meal">Mittagessen manuell eingeben</string>
     <string name="title_dinner_bottom_sheet_add_quick_meal">Abendessen manuell eingeben</string>
     <string name="title_scan_barcode_bottom_sheet_add_quick_meal">Barcode einscannen</string>
+    <string name="title_add_new_meal">Eine neue Mahlzeit hinzufügen...</string>
+    <string name="hint_add_meal_here">Mahlzeitnamen hier eingeben</string>
+    <string name="title_add_new_nourishments">Zutaten hinzufügen</string>
+    <string name="hint_put_directions_here">Anweisungen hier hineinschreiben</string>
+    <string name="title_directions">Zubereitung</string>
 
     <!-- string array area -->
 
