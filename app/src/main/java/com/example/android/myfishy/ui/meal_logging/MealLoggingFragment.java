@@ -120,17 +120,23 @@ public class MealLoggingFragment extends Fragment {
             if (checkIfMealIsEmpty(breakfastMeals, mealSubTitleListStringIds, i)) {
                 setBreakfastToGone();
             } else {
-                setBreakfastToVisible();
+                if (breakfastMeals.size() >= 3) {
+                    setBreakfastToVisible();
+                }
             }
             if (checkIfMealIsEmpty(lunchMeals, mealSubTitleListStringIds, i)) {
                 setLunchToGone();
             } else {
-                setLunchToVisible();
+                if (lunchMeals.size() >= 3) {
+                    setLunchToVisible();
+                }
             }
             if (checkIfMealIsEmpty(dinnerMeals, mealSubTitleListStringIds, i)) {
                 setDinnerToGone();
             } else {
-                setDinnerToVisible();
+                if (dinnerMeals.size() >= 3) {
+                    setDinnerToVisible();
+                }
             }
         }
 
@@ -170,6 +176,9 @@ public class MealLoggingFragment extends Fragment {
 
     private void updateMealTypeListedTextViews(List<TextView> textViews, List<Meal> mealList) {
         for (int i = 0; i < textViews.size(); i++) {
+            if (i == mealList.size()) {
+                break;
+            }
             textViews.get(i).setText(mealList.get(mealList.size() - 1 - i).getMeal_name());
         }
     }
