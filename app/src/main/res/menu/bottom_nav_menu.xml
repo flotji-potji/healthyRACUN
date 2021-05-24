@@ -14,8 +14,7 @@
 
     <item
             android:id="@+id/navigation_add_quick_meal"
-            app:showAsAction="never"
-            android:title="@string/title_add_quick_meal"/>
+            app:showAsAction="never"/>
 
     <item
             android:id="@+id/navigation_nutrition_alarm"
