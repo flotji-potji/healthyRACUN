@@ -38,8 +38,8 @@ table(meal) {
     --
     *username : int
     meal_name : String
-    meal_type : String
-    date_added : Date
+    meal_type : int
+    date_added : long
 }
 
 table(nourishment) {

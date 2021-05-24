@@ -5,6 +5,7 @@ package "Activity/Fragments" {
 
     object Activity {
         MainActivity
+        CreateMealActivity
     }
 
     object Fragment {
@@ -15,7 +16,6 @@ package "Activity/Fragments" {
         AddQuickMealFragment
         NutritionAlarmFragment
         ProfileFragment
-        CreateMealFragment
         AddNourishmentFragment
     }
 
