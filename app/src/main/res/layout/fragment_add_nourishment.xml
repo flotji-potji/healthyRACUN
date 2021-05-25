@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ui.add_nourishment.AddNourishmentFragment">
+<FrameLayout
+        android:id="@+id/add_nourishment_search"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.add_nourishment.AddNourishmentFragment"
+        android:background="@drawable/fragment_background_tint"
+        android:alpha="0.8"
+        android:padding="25dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/subtitle_text_view_meal_logging_card_view_info_positive"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <EditText
+                android:id="@+id/editText_recyclerView_add_nourishment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="50dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:alpha="1"
+                android:hint="@string/title_add_nourishment_search_nourishment"
+                android:background="@drawable/edit_text_long_text_background"
+                />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/add_nourishment_recyclerview"
+                android:alpha="1"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/recycler_item_nourishment"/>
+
+    </LinearLayout>
 
 </FrameLayout>

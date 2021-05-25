@@ -8,13 +8,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.fragment.app.FragmentManager;
 import com.example.android.myfishy.R;
+import com.example.android.myfishy.ui.add_nourishment.AddNourishmentFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class CreateMealActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meal);
 
@@ -27,5 +29,14 @@ public class CreateMealActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void searchForNourishment(View view) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentById(R.id.create_meal_container);
+        if (fragment == null) {
+            fragment = new AddNourishmentFragment();
+            fragmentManager.beginTransaction().add(R.id.create_meal_container, fragment).commit();
+        }
     }
 }

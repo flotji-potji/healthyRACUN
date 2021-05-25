@@ -1,63 +1,70 @@
 package com.example.android.myfishy.ui.add_nourishment;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.android.myfishy.R;
+import com.example.android.myfishy.ui.meal_logging.MealLoggingViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddNourishmentFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 public class AddNourishmentFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public AddNourishmentFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddNourishmentFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddNourishmentFragment newInstance(String param1, String param2) {
-        AddNourishmentFragment fragment = new AddNourishmentFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private AddNourishmentViewModel addNourishmentViewModel;
+    private View root;
+    private EditText searchBar;
+    private List<String> wordList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_nourishment, container, false);
+        addNourishmentViewModel =
+                new ViewModelProvider(this).get(AddNourishmentViewModel.class);
+        root = inflater.inflate(R.layout.fragment_add_nourishment, container, false);
+        RecyclerView recyclerView = root.findViewById(R.id.add_nourishment_recyclerview);
+        final WordListAdapter adapter = new WordListAdapter(root.getContext());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+        addNourishmentViewModel.getNourishmentNamesFromNutritionFactTable().observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> strings) {
+                wordList = strings;
+            }
+        });
+        searchBar = (EditText) root.findViewById(R.id.editText_recyclerView_add_nourishment);
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                List<String> currWords = new ArrayList<>();
+                for (String item : wordList) {
+                    if ((item.toLowerCase(Locale.ROOT).contains(s) || item.contains(s)) && s != "") {
+                        currWords.add(item);
+                    }
+                }
+                adapter.setWords(currWords);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        return root;
     }
 }

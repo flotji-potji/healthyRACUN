@@ -28,6 +28,8 @@
     <string name="title_add_new_nourishments">Zutaten hinzufügen</string>
     <string name="hint_put_directions_here">Anweisungen hier hineinschreiben</string>
     <string name="title_directions">Zubereitung</string>
+    <string name="title_create_meal_ingredients">Zutaten</string>
+    <string name="title_add_nourishment_search_nourishment">Nach Zutat suchen...</string>
 
     <!-- string array area -->
 

@@ -50,7 +50,7 @@ public class HealthyRepository {
     // ------- DB joined entities queries ---------- //
     private LiveData<List<MealConsistsOfNourishments>> mealJoinsNourishment;
     private LiveData<List<UserEatsMeals>> userJoinsMeal;
-    private LiveData<List<UserEatsMeals>> userJoinsDiet;
+    private LiveData<List<UserHasDiets>> userJoinsDiet;
     // --------- DB full entity queries ----------- //
     private LiveData<List<DietaryRestrictionTable>> dietaryRestrictionTable;
     private LiveData<List<NutritionFactTable>> nutritionFactTable;
@@ -136,7 +136,7 @@ public class HealthyRepository {
         return userJoinsMeal;
     }
 
-    public LiveData<List<UserEatsMeals>> getUserJoinsDiet() {
+    public LiveData<List<UserHasDiets>> getUserJoinsDiet() {
         return userJoinsDiet;
     }
 
