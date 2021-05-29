@@ -10,7 +10,6 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.android.myfishy.R;
 import com.example.android.myfishy.db.entities.*;
 import com.example.android.myfishy.utilities.ExtractCSV;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -57,7 +56,7 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
 
     private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
-        public void migrate(@NonNull @NotNull SupportSQLiteDatabase database) {
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("ALTER TABLE meal RENAME TO _meal_old");
             database.execSQL("CREATE TABLE meal (" +
                     "meal_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
