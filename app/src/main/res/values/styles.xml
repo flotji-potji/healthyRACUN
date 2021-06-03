@@ -118,4 +118,19 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <!-- Profile Fragment Syles -->
+
+    <style name="text_view_profile_information_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/textView_textSize</item>
+        <item name="android:colorPrimary"></item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginStart">5dp</item>
+    </style>
+    <style name="image_view_card_profile">
+    </style>
+
+
 </resources>
