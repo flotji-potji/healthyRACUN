@@ -125,7 +125,7 @@ public class HealthyRepository {
     }
 
     public static String buildTag(String baseTag, String endTag){
-        return String.format(baseTag, endTag);
+        return baseTag + endTag;
     }
 
     public LiveData<List<MealConsistsOfNourishments>> getMealJoinsNourishment() {
