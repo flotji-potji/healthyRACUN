@@ -1,5 +1,7 @@
 package com.example.android.myfishy.ui.add_nourishment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -108,8 +110,23 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
                             nutritionFactTableList,
                             currWords.get(position)
                     );
-            extrasBundle.putString(ADD_NOURISHMENT_FRAGMENT_TAG,
-                    currNourishment.getNourishment_name());
+            if (addNourishmentViewModel.checkDietaryRestriction(currNourishment)) {
+                extrasBundle.putInt(
+                        ADD_NOURISHMENT_FRAGMENT_TAG,
+                        currNourishment.getNutrition_id()
+                );
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                builder.setTitle("NICHT GUT!");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+            }
             closeFragment.closeFragment(extrasBundle);
         }
         nourishmentListAdapter.notifyDataSetChanged();

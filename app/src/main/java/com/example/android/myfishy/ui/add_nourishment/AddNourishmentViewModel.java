@@ -43,8 +43,15 @@ public class AddNourishmentViewModel extends AndroidViewModel {
         return userHasDiets;
     }
 
-    public NutritionFactTable getMatchingNutritionFactTable(List<NutritionFactTable> nutritionFacts,
-                                                            String match) {
+    public boolean checkDietaryRestriction(
+            NutritionFactTable nutritionFactTable) {
+        // TODO: CHECK IF DIETARY RESTRICTION APPLIES
+        return true;
+    }
+
+    public NutritionFactTable getMatchingNutritionFactTable(
+            List<NutritionFactTable> nutritionFacts,
+            String match) {
         for (NutritionFactTable item : nutritionFacts) {
             if (item.getNourishment_name().equals(match)) {
                 return item;
