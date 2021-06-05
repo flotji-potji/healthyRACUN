@@ -1,6 +1,7 @@
 package com.example.android.myfishy.ui.add_nourishment;
 
 import android.app.Application;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -40,5 +41,15 @@ public class AddNourishmentViewModel extends AndroidViewModel {
 
     public LiveData<List<UserHasDiets>> getUserHasDiets() {
         return userHasDiets;
+    }
+
+    public NutritionFactTable getMatchingNutritionFactTable(List<NutritionFactTable> nutritionFacts,
+                                                            String match) {
+        for (NutritionFactTable item : nutritionFacts) {
+            if (item.getNourishment_name().equals(match)) {
+                return item;
+            }
+        }
+        return null;
     }
 }

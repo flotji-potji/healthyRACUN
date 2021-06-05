@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.android.myfishy.R;
 import com.example.android.myfishy.db.entities.NutritionFactTable;
 import com.example.android.myfishy.repo.HealthyRepository;
+import com.example.android.myfishy.utilities.OnCloseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,17 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
     private List<String> currWords;
     private List<NutritionFactTable> nutritionFactTableList;
     private NourishmentListAdapter nourishmentListAdapter;
+    private OnCloseFragment closeFragment;
+    private Bundle extrasBundle;
+
+    public AddNourishmentFragment(OnCloseFragment onCloseFragment) {
+        closeFragment = onCloseFragment;
+        extrasBundle = new Bundle();
+    }
+
+    public static AddNourishmentFragment newInstance(OnCloseFragment onCloseFragment) {
+        return new AddNourishmentFragment(onCloseFragment);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,14 +103,14 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
     @Override
     public void onNutritionListener(int position) {
         if (nutritionList != null) {
-            for (NutritionFactTable item : nutritionFactTableList) {
-                if (item.getNourishment_name().equals(currWords.get(position))){
-                    Toast.makeText(
-                            root.getContext(),
-                            item.getNourishment_name(),
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
+            NutritionFactTable currNourishment =
+                    addNourishmentViewModel.getMatchingNutritionFactTable(
+                            nutritionFactTableList,
+                            currWords.get(position)
+                    );
+            extrasBundle.putString(ADD_NOURISHMENT_FRAGMENT_TAG,
+                    currNourishment.getNourishment_name());
+            closeFragment.closeFragment(extrasBundle);
         }
         nourishmentListAdapter.notifyDataSetChanged();
     }
