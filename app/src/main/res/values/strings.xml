@@ -31,6 +31,7 @@
     <string name="title_create_meal_ingredients">Zutaten</string>
     <string name="title_add_nourishment_search_nourishment">Nach Zutat suchen...</string>
 
+
     <!-- string array area -->
 
     <!-- fragment_meal_logging area -->
@@ -43,5 +44,8 @@
         <item>@string/subtitle_text_view_meal_logging_card_view_info_negative</item>
         <item>@string/subtitle_text_view_meal_logging_card_view_info_positive</item>
     </string-array>
+
+    <!-- string profile area -->
+    <string name="title_add_profile_data">Placeholder</string>
 
 </resources>

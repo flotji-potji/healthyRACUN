@@ -125,11 +125,54 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/textView_textSize</item>
-        <item name="android:colorPrimary"></item>
+        <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="android:layout_marginBottom">5dp</item>
         <item name="android:layout_marginStart">5dp</item>
     </style>
     <style name="image_view_card_profile">
+        <item name="android:layout_marginStart">5dp</item>
+    </style>
+
+
+    <style name="button_profile_view_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button_round_theme</item>
+        <item name="android:text">@string/label_button_add</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:textColor">@color/color_white</item>
+        <item name="android:layout_alignParentEnd">true</item>
+    </style>
+
+    <!-- TextView Style -->
+
+    <style name="text_profile_view_style">
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">6pt</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginLeft">25dp</item>
+    </style>
+
+    <style name="text_insert_profile_view_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">right</item>
+        <item name="android:text">@string/title_add_profile_data</item>
+        <item name="android:layout_weight">4</item>
+        <item name="android:layout_marginRight">25dp</item>
+    </style>
+
+    <style name="view_profile_horizontal_line_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/horizontal_line</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_margin">10dp</item>
     </style>
 
 

@@ -14,7 +14,6 @@
 
     <!-- default textview bold dimens -->
     <dimen name="textView_textSize">23sp</dimen>
-
     <dimen name="image_view_card_view_height">100dp</dimen>
 
 </resources>

@@ -19,29 +19,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/cardview_profile"
-            style="@style/cardView_style"
-            >
+            style="@style/cardView_style">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    style="@style/view_horizontal_line_style"/>
-                <ImageView
+                <androidx.cardview.widget.CardView
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:src="@drawable/profile_placeholder"
-                    style="@style/image_view_card_profile"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="75dp"
+                    android:layout_margin="16dp"
+                    >
 
-                <LinearLayout
-                    android:id="@+id/linearLayout_view_below_header"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/profile_placeholder"
+                        android:layout_gravity="center"/>
+                </androidx.cardview.widget.CardView>
+                <View
+                    android:layout_marginTop="16dp"
+                    style="@style/view_profile_horizontal_line_style"/>
                     <LinearLayout
+                        android:id="@+id/linearLayout_view_below_header"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -51,113 +52,95 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
+                                style="@style/text_profile_view_style"
                                 android:text="Name:" />
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Placeholder"
-                                android:layout_weight="4"
+                                android:id="@+id/text_name"
+                                style="@style/text_insert_profile_view_style"
                                 android:gravity="right"
                                />
                         </LinearLayout>
-
+                        <View
+                            style="@style/view_profile_horizontal_line_style"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            >
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
+                                style="@style/text_profile_view_style"
                                 android:text="Geburtsdatum:"/>
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Placeholder"
-                                android:layout_weight="4"
+                                android:id="@+id/text_birthday"
+                                style="@style/text_insert_profile_view_style"
                                 android:gravity="right"/>
 
 
                         </LinearLayout>
+                        <View
+                            style="@style/view_profile_horizontal_line_style"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
+                                style="@style/text_profile_view_style"
                                 android:text="Geschlecht:"/>
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:gravity="right"
+                                android:id="@+id/text_sex"
+                                style="@style/text_insert_profile_view_style"
                                 android:text="Placeholder"/>
                         </LinearLayout>
+                        <View
+                            style="@style/view_profile_horizontal_line_style"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
+                                style="@style/text_profile_view_style"
                                 android:text="Gewicht:"/>
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:gravity="right"
+                                android:id="@+id/text_weight"
+                                style="@style/text_insert_profile_view_style"
                                 android:text="Placeholder"/>
                         </LinearLayout>
+                        <View
+                            style="@style/view_profile_horizontal_line_style"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
+                                style="@style/text_profile_view_style"
                                 android:text="Größe:"/>
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:gravity="right"
+                                android:id="@+id/text_height"
+                                style="@style/text_insert_profile_view_style"
                                 android:text="Placeholder"/>
                         </LinearLayout>
-
-
-
                     </LinearLayout>
-                </LinearLayout>
 
                 <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    style="@style/view_horizontal_line_style"/>
+                    style="@style/view_profile_horizontal_line_style"/>
                 <LinearLayout
                     android:id="@+id/linearLayout_view_below_linearLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:layout_margin="22dp"
                     android:layout_below="@+id/linearLayout_view_below_header">
 
                     <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         />
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -170,7 +153,6 @@
                             android:text="Placeholder"
                             android:gravity="center" />
                     </LinearLayout>
-
 
                 </LinearLayout>
             <LinearLayout
@@ -187,6 +169,7 @@
                     <Button
                         android:layout_width="250dp"
                         android:layout_height="match_parent"
+                        style="@style/button_profile_view_style"
                         android:layout_gravity="center"
                         android:text="Bearbeiten"
                         />
