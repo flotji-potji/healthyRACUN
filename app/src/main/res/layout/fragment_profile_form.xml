@@ -20,7 +20,6 @@
                 style="@style/cardView_style">
 
             <TextView
-                    android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="28dp"
@@ -31,7 +30,6 @@
                    />
 
             <EditText
-                    android:id="@+id/names"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="96dp"
@@ -39,14 +37,12 @@
                     android:hint="@string/title_add_edit_data_name"
                     />
             <TextView
-                    android:id="@+id/gender"
                     android:layout_width="wrap_content"
                     android:layout_height="46dp"
                     android:layout_marginTop="172dp"
                     android:text="Geschlecht"
                     android:textSize="18sp"/>
             <RadioGroup
-                    android:id="@+id/radioGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="172dp"
@@ -55,15 +51,12 @@
                     >
 
                 <RadioButton
-                        android:id="@+id/radio_male"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="Männlich"
-                        android:onClick="radioButtonhandler"
-                />
+                        android:onClick="radioButtonhandler"/>
 
                 <RadioButton
-                        android:id="@+id/radio_female"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="Weiblich"
@@ -71,7 +64,6 @@
 
             </RadioGroup>
             <EditText
-                    android:id="@+id/current_weight"
                     android:layout_width="164dp"
                     android:layout_height="46dp"
                     android:layout_marginTop="240dp"
@@ -81,7 +73,6 @@
                     />
 
             <EditText
-                    android:id="@+id/height"
                     android:layout_width="157dp"
                     android:layout_height="44dp"
                     android:layout_marginTop="240dp"
@@ -91,7 +82,6 @@
                     android:layout_gravity="right" />
 
             <EditText
-                    android:id="@+id/text_birthday"
                     android:layout_width="157dp"
                     android:layout_height="44dp"
                     android:layout_marginTop="320dp"
@@ -100,14 +90,12 @@
                     android:inputType="number"
                     />
             <TextView
-                    android:id="@+id/text_illness"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="380dp"
-                    android:text="Geschlecht"
+                    android:text="Krankheit"
                     android:textSize="18sp"/>
             <Spinner
-                    android:id="@+id/setIll"
                     android:entries="@array/illnessItems"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
@@ -117,7 +105,7 @@
             <Button
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="420dp"
+                    android:layout_marginTop="460dp"
                     android:text="Angaben bestätigen"
             />
 
