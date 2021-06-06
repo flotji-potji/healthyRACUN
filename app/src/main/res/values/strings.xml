@@ -48,4 +48,10 @@
     <!-- string profile area -->
     <string name="title_add_profile_data">Placeholder</string>
 
+    <!-- string profile form area -->
+    <string name="title_edit_data_title">Daten bearbeiten</string>
+    <string name="title_add_edit_data_name">Name eingeben</string>
+    <string name="title_add_edit_data_weight">Gewicht eingeben</string>
+    <string name="title_add_edit_data_height">Größe eingeben</string>
+
 </resources>

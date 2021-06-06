@@ -2,12 +2,13 @@
 <resources>
     <string-array name="illnessItems">
 <!--        //gehört ausgearbeitet-->
-        <item>Colitis Ulcerosa</item>
-        <item>Morbus Crohn</item>
+        <item>CNI: Stufe 1-3a</item>
+        <item>CNI: Stufe 3b-4</item>
+        <item>CNI: Stufe 5</item>
+        <item>CNI: Stufe 5D</item>
         <item>Diabetes Type 1</item>
         <item>Diabetes Type 2</item>
-        <item>Glomerulonephritis</item>
-        <item>Artielle Hypertone</item>
-        <item>Auto Immune Disorder</item>
+        <item>CED: Morbus Crohn</item>
+        <item>CED: Colitis Ulc.</item>
     </string-array>
 </resources>

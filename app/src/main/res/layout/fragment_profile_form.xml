@@ -1,14 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context=".ui.profile_form.ProfileFormFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- TODO: Update crappy fragment layout -->
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/subtitle_text_view_meal_logging_card_view_info_positive"/>
+            android:padding="@dimen/fragment_padding"
+            android:orientation="vertical">
 
-</FrameLayout>
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cardview_profile_form"
+                style="@style/cardView_style">
+
+            <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:text="@string/title_edit_data_title"
+                    android:textColor="@color/black"
+                    android:textSize="28sp"
+                    android:layout_gravity="center_horizontal"
+                   />
+
+            <EditText
+                    android:id="@+id/names"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="96dp"
+                    android:ems="10"
+                    android:hint="@string/title_add_edit_data_name"
+                    />
+            <TextView
+                    android:id="@+id/gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="172dp"
+                    android:text="Geschlecht"
+                    android:textSize="18sp"/>
+            <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="172dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="right"
+                    >
+
+                <RadioButton
+                        android:id="@+id/radio_male"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Männlich"
+                        android:onClick="radioButtonhandler"
+                />
+
+                <RadioButton
+                        android:id="@+id/radio_female"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Weiblich"
+                        android:onClick="radioButtonhandler"/>
+
+            </RadioGroup>
+            <EditText
+                    android:id="@+id/current_weight"
+                    android:layout_width="164dp"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="240dp"
+                    android:ems="10"
+                    android:hint="@string/title_add_edit_data_weight"
+                    android:inputType="number"
+                    />
+
+            <EditText
+                    android:id="@+id/height"
+                    android:layout_width="157dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="240dp"
+                    android:ems="10"
+                    android:hint="@string/title_add_edit_data_height"
+                    android:inputType="number"
+                    android:layout_gravity="right" />
+
+            <EditText
+                    android:id="@+id/text_birthday"
+                    android:layout_width="157dp"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="320dp"
+                    android:ems="10"
+                    android:hint="Da kommt was gscheiteres hin"
+                    android:inputType="number"
+                    />
+            <TextView
+                    android:id="@+id/text_illness"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="380dp"
+                    android:text="Geschlecht"
+                    android:textSize="18sp"/>
+            <Spinner
+                    android:id="@+id/setIll"
+                    android:entries="@array/illnessItems"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="380dp"
+                    android:layout_gravity="right"
+            />
+            <Button
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="420dp"
+                    android:text="Angaben bestätigen"
+            />
+
+
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</ScrollView>

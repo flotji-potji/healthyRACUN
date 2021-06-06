@@ -118,7 +118,7 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <!-- Profile Fragment Syles -->
+    <!-- Profile Fragment Styles -->
 
     <style name="text_view_profile_information_style">
         <item name="android:layout_width">match_parent</item>
