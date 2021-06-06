@@ -124,7 +124,7 @@ public class HealthyRepository {
         }
     }
 
-    public static String buildTag(String baseTag, String endTag){
+    public static String buildTag(String baseTag, String endTag) {
         return baseTag + endTag;
     }
 
@@ -152,8 +152,12 @@ public class HealthyRepository {
         return userTable;
     }
 
-    public LiveData<List<String>> getNourishmentNamesFromNutritionFactTable(){
+    public LiveData<List<String>> getNourishmentNamesFromNutritionFactTable() {
         return nourishmentNamesFromNutritionFactTable;
+    }
+
+    public LiveData<NutritionFactTable> getNutritionById(int id) {
+        return healthyDao.getNutritionById(id);
     }
 
     public void insertDiet(Diet diet) {
@@ -178,6 +182,10 @@ public class HealthyRepository {
 
     public void insertUser(User user) {
         insertEntityAsyncTask(healthyDao, user);
+    }
+
+    public LiveData<Integer> getLastSavedMealId() {
+        return healthyDao.getLastSavedIdFromMealTable();
     }
 
     private void insertEntityAsyncTask(final HealthyDao healthyDao, final Object data) {

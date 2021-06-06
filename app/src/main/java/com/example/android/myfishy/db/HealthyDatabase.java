@@ -20,7 +20,7 @@ import java.util.List;
                 Diet.class, DietaryRestrictionTable.class, Meal.class,
                 Nourishment.class, NutritionFactTable.class, User.class
         },
-        version = 2
+        version = 3
 )
 public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
 
@@ -30,7 +30,7 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
 
     private static HealthyDatabase INSTANCE;
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback =
+    private static RoomDatabase.Callback roomDatabaseCallback =
             new Callback() {
                 @Override
                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -67,6 +67,36 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
         }
     };
 
+    private static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE nourishment RENAME TO _nourishment_old");
+            database.execSQL("CREATE TABLE nourishment (" +
+                    "nourishment_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                    "meal_id INTEGER NOT NULL," +
+                    "nourishment_category TEXT," +
+                    "nourishment_name TEXT," +
+                    "nourishment_synonym TEXT," +
+                    "calories FLOAT NOT NULL," +
+                    "fat FLOAT NOT NULL," +
+                    "saturated_fatty_acids FLOAT NOT NULL," +
+                    "unsaturated_fatty_acids FLOAT NOT NULL," +
+                    "carbohydrates_all FLOAT NOT NULL," +
+                    "simple_sugars FLOAT NOT NULL," +
+                    "etoh FLOAT NOT NULL," +
+                    "h20 FLOAT NOT NULL," +
+                    "table_salt FLOAT NOT NULL," +
+                    "sodium FLOAT NOT NULL," +
+                    "chlorine FLOAT NOT NULL," +
+                    "magnesium FLOAT NOT NULL," +
+                    "potassium FLOAT NOT NULL," +
+                    "calcium FLOAT NOT NULL," +
+                    "phosphor FLOAT NOT NULL," +
+                    "iron FLOAT NOT NULL," +
+                    "protein FLOAT NOT NULL)");
+        }
+    };
+
     private static void populateNutritionFactTable(HealthyDao healthyDao) throws IOException {
         List<String> csvRow = ex.next();
         int currLine = 0;
@@ -87,8 +117,9 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             HealthyDatabase.class,
                             "healthy_database")
-                            .addCallback(sRoomDatabaseCallback)
+                            .addCallback(roomDatabaseCallback)
                             .addMigrations(MIGRATION_1_2)
+                            .addMigrations(MIGRATION_2_3)
                             .build();
                 }
             }

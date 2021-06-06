@@ -1,7 +1,7 @@
 package com.example.android.myfishy.utilities;
 
-import android.os.Bundle;
+import java.util.List;
 
 public interface OnCloseFragment {
-    void closeFragment(Bundle bundle);
+    void closeFragment(List<?> bundle);
 }

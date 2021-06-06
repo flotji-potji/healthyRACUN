@@ -53,4 +53,10 @@ public interface HealthyDao {
 
     @Query("SELECT nourishment_name FROM nutrition_fact_table")
     LiveData<List<String>> getNourishmentNamesFromNutritionFactTable();
+
+    @Query("SELECT * FROM nutrition_fact_table WHERE nutrition_id = :id")
+    LiveData<NutritionFactTable> getNutritionById(int id);
+
+    @Query("SELECT meal_id FROM meal ORDER BY meal_id DESC LIMIT 1")
+    LiveData<Integer> getLastSavedIdFromMealTable();
 }

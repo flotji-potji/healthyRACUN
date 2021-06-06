@@ -15,12 +15,15 @@ public class Meal {
     private int meal_type;
     private long date_added;
 
-    public Meal(@NonNull int meal_id, String username, String meal_name, int meal_type, long date_added) {
-        this.meal_id = meal_id;
+    public Meal(String username, String meal_name, int meal_type, long date_added) {
         this.username = username;
         this.meal_name = meal_name;
         this.meal_type = meal_type;
         this.date_added = date_added;
+    }
+
+    public void setMeal_id(int meal_id) {
+        this.meal_id = meal_id;
     }
 
     public int getMeal_id() {

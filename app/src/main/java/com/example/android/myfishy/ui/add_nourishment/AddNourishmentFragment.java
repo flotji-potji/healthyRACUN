@@ -5,8 +5,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,14 +35,15 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
     private EditText searchBar;
     private List<String> nutritionList;
     private List<String> currWords;
-    private List<NutritionFactTable> nutritionFactTableList;
+    private static List<NutritionFactTable> nutritionFactTableList;
     private NourishmentListAdapter nourishmentListAdapter;
     private OnCloseFragment closeFragment;
-    private Bundle extrasBundle;
+    private List<NutritionFactTable> extrasBundle;
+    private Button submitButton;
 
     public AddNourishmentFragment(OnCloseFragment onCloseFragment) {
         closeFragment = onCloseFragment;
-        extrasBundle = new Bundle();
+        extrasBundle = new ArrayList<>();
     }
 
     public static AddNourishmentFragment newInstance(OnCloseFragment onCloseFragment) {
@@ -99,22 +101,43 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
 
             }
         });
+
+        submitButton = root.findViewById(R.id.button_add_nourishment);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeFragment.closeFragment(extrasBundle);
+            }
+        });
+
         return root;
+    }
+
+    private boolean isButtonVisible() {
+        return submitButton.getVisibility() == View.VISIBLE;
+    }
+
+    private void setButtonVisible() {
+        submitButton.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onNutritionListener(int position) {
         if (nutritionList != null) {
-            NutritionFactTable currNourishment =
+            /*NutritionFactTable currNourishment =
                     addNourishmentViewModel.getMatchingNutritionFactTable(
                             nutritionFactTableList,
                             currWords.get(position)
+                    );*/
+            NutritionFactTable currNourishment =
+                    getMatchingNutritionFactTable(
+                            currWords.get(position)
                     );
             if (addNourishmentViewModel.checkDietaryRestriction(currNourishment)) {
-                extrasBundle.putInt(
-                        ADD_NOURISHMENT_FRAGMENT_TAG,
-                        currNourishment.getNutrition_id()
-                );
+                extrasBundle.add(currNourishment);
+                if (!isButtonVisible()){
+                    setButtonVisible();
+                }
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
                 builder.setTitle("NICHT GUT!");
@@ -127,8 +150,17 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
                 });
                 builder.show();
             }
-            closeFragment.closeFragment(extrasBundle);
         }
         nourishmentListAdapter.notifyDataSetChanged();
+    }
+
+    public NutritionFactTable getMatchingNutritionFactTable(
+            @NonNull String match) {
+        for (NutritionFactTable item : nutritionFactTableList) {
+            if (item.getNourishment_name().equals(match)) {
+                return item;
+            }
+        }
+        return null;
     }
 }

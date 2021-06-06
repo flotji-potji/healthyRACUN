@@ -50,8 +50,8 @@ public class AddNourishmentViewModel extends AndroidViewModel {
     }
 
     public NutritionFactTable getMatchingNutritionFactTable(
-            List<NutritionFactTable> nutritionFacts,
-            String match) {
+            @NonNull List<NutritionFactTable> nutritionFacts,
+            @NonNull String match) {
         for (NutritionFactTable item : nutritionFacts) {
             if (item.getNourishment_name().equals(match)) {
                 return item;

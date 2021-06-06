@@ -8,7 +8,8 @@ import java.sql.Date;
 
 @Entity(tableName = "nourishment")
 public class Nourishment {
-    @PrimaryKey
+
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     private int nourishment_id;
     private int meal_id;
@@ -57,12 +58,11 @@ public class Nourishment {
      * @param iron
      * @param protein
      */
-    public Nourishment(@NonNull int nourishment_id, int meal_id, String nourishment_category, String nourishment_name,
+    public Nourishment(int meal_id, String nourishment_category, String nourishment_name,
                        String nourishment_synonym, float calories, float fat, float saturated_fatty_acids,
                        float unsaturated_fatty_acids, float carbohydrates_all, float simple_sugars, float etoh,
                        float h20, float table_salt, float sodium, float chlorine, float magnesium, float potassium,
                        float calcium, float phosphor, float iron, float protein) {
-        this.nourishment_id = nourishment_id;
         this.meal_id = meal_id;
         this.nourishment_category = nourishment_category;
         this.nourishment_name = nourishment_name;
@@ -84,6 +84,10 @@ public class Nourishment {
         this.phosphor = phosphor;
         this.iron = iron;
         this.protein = protein;
+    }
+
+    public void setNourishment_id(int nourishment_id) {
+        this.nourishment_id = nourishment_id;
     }
 
     public int getNourishment_id() {
