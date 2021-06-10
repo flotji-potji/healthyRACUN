@@ -89,8 +89,10 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 currWords.clear();
                 for (String item : nutritionList) {
-                    if ((item.toLowerCase(Locale.ROOT).contains(s) || item.contains(s)) && s != "") {
-                        currWords.add(item);
+                    if (s != null && item != null) {
+                        if ((item.toLowerCase().contains(s) || item.contains(s)) && s != "") {
+                            currWords.add(item);
+                        }
                     }
                 }
                 nourishmentListAdapter.setNutritionNames(currWords);
