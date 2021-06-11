@@ -43,6 +43,7 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
 
     public AddNourishmentFragment(OnCloseFragment onCloseFragment) {
         closeFragment = onCloseFragment;
+        nutritionFactTableList = new ArrayList<>();
         extrasBundle = new ArrayList<>();
     }
 

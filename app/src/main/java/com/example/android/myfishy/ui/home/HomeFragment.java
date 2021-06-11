@@ -12,7 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.android.myfishy.R;
-import com.github.mikephil.charting.charts.PieChart;
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
 
 import java.util.List;
 
@@ -23,8 +24,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        final View root = inflater.inflate(R.layout.content_dashboard, container, false);
+                new ViewModelProvider(this).get(HomeViewModel.class);
+        final View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         final TextView tvPotassium = root.findViewById(R.id.tvPotassium);
         final TextView tvSodium = root.findViewById(R.id.tvSodium);
@@ -33,7 +34,6 @@ public class HomeFragment extends Fragment {
         final TextView tvWater = root.findViewById(R.id.tvWater);
         final PieChart pieChart = root.findViewById(R.id.piechart);
 
-        final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<List<String>>() {
             @Override
             public void onChanged(@Nullable List<String> ml) {
@@ -44,35 +44,34 @@ public class HomeFragment extends Fragment {
                 tvCalcium.setText(ml.get(3));
                 tvWater.setText(ml.get(4));
 
-                /*
                 pieChart.addPieSlice(
                         new PieModel(
-                                getString(R.string.potassium_label),
+                                "",
                                 Integer.parseInt(tvPotassium.getText().toString()),
-                                Color.parseColor("#" + Integer.toHexString(getContext().getColor(R.color.potassium)))));
+                                Color.parseColor("#" + Integer.toHexString(getContext().getColor(R.color.blue_gray_50)))));
                 pieChart.addPieSlice(
                         new PieModel(
-                                getString(R.string.sodium_label),
+                                "",
                                 Integer.parseInt(tvSodium.getText().toString()),
-                                Color.parseColor("#" + Integer.toHexString(getContext().getColor(R.color.sodium)))));
+                                Color.parseColor("#" + Integer.toHexString(getContext().getColor(R.color.blue_gray_100)))));
                 pieChart.addPieSlice(
                         new PieModel(
-                                getString(R.string.phosphate_label),
+                                "",
                                 Integer.parseInt(tvPhosphate.getText().toString()),
-                                Color.parseColor("#" + Integer.toHexString(getContext().getColor(R.color.phosphate)))));
+                                Color.parseColor("#" + Integer.toHexString(getContext().getColor(R.color.blue_gray_200)))));
                 pieChart.addPieSlice(
                         new PieModel(
-                                getString(R.string.calcium_label),
+                                "",
                                 Integer.parseInt(tvCalcium.getText().toString()),
-                                Color.parseColor("#" + Integer.toHexString(getContext().getColor(R.color.calcium)))));
+                                Color.parseColor("#" + Integer.toHexString(getContext().getColor(R.color.blue_gray_300)))));
                 pieChart.addPieSlice(
                         new PieModel(
-                                getString(R.string.water_label),
+                                "",
                                 Integer.parseInt(tvWater.getText().toString()),
-                                Color.parseColor("#" + Integer.toHexString(getContext().getColor(R.color.water)))
+                                Color.parseColor("#" + Integer.toHexString(getContext().getColor(R.color.blue_gray_400)))
                         )
                 );
-                */
+
                 // To animate the pie chart
                 pieChart.startAnimation();
             }
@@ -81,22 +80,3 @@ public class HomeFragment extends Fragment {
         return root;
     }
 }
-/*      Commented out Placeholder-Code
-
-    private HomeViewModel homeViewModel;
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
-    }
- */

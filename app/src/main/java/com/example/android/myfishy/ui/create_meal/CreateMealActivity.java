@@ -40,6 +40,7 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
     private String mealTitle;
     private String mealInstruction;
     private List<NutritionFactTable> nutritionFactTableList;
+    private List<String> ingredientList;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
         mealTitle = "";
         mealInstruction = "";
         nutritionFactTableList = new ArrayList<>();
+        ingredientList = new ArrayList<>();
 
         final LifecycleOwner cool = this;
 
@@ -109,23 +111,15 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
         MainActivity.hideKeyboard(this);
         fragmentManager.beginTransaction().remove(fragment).commit();
 
-        ArrayList<String> currList = new ArrayList<>();
         for (Object item : bundle) {
             NutritionFactTable nut = (NutritionFactTable) item;
-            createMealViewModel.getNutritionById(nut.getNutrition_id())
-                    .observe(this, new Observer<NutritionFactTable>() {
-                        @Override
-                        public void onChanged(NutritionFactTable nutritionFactTable) {
-                            nutritionFactTableList.add(nutritionFactTable);
-                        }
-                    });
+            nutritionFactTableList.add(nut);
+            ingredientList.add(nut.getNourishment_name());
         }
-        if (nutritionFactTableList != null) {
-            for (NutritionFactTable item : nutritionFactTableList) {
-                currList.add(item.getNourishment_name());
-            }
+        if (!ingredientList.isEmpty()) {
+            ingredientListAdapter.setNutritionNames(ingredientList);
+            ingredientListAdapter.notifyDataSetChanged();
         }
-        ingredientListAdapter.setNutritionNames(currList);
     }
 
     @Override
