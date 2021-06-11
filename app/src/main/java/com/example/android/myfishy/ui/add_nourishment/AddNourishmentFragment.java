@@ -127,11 +127,6 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
     @Override
     public void onNutritionListener(int position) {
         if (nutritionList != null) {
-            /*NutritionFactTable currNourishment =
-                    addNourishmentViewModel.getMatchingNutritionFactTable(
-                            nutritionFactTableList,
-                            currWords.get(position)
-                    );*/
             NutritionFactTable currNourishment =
                     getMatchingNutritionFactTable(
                             currWords.get(position)

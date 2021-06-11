@@ -59,5 +59,43 @@
     <string name="title_display_greeting_message">Schön, dass es Sie gibt</string>
     <string name="title_subheader_nurtition_overview">Ihr derzeitiger Nährwertstatus</string>
 
+    <!-- strings genders -->
+    <string name="label_gender_female">Weiblich</string>
+    <string name="label_gender_male">Männlich</string>
+    <string name="label_gender_inter">Inter</string>
+    <string name="label_gender_diverse">Diverse</string>
+    <string name="label_gender_none">Keine Angabe</string>
+
+    <!-- string array genders -->
+    <string-array name="genderItems">
+        <item>@string/label_gender_female</item>
+        <item>@string/label_gender_male</item>
+        <item>@string/label_gender_inter</item>
+        <item>@string/label_gender_diverse</item>
+        <item>@string/label_gender_none</item>
+    </string-array>
+
+    <!-- strings illnesses -->
+    <string name="label_illness_cni_13a">CNI: Stufe 1–3a</string>
+    <string name="label_illness_cni_3b4">CNI: Stufe 3b–4</string>
+    <string name="label_illness_cni_5">CNI: Stufe 5</string>
+    <string name="label_illness_cni_5d">CNI: Stufe 5D</string>
+    <string name="label_illness_dm1">Diabetes Type 1</string>
+    <string name="label_illness_dm2">Diabetes Type 2</string>
+    <string name="label_illness_ced_mc">CED: Morbus Crohn</string>
+    <string name="label_illness_ced_ulc">CED: Colitis Ulc.</string>
+
+    <!-- string array illnesses -->
+    <string-array name="illnessItems">
+        <!-- gehört ausgearbeitet -->
+        <item>@string/label_illness_cni_13a</item>
+        <item>@string/label_illness_cni_3b4</item>
+        <item>@string/label_illness_cni_5</item>
+        <item>@string/label_illness_cni_5d</item>
+        <item>@string/label_illness_dm1</item>
+        <item>@string/label_illness_dm2</item>
+        <item>@string/label_illness_ced_mc</item>
+        <item>@string/label_illness_ced_ulc</item>
+    </string-array>
 
 </resources>
