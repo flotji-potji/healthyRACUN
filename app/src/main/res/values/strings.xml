@@ -55,4 +55,9 @@
     <string name="title_add_edit_data_weight">Gewicht eingeben</string>
     <string name="title_add_edit_data_height">Größe eingeben</string>
 
+    <!-- string home area -->
+    <string name="title_display_greeting_message">Schön, dass es Sie gibt</string>
+    <string name="title_subheader_nurtition_overview">Ihr derzeitiger Nährwertstatus</string>
+
+
 </resources>
