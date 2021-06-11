@@ -48,9 +48,9 @@
                         android:text="@string/title_add_new_meal"/>
 
                 <EditText
+                        android:id="@+id/editText_mealName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:height="50dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
@@ -58,7 +58,10 @@
                         android:hint="@string/hint_add_meal_here"
                         android:paddingStart="20dp"
                         android:paddingEnd="20dp"
-                        android:background="@drawable/collapsable_toolbar_edit_text_shape"/>
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/collapsable_toolbar_edit_text_shape"
+                        android:inputType="textCapWords"/>
 
             </LinearLayout>
 

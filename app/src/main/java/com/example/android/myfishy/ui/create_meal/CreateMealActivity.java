@@ -2,8 +2,8 @@ package com.example.android.myfishy.ui.create_meal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -25,8 +25,9 @@ import com.example.android.myfishy.utilities.OnCloseFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class CreateMealActivity extends AppCompatActivity implements OnCloseFragment, IngredientListAdapter.OnNutritionListener {
 
@@ -35,12 +36,13 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
 
     private FragmentManager fragmentManager;
     private Fragment fragment;
+    private EditText editTextMealName;
+    private EditText editTextMealInstructions;
+
     private CreateMealViewModel createMealViewModel;
     private IngredientListAdapter ingredientListAdapter;
-    private String mealTitle;
-    private String mealInstruction;
     private List<NutritionFactTable> nutritionFactTableList;
-    private List<String> ingredientList;
+    private Set<String> ingredientSet;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -48,36 +50,38 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
         setContentView(R.layout.activity_create_meal);
         createMealViewModel =
                 new ViewModelProvider(this).get(CreateMealViewModel.class);
-        mealTitle = "";
-        mealInstruction = "";
         nutritionFactTableList = new ArrayList<>();
-        ingredientList = new ArrayList<>();
+        ingredientSet = new HashSet<>();
+        editTextMealName = findViewById(R.id.editText_mealName);
 
         final LifecycleOwner cool = this;
 
+        int mealType = 0;
+        if (savedInstanceState != null) {
+            mealType = savedInstanceState.getInt(HealthyRepository.MEAL_TYPE_EXTRA);
+        }
+
         FloatingActionButton fab = findViewById(R.id.activity_create_meal_fab);
+        final int finalMealType = mealType;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Meal meal = new Meal(
                         MainActivity.getCurrUser(),
-                        mealTitle,
-                        HealthyRepository.MEAL_TYPE_BREAKFAST, // TODO: diese Zuweisung muss noch dynamisch erfolgen
+                        editTextMealName.getText().toString(),
+                        finalMealType,
                         System.currentTimeMillis()
                 );
                 createMealViewModel.insertMeal(meal);
 
-                final int[] res = {0};
                 createMealViewModel.getLastSavedMealId().observe(cool, new Observer<Integer>() {
                     @Override
                     public void onChanged(Integer integer) {
-                        res[0] = integer;
+                        for (NutritionFactTable item : nutritionFactTableList) {
+                            createMealViewModel.insertNourishment(integer, item);
+                        }
                     }
                 });
-
-                for (NutritionFactTable item : nutritionFactTableList) {
-                    createMealViewModel.insertNourishment(res[0], item);
-                }
 
                 Intent replyIntent = new Intent();
                 setResult(RESULT_OK, replyIntent);
@@ -93,7 +97,8 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
     }
 
     public void searchForNourishment(View view) {
-        fragment = AddNourishmentFragment.newInstance(this);
+        fragment = AddNourishmentFragment.newInstance(this,
+                new ArrayList<>(ingredientSet));
         FragmentTransaction fragmentTransaction =
                 fragmentManager.beginTransaction();
         fragmentTransaction
@@ -114,10 +119,10 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
         for (Object item : bundle) {
             NutritionFactTable nut = (NutritionFactTable) item;
             nutritionFactTableList.add(nut);
-            ingredientList.add(nut.getNourishment_name());
+            ingredientSet.add(nut.getNourishment_name());
         }
-        if (!ingredientList.isEmpty()) {
-            ingredientListAdapter.setNutritionNames(ingredientList);
+        if (!ingredientSet.isEmpty()) {
+            ingredientListAdapter.setNutritionNames(new ArrayList<>(ingredientSet));
             ingredientListAdapter.notifyDataSetChanged();
         }
     }

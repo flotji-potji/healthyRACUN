@@ -84,6 +84,10 @@
     <string name="label_illness_dm2">Diabetes Type 2</string>
     <string name="label_illness_ced_mc">CED: Morbus Crohn</string>
     <string name="label_illness_ced_ulc">CED: Colitis Ulc.</string>
+    <string name="alert_title_quantity">Menge eingeben</string>
+    <string name="alert_title_mass">Masse eingeben</string>
+    <string name="alert_label_ok">OK</string>
+    <string name="alert_label_cancel">Abbrechen</string>
 
     <!-- string array illnesses -->
     <string-array name="illnessItems">

@@ -32,6 +32,7 @@ public class HealthyRepository {
     public static final String FRAGMENT_TAG = "_FRAGMENT";
     public static final String ACTIVITY_TAG = "_ACTIVITY";
     // -- Meal entity related meal type attributes - //
+    public static final String MEAL_TYPE_EXTRA = "MEAL_TYPE";
     public static final int MEAL_TYPE_BREAKFAST = 1;
     public static final int MEAL_TYPE_LUNCH = 2;
     public static final int MEAL_TYPE_DINNER = 3;

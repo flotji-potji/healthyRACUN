@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CreateMealActivity.class);
-                intent.putExtra(HealthyRepository.QUICK_ADD_MEAL_TAG, HealthyRepository.MEAL_TYPE_BREAKFAST);
+                intent.putExtra(HealthyRepository.MEAL_TYPE_EXTRA, HealthyRepository.MEAL_TYPE_BREAKFAST);
                 startActivity(intent);
                 bottomSheetDialog.cancel();
             }
