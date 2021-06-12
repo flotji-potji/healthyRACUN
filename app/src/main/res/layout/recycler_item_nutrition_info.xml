@@ -16,9 +16,8 @@
 
         <TextView
             android:id="@+id/textView_recyclerItem_add_missing_nutrition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:text="@string/label_meal_logging_template"
             android:gravity="start"
             android:layout_marginStart="5dp"

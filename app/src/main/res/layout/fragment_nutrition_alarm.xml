@@ -24,7 +24,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -43,14 +44,14 @@
                 android:gravity="center"
                 android:text="Warning! You are exceeding your daily limit! "/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/add_exceeding_nutrition_recyclerview"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:listitem="@layout/recycler_item_nutrition_info"
-                android:layout_below="@+id/nutritioncard_warning_textView"/>
-
         </androidx.cardview.widget.CardView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/add_exceeding_nutrition_recyclerview"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/recycler_item_nutrition_info"
+            android:layout_below="@+id/nutritioncard_warning_textView"
+            />
     </LinearLayout>
 </ScrollView>
