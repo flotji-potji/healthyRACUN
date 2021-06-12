@@ -31,4 +31,9 @@
     <color name="blue_gray_800">#37474F</color>
     <color name="blue_gray_900">#263238</color>
 
+    <!-- red and orange colors -->
+    <color name="orange_orange">#FF9A00</color>
+
+
+
 </resources>
