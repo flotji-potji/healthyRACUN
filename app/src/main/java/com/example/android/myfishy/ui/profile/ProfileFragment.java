@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.example.android.myfishy.R;
+import com.example.android.myfishy.db.entities.User;
 
 public class ProfileFragment extends Fragment {
 
@@ -14,12 +17,30 @@ public class ProfileFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+    private String username;
+    private String firstname;
+    private String surname;
+    private long birthday;
+    private String gender;
+    private float weight;
+    private float height;
+
+    private TextView txtusername;
+    private TextView txtname;
+    private TextView txtbirthday;
+    private TextView txtgender;
+    private TextView txtweight;
+    private TextView txtheight;
+
+    User userinfo = new User(username, firstname, surname,birthday, gender,weight,height);
+
 
     public ProfileFragment() {
         // Required empty public constructor
     }
 
-    public static ProfileFragment newInstance(String param1, String param2) {
+    public static ProfileFragment newInstance(String param1, String param2)
+    {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -31,6 +52,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -41,6 +63,20 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        txtusername = (TextView) view.findViewById(R.id.text_username);
+        txtname = (TextView) view.findViewById(R.id.text_name);
+        txtgender = (TextView) view.findViewById(R.id.text_sex);
+        txtbirthday = (TextView) view.findViewById(R.id.text_birthday);
+        txtweight = (TextView) view.findViewById(R.id.text_weight);
+        txtheight = (TextView) view.findViewById(R.id.text_height);
+        txtusername.setText(username);
+        txtname.setText(firstname+" " + surname);
+        txtbirthday.setText(Math.toIntExact(birthday));
+        txtgender.setText(gender);
+        txtweight.setText(Float.toString(weight));
+        txtheight.setText(Float.toString(height));
+
+        return view;
     }
 }
