@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.android.myfishy.ui.nutrition.NutritionFragment;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -37,7 +38,7 @@ public class MaxActivity extends AppCompatActivity {
         nutCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent getNut = new Intent(getApplicationContext(), Nutrition.class);
+                Intent getNut = new Intent(getApplicationContext(), NutritionFragment.class);
                 startActivity(getNut);
             }
         });

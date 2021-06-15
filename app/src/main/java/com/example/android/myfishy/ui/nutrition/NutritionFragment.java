@@ -1,9 +1,10 @@
-package com.example.android.myfishy;
+package com.example.android.myfishy.ui.nutrition;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.android.myfishy.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -12,7 +13,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Nutrition extends AppCompatActivity {
+public class NutritionFragment extends AppCompatActivity {
 
     private BarChart barChart;
     @Override

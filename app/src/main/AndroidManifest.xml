@@ -32,7 +32,7 @@
         <activity android:name=".ProfileActivity">
 
         </activity>
-        <activity android:name=".Nutrition"/>
+        <activity android:name=".ui.nutrition.NutritionFragment"/>
         <activity
                 android:name=".MaxActivity"
                 android:theme="@style/AppTheme"/>

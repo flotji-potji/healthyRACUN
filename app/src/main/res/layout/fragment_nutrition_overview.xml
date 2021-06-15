@@ -9,18 +9,67 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your daily nutrition information"
+            android:textSize="25dp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            />
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/cardView_style">
-            <com.github.mikephil.charting.charts.PieChart
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Carlories:"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"/>
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart_calories"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/title_add_profile_data"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="10dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="25dp"
+                        android:text="kcal"
+                        android:layout_marginBottom="10dp" />
 
-            </com.github.mikephil.charting.charts.PieChart>
+                </LinearLayout>
 
+
+
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -101,6 +150,9 @@
                 android:layout_margin="25dp">
             </com.github.mikephil.charting.charts.HorizontalBarChart>
         </androidx.cardview.widget.CardView>
+
+
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,6 +168,23 @@
                 android:layout_margin="25dp">
             </com.github.mikephil.charting.charts.HorizontalBarChart>
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/cardView_style">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="H2O:"/>
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="25dp">
+            </com.github.mikephil.charting.charts.HorizontalBarChart>
+        </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,6 +201,136 @@
             </com.github.mikephil.charting.charts.HorizontalBarChart>
 
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/cardView_style">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Sodium:"/>
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="25dp">
+            </com.github.mikephil.charting.charts.HorizontalBarChart>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/cardView_style">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Chlorine:"/>
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="25dp">
+            </com.github.mikephil.charting.charts.HorizontalBarChart>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/cardView_style">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Magnesium:"/>
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="25dp">
+            </com.github.mikephil.charting.charts.HorizontalBarChart>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/cardView_style">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Potassium:"/>
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="25dp">
+            </com.github.mikephil.charting.charts.HorizontalBarChart>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/cardView_style">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Calcium:"/>
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="25dp">
+            </com.github.mikephil.charting.charts.HorizontalBarChart>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/cardView_style">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Phosphor:"/>
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="25dp">
+            </com.github.mikephil.charting.charts.HorizontalBarChart>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/cardView_style">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Iron:"/>
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="25dp">
+            </com.github.mikephil.charting.charts.HorizontalBarChart>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/cardView_style">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Protein:"/>
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="25dp">
+            </com.github.mikephil.charting.charts.HorizontalBarChart>
+
+        </androidx.cardview.widget.CardView>
+
 
 
 

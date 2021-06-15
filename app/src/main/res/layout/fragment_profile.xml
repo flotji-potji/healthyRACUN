@@ -175,6 +175,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <Button
+                        android:id="@+id/btn_profile_edit"
                         android:layout_width="250dp"
                         android:layout_height="match_parent"
                         style="@style/button_profile_view_style"

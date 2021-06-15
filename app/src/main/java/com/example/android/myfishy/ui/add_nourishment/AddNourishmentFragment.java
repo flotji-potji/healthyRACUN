@@ -15,16 +15,14 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.android.myfishy.Nutrition;
+
 import com.example.android.myfishy.R;
 import com.example.android.myfishy.db.entities.NutritionFactTable;
 import com.example.android.myfishy.repo.HealthyRepository;
 import com.example.android.myfishy.utilities.OnCloseFragment;
 
-import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class AddNourishmentFragment extends Fragment implements NourishmentListAdapter.OnNutritionListener {
 

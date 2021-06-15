@@ -70,12 +70,26 @@ public class ProfileFragment extends Fragment {
         txtbirthday = (TextView) view.findViewById(R.id.text_birthday);
         txtweight = (TextView) view.findViewById(R.id.text_weight);
         txtheight = (TextView) view.findViewById(R.id.text_height);
-        txtusername.setText(username);
-        txtname.setText(firstname+" " + surname);
-        txtbirthday.setText(Math.toIntExact(birthday) + "");
-        txtgender.setText(gender);
-        txtweight.setText(Float.toString(weight));
-        txtheight.setText(Float.toString(height));
+
+        if(username == null || firstname == null || surname == null || birthday == 0 || gender == null || weight == 0 || height == 0 )
+        {
+            txtusername.setText("");
+            txtname.setText("");
+            txtbirthday.setText("");
+            txtgender.setText("");
+            txtweight.setText("");
+            txtheight.setText("");
+        }
+        else
+            {
+                txtusername.setText(username);
+                txtname.setText(firstname+" " + surname);
+                txtbirthday.setText(Math.toIntExact(birthday));
+                txtgender.setText(gender);
+                txtweight.setText(Float.toString(weight));
+                txtheight.setText(Float.toString(height));
+            }
+
 
         return view;
     }
