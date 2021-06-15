@@ -31,6 +31,41 @@ public class AddNourishmentViewModel extends AndroidViewModel {
         userHasDiets = healthyRepository.getUserJoinsDiet();
     }
 
+    public boolean isNutritionLiquid(NutritionFactTable nutritionFactTable) {
+        return nutritionFactTable
+                .getNourishment_category()
+                .contains("Getränk") ||
+                nutritionFactTable
+                        .getNourishment_category()
+                        .contains("Öl");
+    }
+
+    public NutritionFactTable calculateEnteredNutritionQuantity(float quantity, NutritionFactTable ntf) {
+        float factor = quantity / HealthyRepository.NUTRITION_QUANTITY_PER_SERVING_MG;
+        return new NutritionFactTable(
+                ntf.getNourishment_category(),
+                ntf.getNourishment_name(),
+                ntf.getNourishment_synonym(),
+                ntf.getCalories() * factor,
+                ntf.getFat() * factor,
+                ntf.getSaturated_fatty_acids() * factor,
+                ntf.getUnsaturated_fatty_acids() * factor,
+                ntf.getCarbohydrates_all() * factor,
+                ntf.getSimple_sugars() * factor,
+                ntf.getEtoh() * factor,
+                ntf.getH20() * factor,
+                ntf.getTable_salt() * factor,
+                ntf.getSodium() * factor,
+                ntf.getChlorine() * factor,
+                ntf.getMagnesium() * factor,
+                ntf.getPotassium() * factor,
+                ntf.getCalcium() * factor,
+                ntf.getPhosphor() * factor,
+                ntf.getIron() * factor,
+                ntf.getProtein() * factor
+        );
+    }
+
     public LiveData<List<NutritionFactTable>> getNutritionFactTable() {
         return nutritionFactTable;
     }

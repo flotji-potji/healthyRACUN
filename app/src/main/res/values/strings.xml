@@ -102,4 +102,23 @@
         <item>@string/label_illness_ced_ulc</item>
     </string-array>
 
+    <!-- quantity related string attributes -->
+    <string name="mass_mg">mg</string>
+    <string name="mass_g">g</string>
+    <string name="mass_kg">kg</string>
+    <string name="volume_ml">ml</string>
+    <string name="volume_cl">cl</string>
+    <string name="volume_l">l</string>
+
+    <!-- quantity string arrays -->
+    <string-array name="mass_array">
+        <item>@string/mass_g</item>
+        <item>@string/mass_mg</item>
+    </string-array>
+
+    <string-array name="volume_array">
+        <item>@string/volume_ml</item>
+        <item>@string/volume_l</item>
+    </string-array>
+
 </resources>

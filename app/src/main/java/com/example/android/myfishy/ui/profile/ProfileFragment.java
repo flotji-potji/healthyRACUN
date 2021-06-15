@@ -72,7 +72,7 @@ public class ProfileFragment extends Fragment {
         txtheight = (TextView) view.findViewById(R.id.text_height);
         txtusername.setText(username);
         txtname.setText(firstname+" " + surname);
-        txtbirthday.setText(Math.toIntExact(birthday));
+        txtbirthday.setText(Math.toIntExact(birthday) + "");
         txtgender.setText(gender);
         txtweight.setText(Float.toString(weight));
         txtheight.setText(Float.toString(height));

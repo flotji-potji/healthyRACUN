@@ -5,9 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,11 +15,13 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.android.myfishy.Nutrition;
 import com.example.android.myfishy.R;
 import com.example.android.myfishy.db.entities.NutritionFactTable;
 import com.example.android.myfishy.repo.HealthyRepository;
 import com.example.android.myfishy.utilities.OnCloseFragment;
 
+import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -32,20 +32,21 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
             HealthyRepository.buildTag(HealthyRepository.ADD_NOURISHMENT_TAG, HealthyRepository.FRAGMENT_TAG);
 
     private AddNourishmentViewModel addNourishmentViewModel;
+    private OnCloseFragment closeFragment;
+    private NourishmentListAdapter nourishmentListAdapter;
 
     private View root;
     private EditText searchBar;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
+    private Button submitButton;
 
     private List<String> nutritionList;
+    private List<String> nutritionSynonymList;
     private List<String> currNutritionList;
     private List<String> alreadySelectedNutritionList;
     private static List<NutritionFactTable> nutritionFactTableList;
-    private NourishmentListAdapter nourishmentListAdapter;
-    private OnCloseFragment closeFragment;
     private List<NutritionFactTable> extrasBundle;
-    private Button submitButton;
 
     public AddNourishmentFragment(
             OnCloseFragment onCloseFragment, List<String> selectedNutritionList) {
@@ -68,6 +69,7 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
         root = inflater.inflate(R.layout.fragment_add_nourishment, container, false);
 
         currNutritionList = new ArrayList<>();
+        nutritionSynonymList = new ArrayList<>();
         searchBar = root.findViewById(R.id.editText_recyclerView_add_nourishment);
         progressBar = root.findViewById(R.id.progressBar_addNourishment);
         showProgressBar();
@@ -81,6 +83,9 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
             @Override
             public void onChanged(List<NutritionFactTable> nutritionFactTables) {
                 nutritionFactTableList = nutritionFactTables;
+                for (NutritionFactTable item : nutritionFactTableList) {
+                    nutritionSynonymList.add(item.getNourishment_synonym());
+                }
                 deleteProgressBarForList();
             }
         });
@@ -103,17 +108,8 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 currNutritionList.clear();
-                for (String item : nutritionList) {
-                    if (s != null && item != null) {
-                        if (s != "") {
-                            if (!alreadySelectedNutritionList.contains(item)) {
-                                if (item.toLowerCase().contains(s) || item.contains(s)) {
-                                    currNutritionList.add(item);
-                                }
-                            }
-                        }
-                    }
-                }
+                findStringsByList(s, nutritionList);
+                findStringsByList(s, nutritionSynonymList);
                 nourishmentListAdapter.setNutritionNames(currNutritionList);
             }
 
@@ -132,6 +128,20 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
         });
 
         return root;
+    }
+
+    private void findStringsByList(CharSequence s, List<String> stringList) {
+        for (String item : stringList) {
+            if (s != null && item != null) {
+                if (s != "") {
+                    if (!alreadySelectedNutritionList.contains(item)) {
+                        if (item.toLowerCase().contains(s) || item.contains(s)) {
+                            currNutritionList.add(item);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private void showProgressBar() {
@@ -170,8 +180,15 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
                             currNutritionList.get(position)
                     );
             AlertDialog.Builder quantityBuilder = new AlertDialog.Builder(root.getContext());
-            if (currNourishment.getNourishment_category().contains("Getränk") ||
-                    currNourishment.getNourishment_category().contains("Öl")) {
+            LayoutInflater inflater = requireActivity().getLayoutInflater();
+            View inflatedDialogFragment =
+                    inflater.inflate(R.layout.alert_dialog_add_quantity, null);
+            quantityBuilder.setView(inflatedDialogFragment);
+            Spinner spinner =
+                    inflatedDialogFragment.findViewById(R.id.alertDialog_addQuantity_spinner);
+            EditText editText =
+                    inflatedDialogFragment.findViewById(R.id.alertDialog_addQuantity_text);
+            if (addNourishmentViewModel.isNutritionLiquid(currNourishment)) {
                 quantityBuilder.setTitle(R.string.alert_title_quantity);
             } else {
                 quantityBuilder.setTitle(R.string.alert_title_mass);
@@ -183,7 +200,9 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
 
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
+                                    Toast.makeText(root.getContext(),
+                                            editText.getText().toString(),
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             })
                     .setPositiveButton(
@@ -192,8 +211,14 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
 
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    if (addNourishmentViewModel.checkDietaryRestriction(currNourishment)) {
-                                        extrasBundle.add(currNourishment);
+                                    float quantity = Float.parseFloat(editText.getText().toString());
+                                    NutritionFactTable calcNourishment =
+                                            addNourishmentViewModel
+                                                    .calculateEnteredNutritionQuantity(
+                                                            quantity,
+                                                            currNourishment);
+                                    if (addNourishmentViewModel.checkDietaryRestriction(calcNourishment)) {
+                                        extrasBundle.add(calcNourishment);
                                         alreadySelectedNutritionList.add(
                                                 currNutritionList.get(position)
                                         );

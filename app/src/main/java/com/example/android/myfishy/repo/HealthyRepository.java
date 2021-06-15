@@ -38,7 +38,9 @@ public class HealthyRepository {
     public static final int MEAL_TYPE_DINNER = 3;
     public static final int MEAL_TYPE_DRINK = 4;
     public static final int MEAL_TYPE_SNACK = 5;
-
+    // ------- Meal quantity per serving ----------- //
+    public static final int NUTRITION_QUANTITY_PER_SERVING_MG = 100;
+    public static final int NUTRITION_QUANTITY_PER_SERVING_ML = 100;
 
     // ----- Class private global attributes ------- //
     private String currentViewModel;
@@ -74,6 +76,7 @@ public class HealthyRepository {
     private final String mealConsistsOfNourishmentClassName = MealConsistsOfNourishments.class.getSimpleName();
     private final String userEatMealsClassName = UserEatsMeals.class.getSimpleName();
     private final String userGotDietsClassName = UserHasDiets.class.getSimpleName();
+
 
     /**
      * Class is responsible for all related data handling activities
