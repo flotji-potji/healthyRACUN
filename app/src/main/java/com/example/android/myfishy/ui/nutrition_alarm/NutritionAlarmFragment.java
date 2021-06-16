@@ -21,6 +21,7 @@ public class NutritionAlarmFragment extends Fragment {
         notificationsViewModel =
                 new ViewModelProvider(this).get(NutritionAlarmViewModel.class);
         View root = inflater.inflate(R.layout.fragment_nutrition_alarm, container, false);
+
 //        final TextView textView = root.findViewById(R.id.text_notifications);
 //        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //            @Override
@@ -28,6 +29,9 @@ public class NutritionAlarmFragment extends Fragment {
 //                textView.setText(s);
 //            }
 //        });
+
+
+
         return root;
     }
 }

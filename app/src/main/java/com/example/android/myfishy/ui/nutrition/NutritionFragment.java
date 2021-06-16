@@ -2,10 +2,12 @@ package com.example.android.myfishy.ui.nutrition;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.android.myfishy.R;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -16,12 +18,21 @@ import java.util.List;
 public class NutritionFragment extends AppCompatActivity {
 
     private BarChart barChart;
+    private PieChart pieChart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nutrition);
-        barChart = findViewById(R.id.weekbarchart);
-
+        barChart = findViewById(R.id.barchart_natrium);
+        pieChart = findViewById(R.id.piechart_calories);
+        pieChart.setBackgroundColor(Color.WHITE);
+        pieChart.setUsePercentValues(true);
+        pieChart.setDrawHoleEnabled(true);
+        pieChart.setMaxAngle(300);
+        pieChart.setRotationAngle(180);
+        pieChart.setHoleRadius(40f);
+        barChart.setDrawBarShadow(true);
+        setBarChart();
     }
 
     private void setBarChart()
@@ -41,6 +52,11 @@ public class NutritionFragment extends AppCompatActivity {
         barChart.setData(data);
         barChart.setFitBars(true); // make the x-axis fit exactly all bars
         barChart.invalidate(); // refresh
+    }
+
+    private void addDataSet(PieChart chart)
+    {
+
     }
 
 

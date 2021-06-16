@@ -111,7 +111,7 @@
 
                     <!--Pie chart to display the data-->
 
-                    <org.eazegraph.lib.charts.PieChart
+                    <com.github.mikephil.charting.charts.PieChart
                             android:id="@+id/piechart"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -307,7 +307,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
                             android:textSize="18sp"
-                            android:text="Hier könnte Ihr NW stehen!"/>
+                            android:text="Fat"/>
 
                     <!--Text view to display the -->
                     <!-- percentage of programming language -->
@@ -473,6 +473,32 @@
                             android:layout_alignParentEnd="true"/>
 
                 </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Natrium:"
+                        android:textSize="18sp"/>
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/barchart_natrium"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+
+
+
+                </LinearLayout>
 
             </LinearLayout>
 
