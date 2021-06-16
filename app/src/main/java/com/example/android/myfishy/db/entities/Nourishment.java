@@ -33,6 +33,7 @@ public class Nourishment {
     private float phosphor;
     private float iron;
     private float protein;
+    private float fibers;
 
     /**
      * @param nourishment_id
@@ -62,7 +63,7 @@ public class Nourishment {
                        String nourishment_synonym, float calories, float fat, float saturated_fatty_acids,
                        float unsaturated_fatty_acids, float carbohydrates_all, float simple_sugars, float etoh,
                        float h20, float table_salt, float sodium, float chlorine, float magnesium, float potassium,
-                       float calcium, float phosphor, float iron, float protein) {
+                       float calcium, float phosphor, float iron, float protein, float fibers) {
         this.meal_id = meal_id;
         this.nourishment_category = nourishment_category;
         this.nourishment_name = nourishment_name;
@@ -84,6 +85,7 @@ public class Nourishment {
         this.phosphor = phosphor;
         this.iron = iron;
         this.protein = protein;
+        this.fibers = fibers;
     }
 
     public void setNourishment_id(int nourishment_id) {
@@ -176,5 +178,9 @@ public class Nourishment {
 
     public float getProtein() {
         return protein;
+    }
+
+    public float getFibers() {
+        return fibers;
     }
 }

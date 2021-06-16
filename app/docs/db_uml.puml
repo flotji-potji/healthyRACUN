@@ -22,7 +22,6 @@ table(diet) {
     *username : int
     condition_name : String
     diet_name : String
-    nourishment_category : String
     table_salt : float
     sodium : float
     potassium : float
@@ -73,7 +72,6 @@ table(dietary_restriction_table) {
     --
     condition_name : String
     diet_name : String
-    nourishment_category : String
     table_salt : float
     sodium : float
     potassium : float

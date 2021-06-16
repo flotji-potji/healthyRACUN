@@ -12,7 +12,6 @@ public class DietaryRestrictionTable {
     private int diet_plan_id;
     private String condition_name;
     private String diet_name;
-    private String nourishment_category;
     private float table_salt;
     private float sodium;
     private float potassium;
@@ -21,13 +20,16 @@ public class DietaryRestrictionTable {
     private float protein;
     private float calories;
     private float liquid_intake;
+    private float carbs;
+    private float fats;
+    private float fibers;
 
     public DietaryRestrictionTable(String condition_name, String diet_name,
-                                   String nourishment_category, float table_salt, float sodium, float potassium,
-                                   float calcium, float phosphor, float protein, float calories, float liquid_intake) {
+                                   float table_salt, float sodium, float potassium,
+                                   float calcium, float phosphor, float protein, float calories, float liquid_intake,
+                                   float carbs, float fats, float fibers) {
         this.condition_name = condition_name;
         this.diet_name = diet_name;
-        this.nourishment_category = nourishment_category;
         this.table_salt = table_salt;
         this.sodium = sodium;
         this.potassium = potassium;
@@ -36,6 +38,9 @@ public class DietaryRestrictionTable {
         this.protein = protein;
         this.calories = calories;
         this.liquid_intake = liquid_intake;
+        this.carbs = carbs;
+        this.fats = fats;
+        this.fibers = fibers;
     }
 
     public void setDiet_plan_id(int diet_plan_id) {
@@ -52,10 +57,6 @@ public class DietaryRestrictionTable {
 
     public String getDiet_name() {
         return diet_name;
-    }
-
-    public String getNourishment_category() {
-        return nourishment_category;
     }
 
     public float getTable_salt() {
@@ -88,5 +89,17 @@ public class DietaryRestrictionTable {
 
     public float getLiquid_intake() {
         return liquid_intake;
+    }
+
+    public float getCarbs() {
+        return carbs;
+    }
+
+    public float getFats() {
+        return fats;
+    }
+
+    public float getFibers() {
+        return fibers;
     }
 }

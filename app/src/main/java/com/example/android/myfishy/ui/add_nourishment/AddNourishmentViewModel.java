@@ -62,7 +62,8 @@ public class AddNourishmentViewModel extends AndroidViewModel {
                 ntf.getCalcium() * factor,
                 ntf.getPhosphor() * factor,
                 ntf.getIron() * factor,
-                ntf.getProtein() * factor
+                ntf.getProtein() * factor,
+                ntf.getFibers() * factor
         );
     }
 

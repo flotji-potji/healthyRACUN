@@ -37,13 +37,14 @@ public class ExtractCSV {
     private final short PHOSPHOR_COLUMN = 113;
     private final short IRON_COLUMN = 116;
     private final short PROTEIN_COLUMN = 41;
+    private final short FIBERS_COLUMN = 38;
 
     public ExtractCSV(Context context) throws IOException {
         br = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.nutrition_table)));
     }
 
     public List<String> next() throws IOException {
-        String line= br.readLine();
+        String line = br.readLine();
         Log.e(EXTRACT_CSV_TAG, line);
         char[] charLine = line.toCharArray();
         List<String> res = new ArrayList<>();
@@ -79,13 +80,11 @@ public class ExtractCSV {
         return cell;
     }
 
-    public String getStringCellFromLine(List<String> line, int position){
-       return !line.get(position).isEmpty() ? line.get(position) : null;
+    public String getStringCellFromLine(List<String> line, int position) {
+        return !line.get(position).isEmpty() ? line.get(position) : null;
     }
 
     public NutritionFactTable getNutritionFactTableRow(List<String> line) {
-
-
         return new NutritionFactTable(
                 getStringCellFromLine(line, NOURISHMENT_CATEGORY_COLUMN),
                 getStringCellFromLine(line, NOURISHMENT_NAME_COLUMN),
@@ -97,16 +96,18 @@ public class ExtractCSV {
                 getDataCellFromLine(line, CARBOHYDRATES_ALL_COLUMN),
                 getDataCellFromLine(line, SIMPLE_SUGARS_COLUMN),
                 getDataCellFromLine(line, ETOH_COLUMN),
-                getDataCellFromLine(line,H2O_COLUMN),
+                getDataCellFromLine(line, H2O_COLUMN),
                 getDataCellFromLine(line, TABLE_SALT_COLUMN),
-                getDataCellFromLine(line,SODIUM_COLUMN ),
-                getDataCellFromLine(line,CHLORINE_COLUMN ),
+                getDataCellFromLine(line, SODIUM_COLUMN),
+                getDataCellFromLine(line, CHLORINE_COLUMN),
                 getDataCellFromLine(line, MAGNESIUM_COLUMN),
                 getDataCellFromLine(line, POTASSIUM_COLUMN),
                 getDataCellFromLine(line, CALCIUM_COLUMN),
                 getDataCellFromLine(line, PHOSPHOR_COLUMN),
                 getDataCellFromLine(line, IRON_COLUMN),
-                getDataCellFromLine(line, PROTEIN_COLUMN));
+                getDataCellFromLine(line, PROTEIN_COLUMN),
+                getDataCellFromLine(line, FIBERS_COLUMN)
+                );
     }
 
 }

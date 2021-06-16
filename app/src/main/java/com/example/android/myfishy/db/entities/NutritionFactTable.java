@@ -30,13 +30,13 @@ public class NutritionFactTable {
     private float phosphor;
     private float iron;
     private float protein;
+    private float fibers;
 
     /**
-     *
-     * @param nourishment_category category of nourishment
-     * @param nourishment_name came of nourishment
-     * @param nourishment_synonym various synonyms for nourishment
-     * @param calories energy of nourishment in [kJ]
+     * @param nourishment_category    category of nourishment
+     * @param nourishment_name        came of nourishment
+     * @param nourishment_synonym     various synonyms for nourishment
+     * @param calories                energy of nourishment in [kJ]
      * @param fat
      * @param saturated_fatty_acids
      * @param unsaturated_fatty_acids
@@ -58,7 +58,7 @@ public class NutritionFactTable {
                               String nourishment_synonym, float calories, float fat, float saturated_fatty_acids,
                               float unsaturated_fatty_acids, float carbohydrates_all, float simple_sugars, float etoh,
                               float h20, float table_salt, float sodium, float chlorine, float magnesium,
-                              float potassium, float calcium, float phosphor, float iron, float protein) {
+                              float potassium, float calcium, float phosphor, float iron, float protein, float fibers) {
         this.nourishment_category = nourishment_category;
         this.nourishment_name = nourishment_name;
         this.nourishment_synonym = nourishment_synonym;
@@ -79,6 +79,7 @@ public class NutritionFactTable {
         this.phosphor = phosphor;
         this.iron = iron;
         this.protein = protein;
+        this.fibers = fibers;
     }
 
     public void setNutrition_id(int nutrition_id) {
@@ -167,5 +168,9 @@ public class NutritionFactTable {
 
     public float getProtein() {
         return protein;
+    }
+
+    public float getFibers() {
+        return fibers;
     }
 }

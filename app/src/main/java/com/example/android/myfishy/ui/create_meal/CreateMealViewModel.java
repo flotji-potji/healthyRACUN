@@ -49,7 +49,8 @@ public class CreateMealViewModel extends AndroidViewModel {
                         nutritionFactTable.getCalcium(),
                         nutritionFactTable.getPhosphor(),
                         nutritionFactTable.getIron(),
-                        nutritionFactTable.getProtein()
+                        nutritionFactTable.getProtein(),
+                        nutritionFactTable.getFibers()
                 )
         );
     }
