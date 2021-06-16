@@ -9,13 +9,13 @@ public class User {
 
     @PrimaryKey
     @NonNull
-    private String username ;
-    private String firstname ;
-    private String surname ;
-    private long birthday ;
-    private String gender ;
-    private float weight ;
-    private float height ;
+    private String username;
+    private String firstname;
+    private String surname;
+    private long birthday;
+    private String gender;
+    private float weight;
+    private float height;
 
     public User(@NonNull String username, String firstname, String surname, long birthday, String gender,
                 float weight, float height) {

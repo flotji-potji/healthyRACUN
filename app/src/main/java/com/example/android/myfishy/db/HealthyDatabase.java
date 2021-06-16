@@ -108,7 +108,6 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
         }
     }
 
-
     public static HealthyDatabase getDatabase(final Context context) throws IOException {
         ex = new ExtractCSV(context);
         if (INSTANCE == null) {
