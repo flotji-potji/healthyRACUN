@@ -66,6 +66,17 @@ public class AddNourishmentViewModel extends AndroidViewModel {
         );
     }
 
+    public float getNutritionQuantity(
+            List<NutritionFactTable> nutritionFactTableList,
+            NutritionFactTable currNtf) {
+        for (NutritionFactTable item : nutritionFactTableList) {
+            if (item.getNourishment_name().equals(currNtf.getNourishment_name()))
+                return (currNtf.getCalcium() / item.getCalcium()) *
+                                HealthyRepository.NUTRITION_QUANTITY_PER_SERVING_MG;
+        }
+        return 0;
+    }
+
     public LiveData<List<NutritionFactTable>> getNutritionFactTable() {
         return nutritionFactTable;
     }

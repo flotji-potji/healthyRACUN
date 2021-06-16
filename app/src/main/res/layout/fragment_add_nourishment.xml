@@ -9,6 +9,7 @@
         tools:context=".ui.add_nourishment.AddNourishmentFragment"
         android:background="@drawable/fragment_background_tint"
         android:padding="25dp"
+        android:nestedScrollingEnabled="false"
         android:orientation="vertical">
 
     <ImageButton
@@ -16,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:src="@drawable/ic_baseline_close_24_white"
-            android:background="@null"
+            android:background="@drawable/background_close_button"
             android:layout_marginBottom="5dp"/>
 
     <androidx.cardview.widget.CardView

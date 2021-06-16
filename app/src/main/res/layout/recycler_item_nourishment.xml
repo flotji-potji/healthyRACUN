@@ -24,6 +24,7 @@
                 android:text="@string/label_meal_logging_template"
                 android:gravity="start"
                 android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"/>
 

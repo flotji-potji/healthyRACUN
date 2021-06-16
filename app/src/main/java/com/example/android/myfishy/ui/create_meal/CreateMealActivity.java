@@ -2,7 +2,9 @@ package com.example.android.myfishy.ui.create_meal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +24,7 @@ import com.example.android.myfishy.db.entities.NutritionFactTable;
 import com.example.android.myfishy.repo.HealthyRepository;
 import com.example.android.myfishy.ui.add_nourishment.AddNourishmentFragment;
 import com.example.android.myfishy.utilities.OnCloseFragment;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -97,7 +100,18 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
     }
 
     public void searchForNourishment(View view) {
-        fragment = AddNourishmentFragment.newInstance(this,
+        /**final BottomSheetDialog searchFragment = new BottomSheetDialog(
+                CreateMealActivity.this, R.style.SearchBarDialogTheme
+        );
+        final View addNourishmentFragmentView = LayoutInflater.from(getApplicationContext())
+                .inflate(
+                        R.layout.fragment_add_nourishment,
+                        (LinearLayout) findViewById(R.id.add_nourishment_search)
+                );
+        searchFragment.setContentView(addNourishmentFragmentView);
+        searchFragment.setCanceledOnTouchOutside(true);
+        searchFragment.show();
+        **/fragment = AddNourishmentFragment.newInstance(this,
                 new ArrayList<>(ingredientSet));
         FragmentTransaction fragmentTransaction =
                 fragmentManager.beginTransaction();

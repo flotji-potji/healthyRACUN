@@ -67,11 +67,27 @@ public class MainActivity extends AppCompatActivity {
                         R.layout.fragment_add_quick_meal,
                         (LinearLayout) findViewById(R.id.bottom_sheet_container_quick)
                 );
+        Intent intent = new Intent(MainActivity.this, CreateMealActivity.class);
         bottomSheetView.findViewById(R.id.textView_bottomSheet_breakfast).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CreateMealActivity.class);
                 intent.putExtra(HealthyRepository.MEAL_TYPE_EXTRA, HealthyRepository.MEAL_TYPE_BREAKFAST);
+                startActivity(intent);
+                bottomSheetDialog.cancel();
+            }
+        });
+        bottomSheetView.findViewById(R.id.textView_bottomSheet_lunch).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra(HealthyRepository.MEAL_TYPE_EXTRA, HealthyRepository.MEAL_TYPE_LUNCH);
+                startActivity(intent);
+                bottomSheetDialog.cancel();
+            }
+        });
+        bottomSheetView.findViewById(R.id.textView_bottomSheet_dinner).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.putExtra(HealthyRepository.MEAL_TYPE_EXTRA, HealthyRepository.MEAL_TYPE_DINNER);
                 startActivity(intent);
                 bottomSheetDialog.cancel();
             }

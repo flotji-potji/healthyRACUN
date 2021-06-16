@@ -1,10 +1,12 @@
 package com.example.android.myfishy.ui.add_nourishment;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -37,10 +39,10 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
     private EditText searchBar;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
+    private View horizontalLine;
     private Button submitButton;
 
     private List<String> nutritionList;
-    private List<String> nutritionSynonymList;
     private List<String> currNutritionList;
     private List<String> alreadySelectedNutritionList;
     private static List<NutritionFactTable> nutritionFactTableList;
@@ -52,6 +54,8 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
         nutritionFactTableList = new ArrayList<>();
         extrasBundle = new ArrayList<>();
         alreadySelectedNutritionList = selectedNutritionList;
+        currNutritionList = new ArrayList<>();
+        nutritionList = new ArrayList<>();
     }
 
     public static AddNourishmentFragment newInstance(
@@ -66,10 +70,10 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
                 new ViewModelProvider(this).get(AddNourishmentViewModel.class);
         root = inflater.inflate(R.layout.fragment_add_nourishment, container, false);
 
-        currNutritionList = new ArrayList<>();
-        nutritionSynonymList = new ArrayList<>();
         searchBar = root.findViewById(R.id.editText_recyclerView_add_nourishment);
         progressBar = root.findViewById(R.id.progressBar_addNourishment);
+        horizontalLine = root.findViewById(R.id.horizontalLine_recyclerView_add_nourishment);
+        submitButton = root.findViewById(R.id.button_add_nourishment);
         showProgressBar();
 
         recyclerView = root.findViewById(R.id.add_nourishment_recyclerview);
@@ -77,23 +81,22 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
         recyclerView.setAdapter(nourishmentListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
+
         addNourishmentViewModel.getNutritionFactTable().observe(this, new Observer<List<NutritionFactTable>>() {
             @Override
             public void onChanged(List<NutritionFactTable> nutritionFactTables) {
                 nutritionFactTableList = nutritionFactTables;
                 for (NutritionFactTable item : nutritionFactTableList) {
-                    nutritionSynonymList.add(item.getNourishment_synonym());
+                    if (item.getNourishment_synonym() != null)
+                        nutritionList.add(
+                                String.format("%s | %s",
+                                        item.getNourishment_name(),
+                                        item.getNourishment_synonym().replace(";", ", ")
+                                ));
+                    else
+                        nutritionList.add(item.getNourishment_name());
                 }
-                deleteProgressBarForList();
-            }
-        });
-
-        addNourishmentViewModel.getNourishmentNamesFromNutritionFactTable().observe(this, new Observer<List<String>>() {
-            @Override
-            public void onChanged(List<String> strings) {
-                nutritionList = strings;
                 deleteProgressBar();
-                showProgressBarForList();
             }
         });
 
@@ -105,10 +108,24 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                currNutritionList.clear();
-                findStringsByList(s, nutritionList);
-                findStringsByList(s, nutritionSynonymList);
+                setButtonGone();
+                setRecyclerViewVisible();
+                if (count == 0) {
+                    if (!currNutritionList.isEmpty()) {
+                        if (currNutritionList.get(0).matches("\\d g")) {
+                            setButtonVisible();
+                        } else {
+                            currNutritionList.clear();
+                            nourishmentListAdapter.setNutritionNames(currNutritionList);
+                            setRecyclerViewGone();
+                        }
+                    }
+                } else {
+                    currNutritionList.clear();
+                    findStringsByList(s, nutritionList);
+                }
                 nourishmentListAdapter.setNutritionNames(currNutritionList);
+                //nourishmentListAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -117,7 +134,6 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
             }
         });
 
-        submitButton = root.findViewById(R.id.button_add_nourishment);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +145,7 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
     }
 
     private void findStringsByList(CharSequence s, List<String> stringList) {
+        Log.e(ADD_NOURISHMENT_FRAGMENT_TAG, s.toString());
         for (String item : stringList) {
             if (s != null && item != null) {
                 if (s != "") {
@@ -152,27 +169,33 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
         progressBar.setVisibility(View.GONE);
     }
 
-    private void showProgressBarForList() {
-        recyclerView.setVisibility(View.GONE);
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    private void deleteProgressBarForList() {
-        recyclerView.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.GONE);
-    }
-
     private boolean isButtonVisible() {
         return submitButton.getVisibility() == View.VISIBLE;
     }
 
     private void setButtonVisible() {
+        horizontalLine.setVisibility(View.VISIBLE);
         submitButton.setVisibility(View.VISIBLE);
+    }
+
+    private void setButtonGone() {
+        horizontalLine.setVisibility(View.GONE);
+        submitButton.setVisibility(View.GONE);
+    }
+
+
+    private void setRecyclerViewVisible() {
+        recyclerView.setVisibility(View.VISIBLE);
+    }
+
+    private void setRecyclerViewGone() {
+        recyclerView.setVisibility(View.GONE);
     }
 
     @Override
     public void onNutritionListener(final int position) {
-        if (nutritionList != null) {
+        if (!currNutritionList.get(position).matches("\\d g") &&
+                nutritionList != null) {
             final NutritionFactTable currNourishment =
                     getMatchingNutritionFactTable(
                             currNutritionList.get(position)
@@ -198,15 +221,14 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
 
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Toast.makeText(root.getContext(),
-                                            editText.getText().toString(),
-                                            Toast.LENGTH_SHORT).show();
+
                                 }
                             })
                     .setPositiveButton(
                             getString(R.string.alert_label_ok),
                             new DialogInterface.OnClickListener() {
 
+                                @SuppressLint("DefaultLocale")
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     float quantity = Float.parseFloat(editText.getText().toString());
@@ -220,6 +242,20 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
                                         alreadySelectedNutritionList.add(
                                                 currNutritionList.get(position)
                                         );
+                                        currNutritionList.clear();
+                                        for (NutritionFactTable nut : extrasBundle) {
+                                            currNutritionList.add(
+                                                    String.format("%.2f g | %s",
+                                                            addNourishmentViewModel.getNutritionQuantity(
+                                                                    nutritionFactTableList,
+                                                                    nut
+                                                            ),
+                                                            nut
+                                                    )
+                                            );
+                                        }
+                                        nourishmentListAdapter.setNutritionNames(currNutritionList);
+                                        nourishmentListAdapter.notifyDataSetChanged();
                                         if (!isButtonVisible()) {
                                             setButtonVisible();
                                         }
@@ -242,14 +278,13 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
                     );
             quantityBuilder.show();
         }
-        nourishmentListAdapter.notifyDataSetChanged();
     }
 
     public NutritionFactTable getMatchingNutritionFactTable(
             @NonNull String match) {
 
         for (NutritionFactTable item : nutritionFactTableList) {
-            if (item.getNourishment_name().equals(match)) {
+            if (item.getNourishment_name().equals(match.split("\\|")[0].trim())) {
                 return item;
             }
         }

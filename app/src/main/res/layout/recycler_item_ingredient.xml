@@ -12,29 +12,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="@dimen/cardView_padding">
-
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_done_24"
-                android:layout_weight="2"/>
+            android:padding="@dimen/cardView_padding"
+            android:weightSum="10">
 
         <TextView
                 android:id="@+id/textView_ingredient_recyclerView_item"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:text="@string/label_meal_logging_template"
-                android:gravity="start"
+                android:layout_marginEnd="5dp"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="8"/>
+                android:layout_weight="1"/>
 
         <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_cancel_24"
-                android:layout_weight="2"/>
+                android:layout_gravity="center_vertical"
+                android:layout_weight="9"/>
 
     </LinearLayout>
 
