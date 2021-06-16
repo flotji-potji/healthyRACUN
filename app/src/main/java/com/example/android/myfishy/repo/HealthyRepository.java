@@ -38,6 +38,8 @@ public class HealthyRepository {
     public static final int MEAL_TYPE_DINNER = 3;
     public static final int MEAL_TYPE_DRINK = 4;
     public static final int MEAL_TYPE_SNACK = 5;
+    // ------ Quantity related constant values ----- //
+    public static final float MOLAR_MASS_SODIUM=23;
     // ------- Meal quantity per serving ----------- //
     public static final int NUTRITION_QUANTITY_PER_SERVING_MG = 100;
     public static final int NUTRITION_QUANTITY_PER_SERVING_ML = 100;
