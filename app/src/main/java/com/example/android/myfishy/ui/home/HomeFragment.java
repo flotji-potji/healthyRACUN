@@ -1,6 +1,7 @@
 package com.example.android.myfishy.ui.home;
 
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
@@ -37,26 +39,50 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private HorizontalBarChart barChart;
     private PieChart pieChart;
-    private XAxis xAxis;
+    private PieChart pieChartUser;
+
 
     private void setBarChart()
     {
 
         List<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0f, 6f));
+        entries.add(new BarEntry(0f, 1800f));
         BarDataSet set = new BarDataSet(entries, "");
         BarData data = new BarData(set);
+
+
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
+        String[] yAxisLables = new String[]{"0","1", "2", "3"};
 
+
+
+
+        barChart.getAxisRight().setAxisMinimum(0f);
+        barChart.getAxisLeft().setAxisMinimum(0f);
+        barChart.getAxisRight().setAxisMaximum(6000f);
+        barChart.getAxisLeft().setAxisMaximum(6000f);
+        barChart.getAxisLeft().setEnabled(false);
+        barChart.animateY(1100);
+        barChart.getAxisRight().setLabelCount(9, true);
+        barChart.getAxisLeft().setLabelCount(9,true);
         barChart.getAxisLeft().setDrawAxisLine(false);
         barChart.getAxisRight().setDrawGridLines(false);
         barChart.getXAxis().setEnabled(false);
+        barChart.getXAxis().setDrawGridLines(false);
+        barChart.getAxisLeft().setDrawAxisLine(false);
         barChart.getAxisRight().setDrawAxisLine(false);
         barChart.getLegend().setEnabled(false);
         barChart.getDescription().setEnabled(false);
-
+        barChart.getXAxis().setDrawGridLines(false);
+        barChart.getXAxis().setDrawAxisLine(false);
+        barChart.getAxisLeft().setDrawTopYLabelEntry(false);
+        barChart.getAxisLeft().setDrawTopYLabelEntry(false);
+        barChart.getAxisLeft().setDrawGridLines(false);
+        barChart.getAxisRight().setDrawZeroLine(false);
+        barChart.getAxisRight().setDrawLimitLinesBehindData(false);
+        barChart.getAxisRight().setDrawTopYLabelEntry(false);
 
         //no zoom
         barChart.setPinchZoom(false);
@@ -74,8 +100,24 @@ public class HomeFragment extends Fragment {
         pieChart.setEntryLabelTextSize(12);
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.getLegend().setEnabled(false);
+        pieChart.getDescription().setEnabled(true);
+        pieChart.getDescription().setText("Recommended");
+        pieChart.getDescription().setTextSize(16f);
+        pieChart.setExtraBottomOffset(10f);
+        pieChart.getDescription().setPosition(380f, 505f);
 
-        pieChart.getDescription().setEnabled(false);
+
+
+        pieChartUser.setDrawHoleEnabled(true);
+        pieChartUser.setUsePercentValues(true);
+        pieChartUser.setEntryLabelTextSize(12);
+        pieChartUser.setEntryLabelColor(Color.BLACK);
+        pieChartUser.getLegend().setEnabled(false);
+        pieChartUser.getDescription().setEnabled(true);
+        pieChartUser.getDescription().setText("Actual");
+        pieChartUser.getDescription().setTextSize(16f);
+        pieChartUser.setExtraBottomOffset(10f);
+        pieChartUser.getDescription().setPosition(300f, 505f);
 
 //        Legend l = pieChart.getLegend();
 //        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
@@ -92,10 +134,9 @@ public class HomeFragment extends Fragment {
 
 
         //value: daten die mitgegeben werden, um anzuzeigen wv der nährstoffe eingenommen wurdem
-        entries.add(new PieEntry(0.4f, "Potassium"));
-        entries.add(new PieEntry(0.3f, "Iron"));
-        entries.add(new PieEntry(0.1f, "Kalium"));
-        entries.add(new PieEntry(0.2f, "Calcium"));
+        entries.add(new PieEntry(0.55f, "Carbs"));
+        entries.add(new PieEntry(0.2f, "Proteins"));
+        entries.add(new PieEntry(0.25f, "Fats"));
 
         //colors liste wurde erstellt um die entries in farben einzukategorisieren.
         ArrayList<Integer> colors = new ArrayList<>();
@@ -116,6 +157,37 @@ public class HomeFragment extends Fragment {
         pieChart.invalidate();
         pieChart.animateY(600, Easing.EaseInOutQuad);
 
+    }
+
+    private void loadPieChartUser()
+    {
+        ArrayList<PieEntry> entries = new ArrayList<>();
+
+
+
+        //value: daten die mitgegeben werden, um anzuzeigen wv der nährstoffe eingenommen wurdem
+        entries.add(new PieEntry(0.55f, "Carbs"));
+        entries.add(new PieEntry(0.2f, "Proteins"));
+        entries.add(new PieEntry(0.25f, "Fats"));
+
+        //colors liste wurde erstellt um die entries in farben einzukategorisieren.
+        ArrayList<Integer> colors = new ArrayList<>();
+        for(int color: ColorTemplate.MATERIAL_COLORS)
+        {
+            colors.add(color);
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "Nutritions:");
+        dataSet.setColors(colors);
+        PieData data = new PieData(dataSet);
+        data.setDrawValues(true);
+        data.setValueFormatter(new PercentFormatter(pieChartUser));
+        data.setValueTextSize(12f);
+        data.setValueTextColor(Color.BLACK);
+
+        pieChartUser.setData(data);
+        pieChartUser.invalidate();
+        pieChartUser.animateY(600, Easing.EaseInOutQuad);
 
     }
 
@@ -132,9 +204,12 @@ public class HomeFragment extends Fragment {
         final TextView tvWater = root.findViewById(R.id.tvWater);
 
         barChart = root.findViewById(R.id.barchart_natrium);
-        pieChart = root.findViewById(R.id.piechart);
+        pieChart = root.findViewById(R.id.piechart_standard);
+        pieChartUser = root.findViewById(R.id.piechart_user);
+
         setBarChart();
         setupPieChart();
+        loadPieChartUser();
         loadPieChart();
 
         return root;

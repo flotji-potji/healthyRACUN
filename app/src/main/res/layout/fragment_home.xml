@@ -77,7 +77,7 @@
         <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewGraph"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
@@ -93,159 +93,117 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
+
                 <TextView
                         android:id="@+id/today_intake"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/title_subheader_nurtition_overview"
                         android:layout_marginTop="5dp"
-                        android:textSize="23sp"
+                    android:layout_marginBottom="5dp"
+                        android:textSize="24sp"
                         android:textStyle="bold"
                         android:textAlignment="center"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical">
+
+                        <!--View to display the yellow color icon-->
+                        <View
+                            android:layout_width="20dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorPrimary"/>
+
+                        <!--Text view to display R -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Carbohydrates"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"/>
+
+                    </LinearLayout>
+
+                    <!--Linear layout to display Python-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        >
+
+                        <!--View to display the green color icon-->
+                        <View
+                            android:layout_width="20dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/design_default_color_secondary_variant"/>
+
+                        <!--Text view to display python text -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Proteins"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"/>
+
+                    </LinearLayout>
+
+                    <!--Linear layout to display C++-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        >
+
+                        <!--View to display the red color icon-->
+                        <View
+                            android:layout_width="20dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/blue_gray_500"/>
+
+                        <!--Text view to display C++ text -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fats"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
 
                 <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:weightSum="2">
-
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp">
                     <!--Pie chart to display the data-->
 
                     <com.github.mikephil.charting.charts.PieChart
-                            android:id="@+id/piechart"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:padding="6dp"
-                            android:layout_weight="1"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginBottom="15dp"
-
-                    />
-
+                            android:id="@+id/piechart_standard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:layout_weight="1" />
                     <!--Creating another linear layout -->
                     <!-- to display pie chart details -->
-                    <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:layout_marginStart="20dp"
-                            android:orientation="vertical"
-                            android:gravity="center_vertical"
-                    >
 
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="15dp"
-                                android:layout_gravity="center_vertical">
-
-                            <!--View to display the yellow color icon-->
-                            <View
-                                    android:layout_width="15dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/colorPrimary"/>
-
-                            <!--Text view to display R -->
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Nährwert"
-                                    android:paddingStart="10dp"
-                                    android:paddingEnd="10dp"/>
-
-                        </LinearLayout>
-
-                        <!--Linear layout to display Python-->
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="15dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginTop="5dp">
-
-                            <!--View to display the green color icon-->
-                            <View
-                                    android:layout_width="15dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/design_default_color_secondary_variant"/>
-
-                            <!--Text view to display python text -->
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Nährwert"
-                                    android:paddingStart="10dp"
-                                    android:paddingEnd="10dp"/>
-
-                        </LinearLayout>
-
-                        <!--Linear layout to display C++-->
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="15dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginTop="5dp">
-
-                            <!--View to display the red color icon-->
-                            <View
-                                    android:layout_width="15dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/blue_gray_500"/>
-
-                            <!--Text view to display C++ text -->
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="32dp"
-                                    android:text="Nährwert"
-                                    android:paddingStart="10dp"
-                                    android:paddingEnd="10dp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="15dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginTop="5dp">
-
-                            <!--View to display the blue color icon-->
-                            <View
-                                    android:layout_width="15dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/design_default_color_on_secondary"/>
-
-                            <!--Text view to display Java text -->
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Nährwert"
-                                    android:paddingStart="10dp"
-                                    android:paddingEnd="10dp"/>
-
-                        </LinearLayout>
-
-                        <!--Linear layout to display Java-->
-                        <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="15dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginTop="5dp">
-
-                            <!--View to display the blue color icon-->
-                            <View
-                                    android:layout_width="15dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/colorAccent"/>
-
-                            <!--Text view to display Java text -->
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Nährwert"
-                                    android:paddingStart="10dp"
-                                    android:paddingEnd="10dp"/>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
+                    <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/piechart_user"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:layout_weight="1" />
 
                 </LinearLayout>
 
@@ -494,6 +452,7 @@
                         android:id="@+id/barchart_natrium"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
                         />
 
 
