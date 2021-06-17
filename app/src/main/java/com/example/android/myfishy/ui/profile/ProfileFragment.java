@@ -75,12 +75,13 @@ public class ProfileFragment extends Fragment {
 
         if(username == null || firstname == null || surname == null || birthday == 0 || gender == null || weight == 0 || height == 0 )
         {
-            txtusername.setText("");
-            txtname.setText("");
-            txtbirthday.setText("");
-            txtgender.setText("");
-            txtweight.setText("");
-            txtheight.setText("");
+            String placeholder = "Placeholder";
+            txtusername.setText(placeholder);
+            txtname.setText(placeholder);
+            txtbirthday.setText(placeholder);
+            txtgender.setText(placeholder);
+            txtweight.setText(placeholder);
+            txtheight.setText(placeholder);
         }
         else
             {

@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -98,7 +98,7 @@
                         android:id="@+id/today_intake"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/title_subheader_nurtition_overview"
+                        android:text="Zusammenfassung der Nährstoffaufnahme"
                         android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                         android:textSize="24sp"
@@ -221,7 +221,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="100dp"
                 app:cardCornerRadius="10dp"
                 android:id="@+id/details">
 
@@ -251,36 +251,57 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="5dp"/>
 
-                <RelativeLayout
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp">
-
-                    <!--Text view to display R -->
-                    <TextView
+                        android:orientation="horizontal"
+                        >
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
-                            android:textSize="18sp"
-                            android:text="Fat"/>
-
-                    <!--Text view to display the -->
-                    <!-- percentage of programming language -->
-                    <!-- used. For now default set to 0-->
-                    <TextView
+                            android:text="Iron:"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:id="@+id/txt_iroVal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Wert"
-                            android:id="@+id/tvPotassium"
-                            android:textAlignment="textEnd"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
                             android:fontFamily="sans-serif-light"
-                            android:layout_alignParentEnd="true"/>
-                </RelativeLayout>
+                            android:gravity="right"
+                            android:layout_weight="40"
+                            android:text="VALUE"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:text="mg"
+                            android:layout_weight="1"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/barchart_iron"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        />
+
+
+
+                </LinearLayout>
 
                 <!--View to display the line-->
                 <View
@@ -288,149 +309,6 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"/>
-
-                <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp">
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="Hier könnte Ihr NW stehen!"
-                            android:textSize="18sp"/>
-
-                    <!--Text view to display the percentage -->
-                    <!-- of programming language used. -->
-                    <!-- For now default set to 0-->
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Wert"
-                            android:id="@+id/tvSodium"
-                            android:textAlignment="textEnd"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:fontFamily="sans-serif-light"
-                            android:layout_alignParentEnd="true"/>
-
-                </RelativeLayout>
-
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"/>
-
-                <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp">
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="Hier könnte Ihr NW stehen!"
-                            android:textSize="18sp"/>
-
-                    <!--Text view to display the percentage -->
-                    <!-- of programming language used. -->
-                    <!-- For now default set to 0-->
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Wert"
-                            android:id="@+id/tvPhosphate"
-                            android:textAlignment="textEnd"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:fontFamily="sans-serif-light"
-                            android:layout_alignParentEnd="true"/>
-
-                </RelativeLayout>
-
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"/>
-
-                <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp">
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="Hier könnte Ihr NW stehen!"
-                            android:textSize="18sp"/>
-
-                    <!--Text view to display the percentage -->
-                    <!-- of programming language used. -->
-                    <!-- For now default set to 0-->
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Wert"
-                            android:id="@+id/tvCalcium"
-                            android:textAlignment="textEnd"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:fontFamily="sans-serif-light"
-                            android:layout_alignParentEnd="true"/>
-
-                </RelativeLayout>
-
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"/>
-
-                <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp">
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="Hier könnte Ihr NW stehen!"
-                            android:textSize="18sp"/>
-
-                    <!--Text view to display the percentage -->
-                    <!-- of programming language used. -->
-                    <!-- For now default set to 0-->
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Wert"
-                            android:id="@+id/tvWater"
-                            android:textAlignment="textEnd"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:fontFamily="sans-serif-light"
-                            android:layout_alignParentEnd="true"/>
-
-                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -441,12 +319,259 @@
                     android:layout_marginBottom="10dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:text="Natrium:"
-                        android:textSize="18sp"/>
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Phosphor:"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:id="@+id/txt_phoVal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:layout_weight="40"
+                            android:text="VALUE"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:text="mg"
+                            android:layout_weight="1"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/barchart_phosphor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        />
+
+
+
+                </LinearLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Calcium:"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:id="@+id/txt_calVal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:layout_weight="40"
+                            android:text="VALUE"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:text="mg"
+                            android:layout_weight="1"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/barchart_calcium"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        />
+
+
+
+                </LinearLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Potassium:"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:id="@+id/txt_potVal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:layout_weight="40"
+                            android:text="VALUE"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:text="mg"
+                            android:layout_weight="1"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/barchart_potassium"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        />
+
+
+
+                </LinearLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Magnesium:"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:id="@+id/txt_magVal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:layout_weight="40"
+                            android:text="VALUE"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:text="mg"
+                            android:layout_weight="1"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/barchart_magnesium"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Natrium:"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:id="@+id/txt_natVal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:layout_weight="40"
+                            android:text="VALUE"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:text="mg"
+                            android:layout_weight="1"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
 
                     <com.github.mikephil.charting.charts.HorizontalBarChart
                         android:id="@+id/barchart_natrium"

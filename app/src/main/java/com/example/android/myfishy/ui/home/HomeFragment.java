@@ -39,8 +39,18 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private HorizontalBarChart barChart;
+
     private PieChart pieChart;
     private PieChart pieChartUser;
+
+
+
+    private HorizontalBarChart barChartNatrium;
+    private HorizontalBarChart barChartCalcium;
+    private HorizontalBarChart barChartIron;
+    private HorizontalBarChart barChartMagensium;
+    private HorizontalBarChart barChartPhosphor;
+    private HorizontalBarChart barChartPotassium;
 
     private String mParam1;
     private String mParam2;
@@ -52,59 +62,274 @@ public class HomeFragment extends Fragment {
     private float weight;
     private float height;
     private TextView txtusername;
+    private XAxis xAxis;
 
     User userinfo = new User(username, firstname, surname,birthday, gender,weight,height);
 
-
-    private void setBarChart()
+    private void loadBarChartPho()
     {
-
         List<BarEntry> entries = new ArrayList<>();
+
         entries.add(new BarEntry(0f, 1800f));
         BarDataSet set = new BarDataSet(entries, "");
-        BarData data = new BarData(set);
 
+        //Setting new color, needs to be done
+        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+
+        BarData data = new BarData(set);
 
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
         String[] yAxisLables = new String[]{"0","1", "2", "3"};
+        barChartPhosphor.setData(data);
+        barChartPhosphor.invalidate(); // refresh
+    }
+    private void loadBarChartMag()
+    {
+        List<BarEntry> entries = new ArrayList<>();
+
+        entries.add(new BarEntry(0f, 400f));
+        BarDataSet set = new BarDataSet(entries, "");
+
+        //Setting new color, needs to be done
+        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+
+        BarData data = new BarData(set);
+
+        data.setBarWidth(0.5f); // set custom bar width
+        set.setDrawValues(false);
+
+        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+        barChartMagensium.setData(data);
+        barChartMagensium.invalidate(); // refresh
+    }
+    private void loadBarChartNat()
+    {
+        List<BarEntry> entries = new ArrayList<>();
+
+        entries.add(new BarEntry(0f, 1800f));
+        BarDataSet set = new BarDataSet(entries, "");
+
+        //Setting new color, needs to be done
+        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+
+        BarData data = new BarData(set);
+
+        data.setBarWidth(0.5f); // set custom bar width
+        set.setDrawValues(false);
+
+        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+        barChartNatrium.setData(data);
+        barChartNatrium.invalidate(); // refresh
+    }
+
+    private void loadBarChartIron()
+    {
+        List<BarEntry> entries = new ArrayList<>();
+
+        entries.add(new BarEntry(0f, 1800f));
+        BarDataSet set = new BarDataSet(entries, "");
+
+        //Setting new color, needs to be done
+        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+
+        BarData data = new BarData(set);
+
+        data.setBarWidth(0.5f); // set custom bar width
+        set.setDrawValues(false);
+
+        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+        barChartIron.setData(data);
+        barChartIron.invalidate(); // refresh
+    }
+
+    private void loadBarChartPot()
+    {
+        List<BarEntry> entries = new ArrayList<>();
+
+        entries.add(new BarEntry(0f, 1800f));
+        BarDataSet set = new BarDataSet(entries, "");
+
+        //Setting new color, needs to be done
+        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+
+        BarData data = new BarData(set);
+
+        data.setBarWidth(0.5f); // set custom bar width
+        set.setDrawValues(false);
+
+        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+        barChartPotassium.setData(data);
+        barChartPotassium.invalidate(); // refresh
+    }
+
+    private void loadBarChartCal()
+    {
+        List<BarEntry> entries = new ArrayList<>();
+
+        entries.add(new BarEntry(0f, 1800f));
+        BarDataSet set = new BarDataSet(entries, "");
+
+        //Setting new color, needs to be done
+        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+
+        BarData data = new BarData(set);
+
+        data.setBarWidth(0.5f); // set custom bar width
+        set.setDrawValues(false);
+
+        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+        barChartCalcium.setData(data);
+        barChartCalcium.invalidate(); // refresh
+    }
+
+    private void setBarChart()
+    {
 
 
+//        ArrayList<HorizontalBarChart> barChartList = new ArrayList<>();
 
+//        private HorizontalBarChart barChartNatrium;
+//        private HorizontalBarChart barChartCalcium;
+//        private HorizontalBarChart barChartIron;
+//        private HorizontalBarChart barChartMagensium;
+//        private HorizontalBarChart barChartPhosphor;
+//        private HorizontalBarChart barChartPotassium;
 
-        barChart.getAxisRight().setAxisMinimum(0f);
-        barChart.getAxisLeft().setAxisMinimum(0f);
-        barChart.getAxisRight().setAxisMaximum(6000f);
-        barChart.getAxisLeft().setAxisMaximum(6000f);
-        barChart.getAxisLeft().setEnabled(false);
-        barChart.animateY(1100);
-        barChart.getAxisRight().setLabelCount(9, true);
-        barChart.getAxisLeft().setLabelCount(9,true);
-        barChart.getAxisLeft().setDrawAxisLine(false);
-        barChart.getAxisRight().setDrawGridLines(false);
-        barChart.getXAxis().setEnabled(false);
-        barChart.getXAxis().setDrawGridLines(false);
-        barChart.getAxisLeft().setDrawAxisLine(false);
-        barChart.getAxisRight().setDrawAxisLine(false);
-        barChart.getLegend().setEnabled(false);
-        barChart.getDescription().setEnabled(false);
-        barChart.getXAxis().setDrawGridLines(false);
-        barChart.getXAxis().setDrawAxisLine(false);
-        barChart.getAxisLeft().setDrawTopYLabelEntry(false);
-        barChart.getAxisLeft().setDrawTopYLabelEntry(false);
-        barChart.getAxisLeft().setDrawGridLines(false);
-        barChart.getAxisRight().setDrawZeroLine(false);
-        barChart.getAxisRight().setDrawLimitLinesBehindData(false);
-        barChart.getAxisRight().setDrawTopYLabelEntry(false);
+//        HorizontalBarChart[] horizontalBarChart = new HorizontalBarChart[]{barChartNatrium, barChartCalcium, barChartIron, barChartMagensium, barChartPhosphor, barChartPotassium };
+
+        barChartPotassium.getAxisRight().setAxisMinimum(0f);
+        barChartPotassium.getAxisLeft().setAxisMinimum(0f);
+        barChartPotassium.getAxisRight().setAxisMaximum(8000f);
+        barChartPotassium.getAxisLeft().setAxisMaximum(8000f);
+        barChartPotassium.getAxisLeft().setEnabled(false);
+        barChartPotassium.animateY(1100);
+        barChartPotassium.getAxisRight().setLabelCount(9, true);
+        barChartPotassium.getAxisLeft().setLabelCount(9,true);
+
+        barChartPotassium.getXAxis().setEnabled(false);
+
+        barChartPotassium.getAxisRight().setDrawAxisLine(false);
+        barChartPotassium.getLegend().setEnabled(false);
+        barChartPotassium.getDescription().setEnabled(false);
 
         //no zoom
-        barChart.setPinchZoom(false);
-        barChart.setTouchEnabled(false);
-        barChart.setDoubleTapToZoomEnabled(false);
+        barChartPotassium.setPinchZoom(false);
+        barChartPotassium.setTouchEnabled(false);
+        barChartPotassium.setDoubleTapToZoomEnabled(false);
 
-        barChart.setData(data);
-        barChart.invalidate(); // refresh
+        barChartPhosphor.getAxisRight().setAxisMinimum(0f);
+        barChartPhosphor.getAxisLeft().setAxisMinimum(0f);
+        barChartPhosphor.getAxisRight().setAxisMaximum(4000f);
+        barChartPhosphor.getAxisLeft().setAxisMaximum(4000f);
+        barChartPhosphor.getAxisLeft().setEnabled(false);
+        barChartPhosphor.animateY(1100);
+        barChartPhosphor.getAxisRight().setLabelCount(9, true);
+        barChartPhosphor.getAxisLeft().setLabelCount(9,true);
+
+        barChartPhosphor.getXAxis().setEnabled(false);
+
+        barChartPhosphor.getAxisRight().setDrawAxisLine(false);
+        barChartPhosphor.getLegend().setEnabled(false);
+        barChartPhosphor.getDescription().setEnabled(false);
+
+        //no zoom
+        barChartPhosphor.setPinchZoom(false);
+        barChartPhosphor.setTouchEnabled(false);
+        barChartPhosphor.setDoubleTapToZoomEnabled(false);
+
+        barChartMagensium.getAxisRight().setAxisMinimum(0f);
+        barChartMagensium.getAxisLeft().setAxisMinimum(0f);
+        barChartMagensium.getAxisRight().setAxisMaximum(600f);
+        barChartMagensium.getAxisLeft().setAxisMaximum(600f);
+        barChartMagensium.getAxisLeft().setEnabled(false);
+        barChartMagensium.animateY(1100);
+        barChartMagensium.getAxisRight().setLabelCount(9, true);
+        barChartMagensium.getAxisLeft().setLabelCount(9,true);
+
+        barChartMagensium.getXAxis().setEnabled(false);
+
+        barChartMagensium.getAxisRight().setDrawAxisLine(false);
+        barChartMagensium.getLegend().setEnabled(false);
+        barChartMagensium.getDescription().setEnabled(false);
+
+        //no zoom
+        barChartMagensium.setPinchZoom(false);
+        barChartMagensium.setTouchEnabled(false);
+        barChartMagensium.setDoubleTapToZoomEnabled(false);
+
+        barChartIron.getAxisRight().setAxisMinimum(0f);
+        barChartIron.getAxisLeft().setAxisMinimum(0f);
+        barChartIron.getAxisRight().setAxisMaximum(60f);
+        barChartIron.getAxisLeft().setAxisMaximum(60f);
+        barChartIron.getAxisLeft().setEnabled(false);
+        barChartIron.animateY(1100);
+        barChartIron.getAxisRight().setLabelCount(9, true);
+        barChartIron.getAxisLeft().setLabelCount(9,true);
+
+        barChartIron.getXAxis().setEnabled(false);
+
+        barChartIron.getAxisRight().setDrawAxisLine(false);
+        barChartIron.getLegend().setEnabled(false);
+        barChartIron.getDescription().setEnabled(false);
+
+        barChartIron.setPinchZoom(false);
+        barChartIron.setTouchEnabled(false);
+        barChartIron.setDoubleTapToZoomEnabled(false);
+
+
+
+        //no zoom
+        barChartNatrium.setPinchZoom(false);
+        barChartNatrium.setTouchEnabled(false);
+        barChartNatrium.setDoubleTapToZoomEnabled(false);
+
+
+        barChartNatrium.getAxisRight().setAxisMinimum(0f);
+        barChartNatrium.getAxisLeft().setAxisMinimum(0f);
+        barChartNatrium.getAxisRight().setAxisMaximum(4000f);
+        barChartNatrium.getAxisLeft().setAxisMaximum(4000f);
+        barChartNatrium.getAxisLeft().setEnabled(false);
+        barChartNatrium.animateY(1100);
+        barChartNatrium.getAxisRight().setLabelCount(9, true);
+        barChartNatrium.getAxisLeft().setLabelCount(9,true);
+
+        barChartNatrium.getXAxis().setEnabled(false);
+
+        barChartNatrium.getAxisRight().setDrawAxisLine(false);
+        barChartNatrium.getLegend().setEnabled(false);
+        barChartNatrium.getDescription().setEnabled(false);
+
+
+
+            //no zoom
+        barChartNatrium.setPinchZoom(false);
+        barChartNatrium.setTouchEnabled(false);
+        barChartNatrium.setDoubleTapToZoomEnabled(false);
+
+        barChartCalcium.getAxisRight().setAxisMinimum(0f);
+        barChartCalcium.getAxisLeft().setAxisMinimum(0f);
+        barChartCalcium.getAxisRight().setAxisMaximum(3000f);
+        barChartCalcium.getAxisLeft().setAxisMaximum(3000f);
+        barChartCalcium.getAxisLeft().setEnabled(false);
+        barChartCalcium.animateY(1100);
+        barChartCalcium.getAxisRight().setLabelCount(9, true);
+        barChartCalcium.getAxisLeft().setLabelCount(9,true);
+
+        barChartCalcium.getXAxis().setEnabled(false);
+
+        barChartCalcium.getAxisRight().setDrawAxisLine(false);
+        barChartCalcium.getLegend().setEnabled(false);
+        barChartCalcium.getDescription().setEnabled(false);
+
+        //no zoom
+        barChartCalcium.setPinchZoom(false);
+        barChartCalcium.setTouchEnabled(false);
+        barChartCalcium.setDoubleTapToZoomEnabled(false);
+
+
+
     }
 
     private void setupPieChart(){
@@ -120,8 +345,6 @@ public class HomeFragment extends Fragment {
         pieChart.setExtraBottomOffset(10f);
         pieChart.getDescription().setPosition(380f, 505f);
 
-
-
         pieChartUser.setDrawHoleEnabled(true);
         pieChartUser.setUsePercentValues(true);
         pieChartUser.setEntryLabelTextSize(12);
@@ -132,13 +355,6 @@ public class HomeFragment extends Fragment {
         pieChartUser.getDescription().setTextSize(16f);
         pieChartUser.setExtraBottomOffset(10f);
         pieChartUser.getDescription().setPosition(300f, 505f);
-
-//        Legend l = pieChart.getLegend();
-//        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-//        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-//        l.setOrientation(Legend.LegendOrientation.VERTICAL);
-//        l.setDrawInside(false);
-//        l.setEnabled(true);
     }
 
 
@@ -211,11 +427,7 @@ public class HomeFragment extends Fragment {
                 new ViewModelProvider(this).get(HomeViewModel.class);
         final View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        final TextView tvPotassium = root.findViewById(R.id.tvPotassium);
-        final TextView tvSodium = root.findViewById(R.id.tvSodium);
-        final TextView tvPhosphate = root.findViewById(R.id.tvPhosphate);
-        final TextView tvCalcium = root.findViewById(R.id.tvCalcium);
-        final TextView tvWater = root.findViewById(R.id.tvWater);
+
         txtusername = (TextView) root.findViewById(R.id.home_username);
 
         if(username != null)
@@ -228,12 +440,27 @@ public class HomeFragment extends Fragment {
         }
 
 
-        barChart = root.findViewById(R.id.barchart_natrium);
+
+        barChartNatrium = root.findViewById(R.id.barchart_natrium);
+        barChartCalcium = root.findViewById(R.id.barchart_calcium);
+        barChartIron = root.findViewById(R.id.barchart_iron);
+        barChartMagensium = root.findViewById(R.id.barchart_magnesium);
+        barChartPhosphor = root.findViewById(R.id.barchart_phosphor);
+        barChartPotassium = root.findViewById(R.id.barchart_potassium);
+
+
         pieChart = root.findViewById(R.id.piechart_standard);
         pieChartUser = root.findViewById(R.id.piechart_user);
 
         setBarChart();
         setupPieChart();
+        loadBarChartPot();
+        loadBarChartCal();
+        loadBarChartIron();
+        loadBarChartNat();
+        loadBarChartMag();
+        loadBarChartPho();
+
         loadPieChartUser();
         loadPieChart();
 
