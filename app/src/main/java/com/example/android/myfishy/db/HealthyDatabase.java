@@ -1,8 +1,6 @@
 package com.example.android.myfishy.db;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import androidx.annotation.NavigationRes;
 import androidx.annotation.NonNull;
 import androidx.room.*;
 import androidx.room.migration.Migration;
@@ -10,9 +8,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.android.myfishy.R;
 import com.example.android.myfishy.db.entities.*;
 import com.example.android.myfishy.utilities.ExtractCSV;
+import org.jetbrains.annotations.NotNull;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 @Database(
@@ -20,22 +19,33 @@ import java.util.List;
                 Diet.class, DietaryRestrictionTable.class, Meal.class,
                 Nourishment.class, NutritionFactTable.class, User.class
         },
-        version = 4
+        version = 4,
+        exportSchema = false
 )
 public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
 
     public abstract HealthyDao healthyDao();
 
-    private static ExtractCSV ex;
+    private static ExtractCSV exNutri;
+    private static ExtractCSV exDiet;
 
     private static HealthyDatabase INSTANCE;
 
-    private static RoomDatabase.Callback roomDatabaseCallback =
+    private static RoomDatabase.Callback roomDatabaseNutriCallback =
             new Callback() {
                 @Override
                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                     super.onCreate(db);
                     populateDb(INSTANCE);
+                }
+            };
+
+    private static RoomDatabase.Callback roomDatabaseDietCallback =
+            new Callback() {
+                @Override
+                public void onCreate(@NonNull @NotNull SupportSQLiteDatabase db) {
+                    super.onCreate(db);
+                    populateDbDiet(INSTANCE);
                 }
             };
 
@@ -47,11 +57,51 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
             public void run() {
                 try {
                     populateNutritionFactTable(mDao);
+                    exNutri.closeBr();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
+
+    private static void populateDbDiet(HealthyDatabase db) {
+        final HealthyDao mDao = db.healthyDao();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    populateDietaryRestrictionTable(mDao);
+                    exDiet.closeBr();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private static void populateNutritionFactTable(HealthyDao healthyDao) throws IOException {
+        List<String> csvRow = exNutri.next();
+        int currLine = 0;
+        while (!csvRow.isEmpty()) {
+            currLine++;
+            if (currLine > 3)
+                healthyDao.insertNutritionFactTable(exNutri.getNutritionFactTableRow(csvRow));
+            csvRow = exNutri.next();
+        }
+    }
+
+    private static void populateDietaryRestrictionTable(HealthyDao healthyDao) throws IOException {
+        List<String> csvRow = exDiet.next();
+        int currLine = 0;
+        while (!csvRow.isEmpty()) {
+            currLine++;
+            if (currLine > 12)
+                healthyDao.insertDietaryRestrictionTable(
+                        exDiet.getDietaryRestrictionTableRow(csvRow));
+            csvRow = exDiet.next();
+        }
     }
 
     private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
@@ -189,26 +239,20 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
         }
     };
 
-    private static void populateNutritionFactTable(HealthyDao healthyDao) throws IOException {
-        List<String> csvRow = ex.next();
-        int currLine = 0;
-        while (!csvRow.isEmpty()) {
-            currLine++;
-            if (currLine > 3)
-                healthyDao.insertNutritionFactTable(ex.getNutritionFactTableRow(csvRow));
-            csvRow = ex.next();
-        }
-    }
-
     public static HealthyDatabase getDatabase(final Context context) throws IOException {
-        ex = new ExtractCSV(context);
+        exNutri =
+                new ExtractCSV(new InputStreamReader(context.getResources().openRawResource(R.raw.nutrition_table)));
+        exDiet =
+                new ExtractCSV(new InputStreamReader(context.getResources().openRawResource(R.raw.dietary_restriction_table)));
         if (INSTANCE == null) {
             synchronized (HealthyDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             HealthyDatabase.class,
                             "healthy_database")
-                            .addCallback(roomDatabaseCallback)
+                            .fallbackToDestructiveMigration()
+                            .addCallback(roomDatabaseNutriCallback)
+                            .addCallback(roomDatabaseDietCallback)
                             .addMigrations(MIGRATION_1_2)
                             .addMigrations(MIGRATION_2_3)
                             .addMigrations(MIGRATION_3_4)

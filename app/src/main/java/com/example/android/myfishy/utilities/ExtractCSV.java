@@ -5,6 +5,8 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.example.android.myfishy.R;
+import com.example.android.myfishy.db.entities.Diet;
+import com.example.android.myfishy.db.entities.DietaryRestrictionTable;
 import com.example.android.myfishy.db.entities.NutritionFactTable;
 
 import java.io.*;
@@ -39,15 +41,36 @@ public class ExtractCSV {
     private final short PROTEIN_COLUMN = 41;
     private final short FIBERS_COLUMN = 38;
 
-    public ExtractCSV(Context context) throws IOException {
-        br = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.nutrition_table)));
+    private final short CONDITION_NAME = 0;
+    private final short DIET_NAME = 1;
+    private final short DIET_TABLE_SALT = 2;
+    private final short DIET_SODIUM = 3;
+    private final short DIET_LIQUID_INTAKE = 4;
+    private final short DIET_POTASSIUM = 5;
+    private final short DIET_PHOSPHATE = 6;
+    private final short DIET_CALCIUM = 7;
+    private final short DIET_CALORIES = 8;
+    private final short DIET_PROTEIN = 9;
+    private final short DIET_CARBS = 10;
+    private final short DIET_FATS = 11;
+    private final short DIET_FIBERS = 12;
+
+    public ExtractCSV(InputStreamReader isr) throws IOException {
+        br = new BufferedReader(isr);
+    }
+
+    public void closeBr() throws IOException {
+        br.close();
     }
 
     public List<String> next() throws IOException {
         String line = br.readLine();
-        Log.e(EXTRACT_CSV_TAG, line);
-        char[] charLine = line.toCharArray();
         List<String> res = new ArrayList<>();
+        char[] charLine;
+        if (line != null)
+            charLine = line.toCharArray();
+        else
+            return res;
         CharState state = CharState.DELIMITER;
         String cellContext = "";
         Pair<CharState, String> ret;
@@ -64,23 +87,25 @@ public class ExtractCSV {
         return res;
     }
 
-    public float getDataCellFromLine(List<String> line, int position) {
+    private float getDataCellFromLine(List<String> line, int position) {
         float cell;
         String cellString = line.get(position).replace(",", ".");
         try {
             cell = Float.parseFloat(cellString);
         } catch (NumberFormatException e) {
             if (cellString.contains("<"))
-                cell = (-1) * Float.parseFloat(cellString.replace("<", ""));
+                cell = (-1) * Float.parseFloat(cellString.replace("<", "").trim());
             else if (cellString.contains(">"))
-                cell = Float.parseFloat(cellString.replace(">", ""));
+                cell = Float.parseFloat(cellString.replace(">", "").trim());
+            else if (cellString.contains("%"))
+                cell = Float.parseFloat(cellString.replace("%", "").trim());
             else
                 cell = -1;
         }
         return cell;
     }
 
-    public String getStringCellFromLine(List<String> line, int position) {
+    private String getStringCellFromLine(List<String> line, int position) {
         return !line.get(position).isEmpty() ? line.get(position) : null;
     }
 
@@ -107,7 +132,25 @@ public class ExtractCSV {
                 getDataCellFromLine(line, IRON_COLUMN),
                 getDataCellFromLine(line, PROTEIN_COLUMN),
                 getDataCellFromLine(line, FIBERS_COLUMN)
-                );
+        );
+    }
+
+    public DietaryRestrictionTable getDietaryRestrictionTableRow(List<String> line) {
+        return new DietaryRestrictionTable(
+                getStringCellFromLine(line, CONDITION_NAME),
+                getStringCellFromLine(line, DIET_NAME),
+                getDataCellFromLine(line, DIET_TABLE_SALT),
+                getDataCellFromLine(line, DIET_SODIUM),
+                getDataCellFromLine(line, DIET_POTASSIUM),
+                getDataCellFromLine(line, DIET_CALCIUM),
+                getDataCellFromLine(line, DIET_PHOSPHATE),
+                getDataCellFromLine(line, DIET_PROTEIN),
+                getDataCellFromLine(line, DIET_CALORIES),
+                getDataCellFromLine(line, DIET_LIQUID_INTAKE),
+                getDataCellFromLine(line, DIET_CARBS),
+                getDataCellFromLine(line, DIET_FATS),
+                getDataCellFromLine(line, DIET_FIBERS)
+        );
     }
 
 }

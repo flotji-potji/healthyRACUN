@@ -250,7 +250,7 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
                                                                     nutritionFactTableList,
                                                                     nut
                                                             ),
-                                                            nut
+                                                            nut.getNourishment_name()
                                                     )
                                             );
                                         }

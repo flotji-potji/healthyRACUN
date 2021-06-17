@@ -10,13 +10,11 @@
 [kcal/kg Körpergew.]";"*Eiweis
 [g/kg Körpergew.]";"*Kohlen-
 hydrate";*Fett;Ballaststoffe;
-"Chronische Niereninsuffizienz 
-(CNI)";CNI Stufe 1-3a;5,5 ;< 95;-;> 4700;12;-;30;0,8;;;;
-;CNI Stufe 3b-4;5,5;< 95;-;> 4700;13,5;2;35;0,9;;;;
-;CNI Stufe 5;5,5;< 95;-;< 2100;15;2;35;0,9;;;;
-;CNI Stufe 5D;5,5;< 95;650;< 2100;17;2;35;>1,1;;;;
+Chronische Niereninsuffizienz (CNI);CNI Stufe 1-3a;<5,5 ;< 95;-;> 4700;<12;-;<30;>0,8;;;;
+Chronische Niereninsuffizienz (CNI);CNI Stufe 3b-4;<5,5;< 95;-;> 4700;<13,5;<2;<35;>0,9;;;;
+Chronische Niereninsuffizienz (CNI);CNI Stufe 5;<5,5;< 95;-;< 2100;<15;<2;<35;>0,9;;;;
+Chronische Niereninsuffizienz (CNI);CNI Stufe 5D;<5,5;< 95;<650;< 2100;<17;<2;<35;>1,1;;;;
 Diabetes Melitus;Typ 1;;;;;;;;17%;55%;28%;;
-;Typ 2;;;;;;;;17%;55%;28%;;
-"Chronisch entzündliche Darmerkrankungen
-(CED)";Morbus Crohn;;;;;;;;17%;48%;35%;25;
-;Colitis Ulc.;;;;;;;;17%;48%;35%;25;
+Diabetes Melitus;Typ 2;;;;;;;;17%;55%;28%;;
+Chronisch entzündliche Darmerkrankungen (CED);Morbus Crohn;;;;;;;;17%;48%;35%;<25;
+Chronisch entzündliche Darmerkrankungen (CED);Colitis Ulc.;;;;;;;;17%;48%;35%;<25;
