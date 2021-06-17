@@ -38,6 +38,8 @@
 
     <!-- red and orange colors -->
     <color name="orange_orange">#FF9A00</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00ff00</color>
 
 
 

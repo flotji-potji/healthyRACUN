@@ -19,6 +19,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -43,6 +44,13 @@ public class HomeFragment extends Fragment {
     private PieChart pieChart;
     private PieChart pieChartUser;
 
+    private TextView txt_iroVal;
+    private TextView txt_calVal;
+    private TextView txt_natVal;
+    private TextView txt_magVal;
+    private TextView txt_phoVal;
+    private TextView txt_potVal;
+
 
 
     private HorizontalBarChart barChartNatrium;
@@ -51,6 +59,8 @@ public class HomeFragment extends Fragment {
     private HorizontalBarChart barChartMagensium;
     private HorizontalBarChart barChartPhosphor;
     private HorizontalBarChart barChartPotassium;
+    private HorizontalBarChart barChartChlorine;
+    private HorizontalBarChart barChartSodium;
 
     private String mParam1;
     private String mParam2;
@@ -70,56 +80,137 @@ public class HomeFragment extends Fragment {
     {
         List<BarEntry> entries = new ArrayList<>();
 
-        entries.add(new BarEntry(0f, 1800f));
+        float yValue = 600f;
+
+
+
+
+        entries.add(new BarEntry(0f, yValue));
         BarDataSet set = new BarDataSet(entries, "");
 
+
+        if(yValue > 700f)
+        {
+            set.setColor(Color.RED);
+        }
+        else if(yValue < 700f)
+        {
+            set.setColor(Color.rgb( 152,251,152));
+        }
+        else
+        {
+            set.setColor(Color.GREEN);
+        }
+
         //Setting new color, needs to be done
-        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+
+//        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
 
         BarData data = new BarData(set);
 
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
-        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+        LimitLine maXll = new LimitLine(1200f, "Max");
+        LimitLine miNll = new LimitLine(700f , "Min");
+        maXll.setLineWidth(2f);
+        miNll.setLineWidth(2f);
+        maXll.setLineColor(Color.BLACK);
+        miNll.setLineColor(Color.BLACK);
+        barChartPhosphor.getAxisRight().addLimitLine(maXll);
+        barChartPhosphor.getAxisRight().addLimitLine(miNll);
+
+//        String[] yAxisLables = new String[]{"0","1", "2", "3"};
         barChartPhosphor.setData(data);
         barChartPhosphor.invalidate(); // refresh
     }
     private void loadBarChartMag()
     {
+
+        float yValue = 450f;
         List<BarEntry> entries = new ArrayList<>();
 
-        entries.add(new BarEntry(0f, 400f));
+
+        entries.add(new BarEntry(0f, yValue));
         BarDataSet set = new BarDataSet(entries, "");
 
         //Setting new color, needs to be done
-        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+//        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+
+        if(yValue > 420f)
+        {
+            set.setColor(Color.RED);
+        }
+        else if(yValue < 310f)
+        {
+            set.setColor(Color.rgb( 152,251,152));
+        }
+        else
+        {
+            set.setColor(Color.GREEN);
+        }
 
         BarData data = new BarData(set);
 
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
-        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+        LimitLine maXll = new LimitLine(420f, "Max");
+        LimitLine miNll = new LimitLine(310f, "Min");
+        maXll.setLineWidth(2f);
+        miNll.setLineWidth(2f);
+        maXll.setLineColor(Color.BLACK);
+        miNll.setLineColor(Color.BLACK);
+        barChartMagensium.getAxisRight().addLimitLine(maXll);
+        barChartMagensium.getAxisRight().addLimitLine(miNll);
+
+//        String[] yAxisLables = new String[]{"0","1", "2", "3"};
         barChartMagensium.setData(data);
         barChartMagensium.invalidate(); // refresh
     }
     private void loadBarChartNat()
     {
+        float yValue = 1800f;
         List<BarEntry> entries = new ArrayList<>();
 
-        entries.add(new BarEntry(0f, 1800f));
+        entries.add(new BarEntry(0f, yValue));
         BarDataSet set = new BarDataSet(entries, "");
 
         //Setting new color, needs to be done
-        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+//        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+
+//        txt_natVal.setText((int) yValue);
+
+
+
+        if(yValue > 2300f)
+        {
+            set.setColor(Color.RED);
+        }
+        else if(yValue < 1500f)
+        {
+            set.setColor(Color.rgb( 152,251,152));
+        }
+        else
+        {
+            set.setColor(Color.GREEN);
+        }
+
+        LimitLine maXll = new LimitLine(2300f, "Max");
+        LimitLine miNll = new LimitLine(1500f, "Min");
+        maXll.setLineWidth(2f);
+        miNll.setLineWidth(2f);
+        maXll.setLineColor(Color.BLACK);
+        miNll.setLineColor(Color.BLACK);
+        barChartNatrium.getAxisRight().addLimitLine(maXll);
+        barChartNatrium.getAxisRight().addLimitLine(miNll);
 
         BarData data = new BarData(set);
 
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
-        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+
         barChartNatrium.setData(data);
         barChartNatrium.invalidate(); // refresh
     }
@@ -127,19 +218,43 @@ public class HomeFragment extends Fragment {
     private void loadBarChartIron()
     {
         List<BarEntry> entries = new ArrayList<>();
+        float yValue = 3f;
 
-        entries.add(new BarEntry(0f, 1800f));
+        entries.add(new BarEntry(0f, yValue));
         BarDataSet set = new BarDataSet(entries, "");
 
         //Setting new color, needs to be done
-        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+//        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
 
         BarData data = new BarData(set);
 
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
-        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+        if(yValue > 45f)
+        {
+            set.setColor(Color.RED);
+        }
+        else if(yValue < 8f)
+        {
+            set.setColor(Color.rgb( 152,251,152));
+        }
+        else
+        {
+            set.setColor(Color.GREEN);
+        }
+
+        LimitLine maXll = new LimitLine(45f, "Max");
+        LimitLine miNll = new LimitLine(7.5f, "Min");
+        maXll.setLineWidth(2f);
+        miNll.setLineWidth(2f);
+        maXll.setLineColor(Color.BLACK);
+        miNll.setLineColor(Color.BLACK);
+        barChartIron.getAxisRight().addLimitLine(maXll);
+        barChartIron.getAxisRight().addLimitLine(miNll);
+
+
+
         barChartIron.setData(data);
         barChartIron.invalidate(); // refresh
     }
@@ -147,19 +262,38 @@ public class HomeFragment extends Fragment {
     private void loadBarChartPot()
     {
         List<BarEntry> entries = new ArrayList<>();
+        float yValue = 4000f;
 
-        entries.add(new BarEntry(0f, 1800f));
+        entries.add(new BarEntry(0f, yValue));
         BarDataSet set = new BarDataSet(entries, "");
 
         //Setting new color, needs to be done
-        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+//        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
 
         BarData data = new BarData(set);
 
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
-        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+        if(yValue > 4700f)
+        {
+            set.setColor(Color.RED);
+        }
+        else if(yValue == 4700f)
+        {
+            set.setColor(Color.YELLOW);
+        }
+        else
+        {
+            set.setColor(Color.GREEN);
+        }
+
+        LimitLine maXll = new LimitLine(4700f, "Max");
+        maXll.setLineWidth(2f);
+        maXll.setLineColor(Color.BLACK);
+        barChartPotassium.getAxisRight().addLimitLine(maXll);
+
+
         barChartPotassium.setData(data);
         barChartPotassium.invalidate(); // refresh
     }
@@ -167,21 +301,133 @@ public class HomeFragment extends Fragment {
     private void loadBarChartCal()
     {
         List<BarEntry> entries = new ArrayList<>();
+        float yValue = 1800f;
 
-        entries.add(new BarEntry(0f, 1800f));
+
+
+        entries.add(new BarEntry(0f, yValue));
         BarDataSet set = new BarDataSet(entries, "");
-
-        //Setting new color, needs to be done
-        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
 
         BarData data = new BarData(set);
 
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
-        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+//        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+
+        if(yValue > 2500f)
+        {
+            set.setColor(Color.RED);
+        }
+        else if(yValue < 1000f)
+        {
+            set.setColor(Color.rgb( 152,251,152));
+        }
+        else
+        {
+            set.setColor(Color.GREEN);
+        }
+
+        LimitLine maXll = new LimitLine(2500f, "Max");
+        LimitLine miNll = new LimitLine(1000f , "Min");
+        maXll.setLineWidth(2f);
+        miNll.setLineWidth(2f);
+        maXll.setLineColor(Color.BLACK);
+        miNll.setLineColor(Color.BLACK);
+        barChartCalcium.getAxisRight().addLimitLine(maXll);
+        barChartCalcium.getAxisRight().addLimitLine(miNll);
+
+
         barChartCalcium.setData(data);
         barChartCalcium.invalidate(); // refresh
+    }
+
+    private void loadBarChartChlorine()
+    {
+        List<BarEntry> entries = new ArrayList<>();
+        float yValue = 1800f;
+
+
+
+        entries.add(new BarEntry(0f, yValue));
+        BarDataSet set = new BarDataSet(entries, "");
+
+        BarData data = new BarData(set);
+
+        data.setBarWidth(0.5f); // set custom bar width
+        set.setDrawValues(false);
+
+//        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+
+        if(yValue > 2500f)
+        {
+            set.setColor(Color.RED);
+        }
+        else if(yValue < 1000f)
+        {
+            set.setColor(Color.rgb( 152,251,152));
+        }
+        else
+        {
+            set.setColor(Color.GREEN);
+        }
+
+        LimitLine maXll = new LimitLine(2500f, "Max");
+        LimitLine miNll = new LimitLine(1000f , "Min");
+        maXll.setLineWidth(2f);
+        miNll.setLineWidth(2f);
+        maXll.setLineColor(Color.BLACK);
+        miNll.setLineColor(Color.BLACK);
+        barChartChlorine.getAxisRight().addLimitLine(maXll);
+        barChartChlorine.getAxisRight().addLimitLine(miNll);
+
+
+        barChartChlorine.setData(data);
+        barChartChlorine.invalidate(); // refresh
+    }
+
+    private void loadBarChartSod()
+    {
+        List<BarEntry> entries = new ArrayList<>();
+        float yValue = 1800f;
+
+
+
+        entries.add(new BarEntry(0f, yValue));
+        BarDataSet set = new BarDataSet(entries, "");
+
+        BarData data = new BarData(set);
+
+        data.setBarWidth(0.5f); // set custom bar width
+        set.setDrawValues(false);
+
+//        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+
+        if(yValue > 2500f)
+        {
+            set.setColor(Color.RED);
+        }
+        else if(yValue < 1000f)
+        {
+            set.setColor(Color.rgb( 152,251,152));
+        }
+        else
+        {
+            set.setColor(Color.GREEN);
+        }
+
+        LimitLine maXll = new LimitLine(2500f, "Max");
+        LimitLine miNll = new LimitLine(1000f , "Min");
+        maXll.setLineWidth(2f);
+        miNll.setLineWidth(2f);
+        maXll.setLineColor(Color.BLACK);
+        miNll.setLineColor(Color.BLACK);
+        barChartSodium.getAxisRight().addLimitLine(maXll);
+        barChartSodium.getAxisRight().addLimitLine(miNll);
+
+
+        barChartSodium.setData(data);
+        barChartSodium.invalidate(); // refresh
     }
 
     private void setBarChart()
@@ -221,8 +467,8 @@ public class HomeFragment extends Fragment {
 
         barChartPhosphor.getAxisRight().setAxisMinimum(0f);
         barChartPhosphor.getAxisLeft().setAxisMinimum(0f);
-        barChartPhosphor.getAxisRight().setAxisMaximum(4000f);
-        barChartPhosphor.getAxisLeft().setAxisMaximum(4000f);
+        barChartPhosphor.getAxisRight().setAxisMaximum(2000f);
+        barChartPhosphor.getAxisLeft().setAxisMaximum(2000f);
         barChartPhosphor.getAxisLeft().setEnabled(false);
         barChartPhosphor.animateY(1100);
         barChartPhosphor.getAxisRight().setLabelCount(9, true);
@@ -267,6 +513,9 @@ public class HomeFragment extends Fragment {
         barChartIron.animateY(1100);
         barChartIron.getAxisRight().setLabelCount(9, true);
         barChartIron.getAxisLeft().setLabelCount(9,true);
+
+
+
 
         barChartIron.getXAxis().setEnabled(false);
 
@@ -329,6 +578,47 @@ public class HomeFragment extends Fragment {
         barChartCalcium.setDoubleTapToZoomEnabled(false);
 
 
+        barChartChlorine.getAxisRight().setAxisMinimum(0f);
+        barChartChlorine.getAxisLeft().setAxisMinimum(0f);
+        barChartChlorine.getAxisRight().setAxisMaximum(3000f);
+        barChartChlorine.getAxisLeft().setAxisMaximum(3000f);
+        barChartChlorine.getAxisLeft().setEnabled(false);
+        barChartChlorine.animateY(1100);
+        barChartChlorine.getAxisRight().setLabelCount(9, true);
+        barChartChlorine.getAxisLeft().setLabelCount(9,true);
+
+        barChartChlorine.getXAxis().setEnabled(false);
+
+        barChartChlorine.getAxisRight().setDrawAxisLine(false);
+        barChartChlorine.getLegend().setEnabled(false);
+        barChartChlorine.getDescription().setEnabled(false);
+
+        //no zoom
+        barChartChlorine.setPinchZoom(false);
+        barChartChlorine.setTouchEnabled(false);
+        barChartChlorine.setDoubleTapToZoomEnabled(false);
+
+        barChartSodium.getAxisRight().setAxisMinimum(0f);
+        barChartSodium.getAxisLeft().setAxisMinimum(0f);
+        barChartSodium.getAxisRight().setAxisMaximum(5f);
+        barChartSodium.getAxisLeft().setAxisMaximum(5f);
+        barChartSodium.getAxisLeft().setEnabled(false);
+        barChartSodium.animateY(1100);
+        barChartSodium.getAxisRight().setLabelCount(9, true);
+        barChartSodium.getAxisLeft().setLabelCount(9,true);
+
+        barChartSodium.getXAxis().setEnabled(false);
+
+        barChartSodium.getAxisRight().setDrawAxisLine(false);
+        barChartSodium.getLegend().setEnabled(false);
+        barChartSodium.getDescription().setEnabled(false);
+
+        //no zoom
+        barChartSodium.setPinchZoom(false);
+        barChartSodium.setTouchEnabled(false);
+        barChartSodium.setDoubleTapToZoomEnabled(false);
+
+
 
     }
 
@@ -355,6 +645,9 @@ public class HomeFragment extends Fragment {
         pieChartUser.getDescription().setTextSize(16f);
         pieChartUser.setExtraBottomOffset(10f);
         pieChartUser.getDescription().setPosition(300f, 505f);
+
+        pieChartUser.setTouchEnabled(false);
+        pieChart.setTouchEnabled(false);
     }
 
 
@@ -369,11 +662,7 @@ public class HomeFragment extends Fragment {
         entries.add(new PieEntry(0.25f, "Fats"));
 
         //colors liste wurde erstellt um die entries in farben einzukategorisieren.
-        ArrayList<Integer> colors = new ArrayList<>();
-        for(int color: ColorTemplate.MATERIAL_COLORS)
-        {
-            colors.add(color);
-        }
+        int[] colors = { Color.rgb(0,255,0), Color.rgb(255,140,0), Color.rgb(255,0,0)};
 
         PieDataSet dataSet = new PieDataSet(entries, "Nutritions:");
         dataSet.setColors(colors);
@@ -401,11 +690,7 @@ public class HomeFragment extends Fragment {
         entries.add(new PieEntry(0.25f, "Fats"));
 
         //colors liste wurde erstellt um die entries in farben einzukategorisieren.
-        ArrayList<Integer> colors = new ArrayList<>();
-        for(int color: ColorTemplate.MATERIAL_COLORS)
-        {
-            colors.add(color);
-        }
+        int[] colors = { Color.rgb(0,255,0), Color.rgb(255,140,0), Color.rgb(255,0,0)};
 
         PieDataSet dataSet = new PieDataSet(entries, "Nutritions:");
         dataSet.setColors(colors);
@@ -439,7 +724,21 @@ public class HomeFragment extends Fragment {
             txtusername.setText("Sascha Karottenmann");
         }
 
+//        private TextView txt_iroVal;
+//        private TextView txt_calVal;
+//        private TextView txt_natVal;
+//        private TextView txt_magVal;
+//        private TextView txt_phoVal;
+//        private TextView txt_potVal;
 
+//        txt_iroVal = (TextView) root.findViewById(R.id.txt_iroVal);
+//        txt_calVal = (TextView) root.findViewById(R.id.txt_calVal);
+
+//        txt_magVal = (TextView) root.findViewById(R.id.txt_magVal);
+//        txt_phoVal = (TextView) root.findViewById(R.id.txt_phoVal);
+//        txt_potVal = (TextView) root.findViewById(R.id.txt_potVal);
+
+        txt_natVal = (TextView) root.findViewById(R.id.txt_natVal);
 
         barChartNatrium = root.findViewById(R.id.barchart_natrium);
         barChartCalcium = root.findViewById(R.id.barchart_calcium);
@@ -447,6 +746,8 @@ public class HomeFragment extends Fragment {
         barChartMagensium = root.findViewById(R.id.barchart_magnesium);
         barChartPhosphor = root.findViewById(R.id.barchart_phosphor);
         barChartPotassium = root.findViewById(R.id.barchart_potassium);
+        barChartChlorine = root.findViewById(R.id.barchart_chlorine);
+        barChartSodium = root.findViewById(R.id.barchart_Sodium);
 
 
         pieChart = root.findViewById(R.id.piechart_standard);
@@ -460,6 +761,8 @@ public class HomeFragment extends Fragment {
         loadBarChartNat();
         loadBarChartMag();
         loadBarChartPho();
+        loadBarChartChlorine();
+        loadBarChartSod();
 
         loadPieChartUser();
         loadPieChart();
