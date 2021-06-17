@@ -52,6 +52,10 @@ public class HomeFragment extends Fragment {
     private TextView txt_magVal;
     private TextView txt_phoVal;
     private TextView txt_potVal;
+    private TextView txt_cloVal;
+    private TextView txt_sodVal;
+    private TextView txt_calActual;
+    private TextView txt_cal;
 
     private HorizontalBarChart barChartNatrium;
     private HorizontalBarChart barChartCalcium;
@@ -863,76 +867,75 @@ public class HomeFragment extends Fragment {
 
         txtusername = (TextView) root.findViewById(R.id.home_username);
 
-
-
-
-
-//        private TextView txt_iroVal;
-//        private TextView txt_calVal;
-//        private TextView txt_natVal;
-//        private TextView txt_magVal;
-//        private TextView txt_phoVal;
-//        private TextView txt_potVal;
-
-//        txt_iroVal = (TextView) root.findViewById(R.id.txt_iroVal);
-//        if(iron == 0)
-//        {
-//            iron = 3f;
-//            txtusername.setText((int) iron);
-//        }
-//
-//        txt_calVal = (TextView) root.findViewById(R.id.txt_calVal);
-//        if(calcium == 0)
-//        {
-//            calcium = 1800f;
-//            txtusername.setText((int) calcium);
-//        }
-//
-//        txt_magVal = (TextView) root.findViewById(R.id.txt_magVal);
-//        if(magnesium == 0)
-//        {
-//            magnesium = 450f;
-//            txtusername.setText((int) magnesium);
-//        }
-//
-//        txt_phoVal = (TextView) root.findViewById(R.id.txt_phoVal);
-//        if(phosphor == 0)
-//        {
-//            phosphor = 600f;
-//            txtusername.setText((int) phosphor);
-//        }
-//
-//        txt_potVal = (TextView) root.findViewById(R.id.txt_potVal);
-//        if(potassium == 0)
-//        {
-//            potassium = 4000f;
-//            txtusername.setText((int) potassium);
-//        }
-//
-//        txt_natVal = (TextView) root.findViewById(R.id.txt_natVal);
-//        if(natrium == 0)
-//        {
-//            natrium = 120f;
-//            txtusername.setText((int) natrium);
-//        }
-//        txt_ = (TextView) root.findViewById(R.id.txt_potVal);
-//        if(potassium == 0)
-//        {
-//            potassium = 4000f;
-//            txtusername.setText((int) potassium);
-//        }
-//
-//        txt_natVal = (TextView) root.findViewById(R.id.txt_natVal);
-//        if(natrium == 0)
-//        {
-//            natrium = 120f;
-//            txtusername.setText((int) natrium);
-//        }
-
         if(username == null)
         {
             txtusername.setText("Sascha Karottenmann");
         }
+
+        txt_iroVal = (TextView) root.findViewById(R.id.txt_iroVal);
+        if(iron == 0)
+        {
+            iron = 3f;
+            txt_iroVal.setText(Float.toString(iron));
+        }
+
+        txt_calVal = (TextView) root.findViewById(R.id.txt_calVal);
+        if(calcium == 0)
+        {
+            calcium = 1800f;
+            txt_calVal.setText(Float.toString(calcium));
+        }
+
+        txt_magVal = (TextView) root.findViewById(R.id.txt_magVal);
+        if(magnesium == 0)
+        {
+            magnesium = 450f;
+            txt_magVal.setText(Float.toString(magnesium));
+        }
+
+        txt_phoVal = (TextView) root.findViewById(R.id.txt_phoVal);
+        if(phosphor == 0)
+        {
+            phosphor = 600f;
+            txt_phoVal.setText(Float.toString(phosphor));
+        }
+
+        txt_potVal = (TextView) root.findViewById(R.id.txt_potVal);
+        if(potassium == 0)
+        {
+            potassium = 4000f;
+            txt_potVal.setText(Float.toString(potassium));
+        }
+
+        txt_natVal = (TextView) root.findViewById(R.id.txt_natVal);
+        if(natrium == 0)
+        {
+            natrium = 120f;
+            txt_natVal.setText(Float.toString(natrium));
+        }
+        txt_cloVal = (TextView) root.findViewById(R.id.txt_cloVal);
+        if(chlorine == 0)
+        {
+            chlorine = 2.5f;
+            txt_cloVal.setText(Float.toString(chlorine));
+        }
+
+        txt_sodVal = (TextView) root.findViewById(R.id.txt_sodVal);
+        if(sodium == 0)
+        {
+            sodium = 1600f;
+            txt_sodVal.setText(Float.toString(sodium));
+        }
+
+
+        txt_cal = (TextView) root.findViewById(R.id.txt_cal);
+        if(calories == 0)
+        {
+            sodium = 1600f;
+            txt_sodVal.setText(Float.toString(sodium));
+        }
+        txt_calActual = (TextView) root.findViewById(R.id.txt_calActual);
+
 
 
         barChartNatrium = root.findViewById(R.id.barchart_natrium);

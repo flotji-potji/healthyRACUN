@@ -398,7 +398,6 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="right"
                             android:layout_weight="40"
-                            android:text="VALUE"
                             android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
@@ -449,7 +448,6 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="right"
                             android:layout_weight="40"
-                            android:text="VALUE"
                             android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
@@ -497,7 +495,6 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="right"
                             android:layout_weight="40"
-                            android:text="VALUE"
                             android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
@@ -557,7 +554,6 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="right"
                             android:layout_weight="40"
-                            android:text="VALUE"
                             android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
@@ -615,7 +611,6 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="right"
                             android:layout_weight="40"
-                            android:text="VALUE"
                             android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
@@ -672,7 +667,6 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="right"
                             android:layout_weight="40"
-                            android:text="VALUE"
                             android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
@@ -729,7 +723,6 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="right"
                             android:layout_weight="40"
-                            android:text="VALUE"
                             android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
@@ -777,7 +770,6 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="right"
                             android:layout_weight="40"
-                            android:text="VALUE"
                             android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
