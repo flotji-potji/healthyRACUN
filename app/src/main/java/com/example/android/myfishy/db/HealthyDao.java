@@ -59,4 +59,7 @@ public interface HealthyDao {
 
     @Query("SELECT meal_id FROM meal ORDER BY meal_id DESC LIMIT 1")
     LiveData<Integer> getLastSavedIdFromMealTable();
+
+    @Query("SELECT * FROM meal WHERE date_added >= :time AND username = :user")
+    List<Meal> getMealOfPresentDay(String user, long time);
 }

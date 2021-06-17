@@ -27,10 +27,8 @@ import com.example.android.myfishy.utilities.OnCloseFragment;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class CreateMealActivity extends AppCompatActivity implements OnCloseFragment, IngredientListAdapter.OnNutritionListener {
 

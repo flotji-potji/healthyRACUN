@@ -2,6 +2,7 @@ package com.example.android.myfishy.repo;
 
 import android.app.Application;
 import android.util.Log;
+import android.widget.Toolbar;
 import androidx.lifecycle.LiveData;
 import com.example.android.myfishy.MainActivity;
 import com.example.android.myfishy.db.HealthyDao;
@@ -12,6 +13,8 @@ import com.example.android.myfishy.db.relations.UserEatsMeals;
 import com.example.android.myfishy.db.relations.UserHasDiets;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class HealthyRepository {
@@ -59,9 +62,11 @@ public class HealthyRepository {
     // --------- DB full entity queries ----------- //
     private LiveData<List<DietaryRestrictionTable>> dietaryRestrictionTable;
     private LiveData<List<NutritionFactTable>> nutritionFactTable;
-    private LiveData<User> userTable;
     // --------- DB column entity queries -------- //
     private LiveData<List<String>> nourishmentNamesFromNutritionFactTable;
+    // --------- DB specified entity queries ----- //
+    private LiveData<User> userTable;
+    private List<Meal> mealDataOfPresentDay;
     // --------- DB entity classes --------------- //
     private Diet dietEntity;
     private final String dietClassName = Diet.class.getSimpleName();
@@ -93,6 +98,12 @@ public class HealthyRepository {
             // obtain HealthyDatabase object and initialise with application reference
             HealthyDatabase db = HealthyDatabase.getDatabase(application);
             healthyDao = db.healthyDao(); // get Dao object reference from database object
+            Calendar c = Calendar.getInstance();
+            c.set(Calendar.HOUR_OF_DAY, 0);
+            c.set(Calendar.MINUTE, 0);
+            c.set(Calendar.SECOND, 0);
+            c.set(Calendar.MILLISECOND, 0);
+            long today = c.getTimeInMillis();
 
             // ------- DB query tables and store result in table object attributes: ----------- //
             // initialise class dependent attributes
@@ -123,6 +134,7 @@ public class HealthyRepository {
                     nutritionFactTable = healthyDao.getNutritionFactTable();
                     nourishmentNamesFromNutritionFactTable = healthyDao.getNourishmentNamesFromNutritionFactTable();
                     userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
+                    mealDataOfPresentDay = healthyDao.getMealOfPresentDay(MainActivity.getCurrUser(), today);
                     break;
             }
         } catch (IOException e) {
@@ -134,8 +146,8 @@ public class HealthyRepository {
         return baseTag + endTag;
     }
 
-    public LiveData<List<MealConsistsOfNourishments>> getMealJoinsNourishment() {
-        return mealJoinsNourishment;
+    public LiveData<List<MealConsistsOfNourishments>> getMealJoinsNourishment(int mealId) {
+        return healthyDao.getMealConsistsOfNourishments(mealId);
     }
 
     public LiveData<List<UserEatsMeals>> getUserJoinsMeal() {
@@ -164,6 +176,10 @@ public class HealthyRepository {
 
     public LiveData<NutritionFactTable> getNutritionById(int id) {
         return healthyDao.getNutritionById(id);
+    }
+
+    public List<Meal> getMealDataOfPresentDay(){
+        return mealDataOfPresentDay;
     }
 
     public void insertDiet(Diet diet) {
@@ -210,7 +226,6 @@ public class HealthyRepository {
                     healthyDao.insertNourishment((Nourishment) data);
                 else if (dataClassName.equals(userClassName))
                     healthyDao.insertUser((User) data);
-
             }
         }).start();
     }
