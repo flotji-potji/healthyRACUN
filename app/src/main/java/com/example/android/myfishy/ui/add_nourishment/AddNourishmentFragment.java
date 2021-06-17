@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.myfishy.R;
+import com.example.android.myfishy.db.entities.Nourishment;
 import com.example.android.myfishy.db.entities.NutritionFactTable;
 import com.example.android.myfishy.repo.HealthyRepository;
 import com.example.android.myfishy.utilities.OnCloseFragment;
@@ -46,7 +47,7 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
     private List<String> currNutritionList;
     private List<String> alreadySelectedNutritionList;
     private static List<NutritionFactTable> nutritionFactTableList;
-    private List<NutritionFactTable> extrasBundle;
+    private List<Nourishment> extrasBundle;
 
     public AddNourishmentFragment(
             OnCloseFragment onCloseFragment, List<String> selectedNutritionList) {
@@ -232,7 +233,7 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     float quantity = Float.parseFloat(editText.getText().toString());
-                                    NutritionFactTable calcNourishment =
+                                    Nourishment calcNourishment =
                                             addNourishmentViewModel
                                                     .calculateEnteredNutritionQuantity(
                                                             quantity,
@@ -243,7 +244,7 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
                                                 currNutritionList.get(position)
                                         );
                                         currNutritionList.clear();
-                                        for (NutritionFactTable nut : extrasBundle) {
+                                        for (Nourishment nut : extrasBundle) {
                                             currNutritionList.add(
                                                     String.format("%.2f g | %s",
                                                             addNourishmentViewModel.getNutritionQuantity(

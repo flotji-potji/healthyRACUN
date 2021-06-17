@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.android.myfishy.MainActivity;
 import com.example.android.myfishy.R;
 import com.example.android.myfishy.db.entities.Meal;
+import com.example.android.myfishy.db.entities.Nourishment;
 import com.example.android.myfishy.db.entities.NutritionFactTable;
 import com.example.android.myfishy.repo.HealthyRepository;
 import com.example.android.myfishy.ui.add_nourishment.AddNourishmentFragment;
@@ -42,7 +43,7 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
 
     private CreateMealViewModel createMealViewModel;
     private IngredientListAdapter ingredientListAdapter;
-    private List<NutritionFactTable> nutritionFactTableList;
+    private List<Nourishment> nutritionFactTableList;
     private Set<String> ingredientSet;
 
     @Override
@@ -78,7 +79,7 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
                 createMealViewModel.getLastSavedMealId().observe(cool, new Observer<Integer>() {
                     @Override
                     public void onChanged(Integer integer) {
-                        for (NutritionFactTable item : nutritionFactTableList) {
+                        for (Nourishment item : nutritionFactTableList) {
                             createMealViewModel.insertNourishment(integer, item);
                         }
                     }
@@ -129,7 +130,7 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
         fragmentManager.beginTransaction().remove(fragment).commit();
 
         for (Object item : bundle) {
-            NutritionFactTable nut = (NutritionFactTable) item;
+            Nourishment nut = (Nourishment) item;
             nutritionFactTableList.add(nut);
             ingredientSet.add(nut.getNourishment_name());
         }

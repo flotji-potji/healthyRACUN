@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
+import com.example.android.myfishy.db.entities.Nourishment;
 import com.example.android.myfishy.db.entities.NutritionFactTable;
 import com.example.android.myfishy.db.relations.UserHasDiets;
 import com.example.android.myfishy.repo.HealthyRepository;
@@ -40,9 +41,9 @@ public class AddNourishmentViewModel extends AndroidViewModel {
                         .contains("Öl");
     }
 
-    public NutritionFactTable calculateEnteredNutritionQuantity(float quantity, NutritionFactTable ntf) {
+    public Nourishment calculateEnteredNutritionQuantity(float quantity, NutritionFactTable ntf) {
         float factor = quantity / HealthyRepository.NUTRITION_QUANTITY_PER_SERVING_MG;
-        return new NutritionFactTable(
+        return convertIntoNourishment(new NutritionFactTable(
                 ntf.getNourishment_category(),
                 ntf.getNourishment_name(),
                 ntf.getNourishment_synonym(),
@@ -64,16 +65,43 @@ public class AddNourishmentViewModel extends AndroidViewModel {
                 ntf.getIron() * factor,
                 ntf.getProtein() * factor,
                 ntf.getFibers() * factor
-        );
+        ));
+    }
+
+    public Nourishment convertIntoNourishment(NutritionFactTable nutritionFactTable) {
+        return new Nourishment(
+                        0,
+                        nutritionFactTable.getNourishment_category(),
+                        nutritionFactTable.getNourishment_name(),
+                        nutritionFactTable.getNourishment_synonym(),
+                        nutritionFactTable.getCalories(),
+                        nutritionFactTable.getFat(),
+                        nutritionFactTable.getSaturated_fatty_acids(),
+                        nutritionFactTable.getUnsaturated_fatty_acids(),
+                        nutritionFactTable.getCarbohydrates_all(),
+                        nutritionFactTable.getSimple_sugars(),
+                        nutritionFactTable.getEtoh(),
+                        nutritionFactTable.getH20(),
+                        nutritionFactTable.getTable_salt(),
+                        nutritionFactTable.getSodium(),
+                        nutritionFactTable.getChlorine(),
+                        nutritionFactTable.getMagnesium(),
+                        nutritionFactTable.getPotassium(),
+                        nutritionFactTable.getCalcium(),
+                        nutritionFactTable.getPhosphor(),
+                        nutritionFactTable.getIron(),
+                        nutritionFactTable.getProtein(),
+                        nutritionFactTable.getFibers()
+                );
     }
 
     public float getNutritionQuantity(
             List<NutritionFactTable> nutritionFactTableList,
-            NutritionFactTable currNtf) {
+            Nourishment currNtf) {
         for (NutritionFactTable item : nutritionFactTableList) {
             if (item.getNourishment_name().equals(currNtf.getNourishment_name()))
                 return (currNtf.getCalcium() / item.getCalcium()) *
-                                HealthyRepository.NUTRITION_QUANTITY_PER_SERVING_MG;
+                        HealthyRepository.NUTRITION_QUANTITY_PER_SERVING_MG;
         }
         return 0;
     }
@@ -91,7 +119,7 @@ public class AddNourishmentViewModel extends AndroidViewModel {
     }
 
     public boolean checkDietaryRestriction(
-            NutritionFactTable nutritionFactTable) {
+            Nourishment nutritionFactTable) {
         // TODO: CHECK IF DIETARY RESTRICTION APPLIES
         return true;
     }

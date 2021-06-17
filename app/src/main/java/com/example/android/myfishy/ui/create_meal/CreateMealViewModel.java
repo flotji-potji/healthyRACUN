@@ -26,33 +26,9 @@ public class CreateMealViewModel extends AndroidViewModel {
 
     }
 
-    public void insertNourishment(int mealId, NutritionFactTable nutritionFactTable){
-        healthyRepository.insertNourishment(
-                new Nourishment(
-                        mealId,
-                        nutritionFactTable.getNourishment_category(),
-                        nutritionFactTable.getNourishment_name(),
-                        nutritionFactTable.getNourishment_synonym(),
-                        nutritionFactTable.getCalories(),
-                        nutritionFactTable.getFat(),
-                        nutritionFactTable.getSaturated_fatty_acids(),
-                        nutritionFactTable.getUnsaturated_fatty_acids(),
-                        nutritionFactTable.getCarbohydrates_all(),
-                        nutritionFactTable.getSimple_sugars(),
-                        nutritionFactTable.getEtoh(),
-                        nutritionFactTable.getH20(),
-                        nutritionFactTable.getTable_salt(),
-                        nutritionFactTable.getSodium(),
-                        nutritionFactTable.getChlorine(),
-                        nutritionFactTable.getMagnesium(),
-                        nutritionFactTable.getPotassium(),
-                        nutritionFactTable.getCalcium(),
-                        nutritionFactTable.getPhosphor(),
-                        nutritionFactTable.getIron(),
-                        nutritionFactTable.getProtein(),
-                        nutritionFactTable.getFibers()
-                )
-        );
+    public void insertNourishment(int mealId, Nourishment nourishment){
+        nourishment.setMeal_id(mealId);
+        healthyRepository.insertNourishment(nourishment);
     }
 
     public void insertMeal(Meal meal){

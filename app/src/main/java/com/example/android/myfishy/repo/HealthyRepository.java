@@ -13,6 +13,7 @@ import com.example.android.myfishy.db.relations.UserEatsMeals;
 import com.example.android.myfishy.db.relations.UserHasDiets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -134,7 +135,12 @@ public class HealthyRepository {
                     nutritionFactTable = healthyDao.getNutritionFactTable();
                     nourishmentNamesFromNutritionFactTable = healthyDao.getNourishmentNamesFromNutritionFactTable();
                     userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
-                    mealDataOfPresentDay = healthyDao.getMealOfPresentDay(MainActivity.getCurrUser(), today);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mealDataOfPresentDay = healthyDao.getMealOfPresentDay(MainActivity.getCurrUser(), today);
+                        }
+                    }).start();
                     break;
             }
         } catch (IOException e) {
