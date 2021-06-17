@@ -61,5 +61,5 @@ public interface HealthyDao {
     LiveData<Integer> getLastSavedIdFromMealTable();
 
     @Query("SELECT * FROM meal WHERE date_added >= :time AND username = :user")
-    List<Meal> getMealOfPresentDay(String user, long time);
+    LiveData<List<Meal>> getMealOfPresentDay(String user, long time);
 }

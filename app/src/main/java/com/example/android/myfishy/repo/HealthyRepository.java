@@ -67,7 +67,7 @@ public class HealthyRepository {
     private LiveData<List<String>> nourishmentNamesFromNutritionFactTable;
     // --------- DB specified entity queries ----- //
     private LiveData<User> userTable;
-    private List<Meal> mealDataOfPresentDay;
+    private LiveData<List<Meal>> mealDataOfPresentDay;
     // --------- DB entity classes --------------- //
     private Diet dietEntity;
     private final String dietClassName = Diet.class.getSimpleName();
@@ -135,12 +135,7 @@ public class HealthyRepository {
                     nutritionFactTable = healthyDao.getNutritionFactTable();
                     nourishmentNamesFromNutritionFactTable = healthyDao.getNourishmentNamesFromNutritionFactTable();
                     userJoinsDiet = healthyDao.getUserGotDiets(MainActivity.getCurrUser());
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mealDataOfPresentDay = healthyDao.getMealOfPresentDay(MainActivity.getCurrUser(), today);
-                        }
-                    }).start();
+                    mealDataOfPresentDay = healthyDao.getMealOfPresentDay(MainActivity.getCurrUser(), today);
                     break;
             }
         } catch (IOException e) {
@@ -184,7 +179,7 @@ public class HealthyRepository {
         return healthyDao.getNutritionById(id);
     }
 
-    public List<Meal> getMealDataOfPresentDay(){
+    public LiveData<List<Meal>> getMealDataOfPresentDay(){
         return mealDataOfPresentDay;
     }
 

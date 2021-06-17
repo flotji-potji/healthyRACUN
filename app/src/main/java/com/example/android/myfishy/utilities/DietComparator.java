@@ -25,7 +25,7 @@ public class DietComparator extends Diet {
                 d.getFibers());
     }
 
-    public float[] compareCIKD(Diet diet) {
+    private float[] compareCIKD(Diet diet) {
         float[] res = new float[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
         if (diet.getTable_salt() < 0)
@@ -54,7 +54,10 @@ public class DietComparator extends Diet {
     public float[] compareTo(Object o) {
         Diet diet = (Diet) o;
         switch (diet.getDiet_id()) {
-            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
                 return compareCIKD(diet);
         }
         return new float[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

@@ -5,11 +5,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
+import com.example.android.myfishy.db.entities.Diet;
+import com.example.android.myfishy.db.entities.Meal;
 import com.example.android.myfishy.db.entities.Nourishment;
 import com.example.android.myfishy.db.entities.NutritionFactTable;
+import com.example.android.myfishy.db.relations.MealConsistsOfNourishments;
 import com.example.android.myfishy.db.relations.UserHasDiets;
 import com.example.android.myfishy.repo.HealthyRepository;
+import com.example.android.myfishy.utilities.DietComparator;
+import com.example.android.myfishy.utilities.diseases.CIKDConverter;
+import com.example.android.myfishy.utilities.diseases.Disease;
 
 import java.util.List;
 
@@ -22,6 +29,7 @@ public class AddNourishmentViewModel extends AndroidViewModel {
     private LiveData<List<NutritionFactTable>> nutritionFactTable;
     private LiveData<List<String>> nourishmentNamesFromNutritionFactTable;
     private LiveData<List<UserHasDiets>> userHasDiets;
+    private LiveData<List<Meal>> mealOfPresentDay;
 
     public AddNourishmentViewModel(@NonNull Application application) {
         super(application);
@@ -30,6 +38,7 @@ public class AddNourishmentViewModel extends AndroidViewModel {
         nutritionFactTable = healthyRepository.getNutritionFactTable();
         nourishmentNamesFromNutritionFactTable = healthyRepository.getNourishmentNamesFromNutritionFactTable();
         userHasDiets = healthyRepository.getUserJoinsDiet();
+        mealOfPresentDay = healthyRepository.getMealDataOfPresentDay();
     }
 
     public boolean isNutritionLiquid(NutritionFactTable nutritionFactTable) {
@@ -70,29 +79,29 @@ public class AddNourishmentViewModel extends AndroidViewModel {
 
     public Nourishment convertIntoNourishment(NutritionFactTable nutritionFactTable) {
         return new Nourishment(
-                        0,
-                        nutritionFactTable.getNourishment_category(),
-                        nutritionFactTable.getNourishment_name(),
-                        nutritionFactTable.getNourishment_synonym(),
-                        nutritionFactTable.getCalories(),
-                        nutritionFactTable.getFat(),
-                        nutritionFactTable.getSaturated_fatty_acids(),
-                        nutritionFactTable.getUnsaturated_fatty_acids(),
-                        nutritionFactTable.getCarbohydrates_all(),
-                        nutritionFactTable.getSimple_sugars(),
-                        nutritionFactTable.getEtoh(),
-                        nutritionFactTable.getH20(),
-                        nutritionFactTable.getTable_salt(),
-                        nutritionFactTable.getSodium(),
-                        nutritionFactTable.getChlorine(),
-                        nutritionFactTable.getMagnesium(),
-                        nutritionFactTable.getPotassium(),
-                        nutritionFactTable.getCalcium(),
-                        nutritionFactTable.getPhosphor(),
-                        nutritionFactTable.getIron(),
-                        nutritionFactTable.getProtein(),
-                        nutritionFactTable.getFibers()
-                );
+                0,
+                nutritionFactTable.getNourishment_category(),
+                nutritionFactTable.getNourishment_name(),
+                nutritionFactTable.getNourishment_synonym(),
+                nutritionFactTable.getCalories(),
+                nutritionFactTable.getFat(),
+                nutritionFactTable.getSaturated_fatty_acids(),
+                nutritionFactTable.getUnsaturated_fatty_acids(),
+                nutritionFactTable.getCarbohydrates_all(),
+                nutritionFactTable.getSimple_sugars(),
+                nutritionFactTable.getEtoh(),
+                nutritionFactTable.getH20(),
+                nutritionFactTable.getTable_salt(),
+                nutritionFactTable.getSodium(),
+                nutritionFactTable.getChlorine(),
+                nutritionFactTable.getMagnesium(),
+                nutritionFactTable.getPotassium(),
+                nutritionFactTable.getCalcium(),
+                nutritionFactTable.getPhosphor(),
+                nutritionFactTable.getIron(),
+                nutritionFactTable.getProtein(),
+                nutritionFactTable.getFibers()
+        );
     }
 
     public float getNutritionQuantity(
@@ -114,14 +123,37 @@ public class AddNourishmentViewModel extends AndroidViewModel {
         return nourishmentNamesFromNutritionFactTable;
     }
 
+    public LiveData<List<Meal>> getMealsOfPresentDay() {
+        return mealOfPresentDay;
+    }
+
+    public LiveData<List<MealConsistsOfNourishments>> getMealJoinsNourishment(int mealId) {
+        return healthyRepository.getMealJoinsNourishment(mealId);
+    }
+
     public LiveData<List<UserHasDiets>> getUserHasDiets() {
         return userHasDiets;
     }
 
-    public boolean checkDietaryRestriction(
-            Nourishment nutritionFactTable) {
-        // TODO: CHECK IF DIETARY RESTRICTION APPLIES
-        return true;
+    public float[] checkDietaryRestriction(
+            Nourishment nourishment,
+            List<Nourishment> nourishmentListOfPresentDay,
+            List<UserHasDiets> userDietList) {
+        nourishmentListOfPresentDay.add(nourishment);
+        Disease disease;
+        DietComparator dc;
+        float[] res = new float[11];
+        for (UserHasDiets item : userDietList) {
+            disease = new CIKDConverter(
+                    nourishmentListOfPresentDay,
+                    item.getUser()
+            );
+            for (Diet d : item.getDiets()) {
+                dc = new DietComparator(disease.evaluateDietaryAppliance());
+                res = dc.compareTo(d);
+            }
+        }
+        return res;
     }
 
 }

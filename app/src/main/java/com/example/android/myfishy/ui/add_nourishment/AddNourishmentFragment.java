@@ -19,12 +19,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.myfishy.R;
+import com.example.android.myfishy.db.entities.Diet;
+import com.example.android.myfishy.db.entities.Meal;
 import com.example.android.myfishy.db.entities.Nourishment;
 import com.example.android.myfishy.db.entities.NutritionFactTable;
+import com.example.android.myfishy.db.relations.MealConsistsOfNourishments;
+import com.example.android.myfishy.db.relations.UserHasDiets;
 import com.example.android.myfishy.repo.HealthyRepository;
 import com.example.android.myfishy.utilities.OnCloseFragment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class AddNourishmentFragment extends Fragment implements NourishmentListAdapter.OnNutritionListener {
@@ -47,7 +53,10 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
     private List<String> currNutritionList;
     private List<String> alreadySelectedNutritionList;
     private static List<NutritionFactTable> nutritionFactTableList;
+    private List<Nourishment> nourishmentListOfPresentDay;
+    private List<UserHasDiets> userDiets;
     private List<Nourishment> extrasBundle;
+    private int count;
 
     public AddNourishmentFragment(
             OnCloseFragment onCloseFragment, List<String> selectedNutritionList) {
@@ -57,6 +66,8 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
         alreadySelectedNutritionList = selectedNutritionList;
         currNutritionList = new ArrayList<>();
         nutritionList = new ArrayList<>();
+        this.userDiets = new ArrayList<>();
+        nourishmentListOfPresentDay = new ArrayList<>();
     }
 
     public static AddNourishmentFragment newInstance(
@@ -82,6 +93,21 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
         recyclerView.setAdapter(nourishmentListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
+        addNourishmentViewModel.getMealsOfPresentDay().observe(this, meals -> {
+            for (Meal item : meals) {
+                addNourishmentViewModel.getMealJoinsNourishment(item.getMeal_id()).observe(this, mealJoinNourishment -> {
+                    for (MealConsistsOfNourishments mcn : mealJoinNourishment) {
+                        nourishmentListOfPresentDay.addAll(mcn.getNourishments());
+                    }
+                });
+            }
+            deleteProgressBar();
+        });
+
+        addNourishmentViewModel.getUserHasDiets().observe(this, userDiets -> {
+            this.userDiets.addAll(userDiets);
+            deleteProgressBar();
+        });
 
         addNourishmentViewModel.getNutritionFactTable().observe(this, new Observer<List<NutritionFactTable>>() {
             @Override
@@ -161,13 +187,17 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
     }
 
     private void showProgressBar() {
+        count = 0;
         searchBar.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
     }
 
     private void deleteProgressBar() {
-        searchBar.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.GONE);
+        count++;
+        if (count == 3) {
+            searchBar.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
     private boolean isButtonVisible() {
@@ -238,7 +268,19 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
                                                     .calculateEnteredNutritionQuantity(
                                                             quantity,
                                                             currNourishment);
-                                    if (addNourishmentViewModel.checkDietaryRestriction(calcNourishment)) {
+                                    float[] cL =
+                                            addNourishmentViewModel.checkDietaryRestriction(
+                                                    calcNourishment,
+                                                    nourishmentListOfPresentDay,
+                                                    userDiets);
+                                    float res = 1;
+                                    int troubleScorePos = 0;
+                                    for (int i = 0; i < cL.length; i++) {
+                                        res *= cL[i];
+                                        if (cL[i] < 0)
+                                            troubleScorePos = i;
+                                    }
+                                    if (res >= 0) {
                                         extrasBundle.add(calcNourishment);
                                         alreadySelectedNutritionList.add(
                                                 currNutritionList.get(position)
@@ -261,9 +303,42 @@ public class AddNourishmentFragment extends Fragment implements NourishmentListA
                                             setButtonVisible();
                                         }
                                     } else {
+                                        String label = "";
+                                        switch (troubleScorePos){
+                                            case 0:
+                                                label = "Salz";
+                                            case 1:
+                                                label = "Natrium";
+                                            case 2:
+                                                label = "Kalium";
+                                            case 3:
+                                                label = "Kalzium";
+                                            case 4:
+                                                label = "Phosphor";
+                                            case 5:
+                                                label = "Protein";
+                                            case 6:
+                                                label = "Kalorien";
+                                            case 7:
+                                                label = "Wasserverbrauch";
+                                            case 8:
+                                                label = "Kohlenhydrate";
+                                            case 9:
+                                                label = "Fette";
+                                            case 10:
+                                                label = "Ballaststoffe";
+                                        }
                                         AlertDialog.Builder attentionBuilder = new AlertDialog.Builder(root.getContext());
                                         attentionBuilder
-                                                .setTitle("NICHT GUT!")
+                                                .setTitle("Warnung")
+                                                .setMessage(
+                                                        String.format("%s%s %s: %.2f %s",
+                                                        "Die angegebene Nahrung übersteigt der derzeitg ausgewählten dietären Bestimmung.\n",
+                                                                label,
+                                                                "haben einen Wert von:",
+                                                                Math.abs(cL[troubleScorePos]),
+                                                                "überschritten."
+                                                        ))
                                                 .setPositiveButton(R.string.alert_label_ok, new DialogInterface.OnClickListener() {
 
                                                     @Override
