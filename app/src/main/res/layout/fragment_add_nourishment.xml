@@ -18,7 +18,9 @@
             android:layout_gravity="end"
             android:src="@drawable/ic_baseline_close_24_white"
             android:background="@drawable/background_close_button"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:onClick="closeFragment"
+            tools:ignore="OnClick"/>
 
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

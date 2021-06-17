@@ -2,7 +2,6 @@ package com.example.android.myfishy.repo;
 
 import android.app.Application;
 import android.util.Log;
-import android.widget.Toolbar;
 import androidx.lifecycle.LiveData;
 import com.example.android.myfishy.MainActivity;
 import com.example.android.myfishy.db.HealthyDao;
@@ -13,9 +12,7 @@ import com.example.android.myfishy.db.relations.UserEatsMeals;
 import com.example.android.myfishy.db.relations.UserHasDiets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class HealthyRepository {
@@ -23,7 +20,7 @@ public class HealthyRepository {
     // ----------- final attributes: --------------- //
     private static final String HEALTHY_REPOSITORY_TAG = "CLASS_HEALTHY_REPOSITORY";
     public static final String MAIN_ACTIVITY_TAG = "CLASS_MAIN_ACTIVITY";
-    public static final String SPLASH_SCREEN_TAG = "CLASS_SPLASH_SCREEN";
+    public static final String LOADING_SCREEN_TAG = "CLASS_LOADING_SCREEN";
     public static final String PROFILE_FORM_TAG = "CLASS_PROFILE_FORM";
     public static final String HOME_TAG = "CLASS_HOME";
     public static final String MEAL_LOGGING_TAG = "CLASS_MEAL_LOGGING";
@@ -111,7 +108,7 @@ public class HealthyRepository {
             switch (currentViewModel) {
                 case MAIN_ACTIVITY_TAG:
                     break;
-                case SPLASH_SCREEN_TAG:
+                case LOADING_SCREEN_TAG:
                     userTable = healthyDao.getUser(MainActivity.getCurrUser());
                     break;
                 case PROFILE_FORM_TAG:
@@ -165,6 +162,10 @@ public class HealthyRepository {
 
     public LiveData<List<NutritionFactTable>> getNutritionFactTable() {
         return nutritionFactTable;
+    }
+
+    public LiveData<List<User>> getUsers(){
+        return healthyDao.getUserTable();
     }
 
     public LiveData<User> getUserTable() {

@@ -40,6 +40,7 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
     private Fragment fragment;
     private EditText editTextMealName;
     private EditText editTextMealInstructions;
+    private FloatingActionButton fab;
 
     private CreateMealViewModel createMealViewModel;
     private IngredientListAdapter ingredientListAdapter;
@@ -55,6 +56,7 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
         nutritionFactTableList = new ArrayList<>();
         ingredientSet = new HashSet<>();
         editTextMealName = findViewById(R.id.editText_mealName);
+        fab = findViewById(R.id.activity_create_meal_fab);
 
         final LifecycleOwner cool = this;
 
@@ -100,18 +102,19 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
 
     public void searchForNourishment(View view) {
         /**final BottomSheetDialog searchFragment = new BottomSheetDialog(
-                CreateMealActivity.this, R.style.SearchBarDialogTheme
-        );
-        final View addNourishmentFragmentView = LayoutInflater.from(getApplicationContext())
-                .inflate(
-                        R.layout.fragment_add_nourishment,
-                        (LinearLayout) findViewById(R.id.add_nourishment_search)
-                );
-        searchFragment.setContentView(addNourishmentFragmentView);
-        searchFragment.setCanceledOnTouchOutside(true);
-        searchFragment.show();
-        **/fragment = AddNourishmentFragment.newInstance(this,
+         CreateMealActivity.this, R.style.SearchBarDialogTheme
+         );
+         final View addNourishmentFragmentView = LayoutInflater.from(getApplicationContext())
+         .inflate(
+         R.layout.fragment_add_nourishment,
+         (LinearLayout) findViewById(R.id.add_nourishment_search)
+         );
+         searchFragment.setContentView(addNourishmentFragmentView);
+         searchFragment.setCanceledOnTouchOutside(true);
+         searchFragment.show();
+         **/fragment = AddNourishmentFragment.newInstance(this,
                 new ArrayList<>(ingredientSet));
+        fab.setVisibility(View.GONE);
         FragmentTransaction fragmentTransaction =
                 fragmentManager.beginTransaction();
         fragmentTransaction
@@ -128,11 +131,14 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
     public void closeFragment(List<?> bundle) {
         MainActivity.hideKeyboard(this);
         fragmentManager.beginTransaction().remove(fragment).commit();
+        fab.setVisibility(View.VISIBLE);
 
-        for (Object item : bundle) {
-            Nourishment nut = (Nourishment) item;
-            nutritionFactTableList.add(nut);
-            ingredientSet.add(nut.getNourishment_name());
+        if (!bundle.isEmpty()) {
+            for (Object item : bundle) {
+                Nourishment nut = (Nourishment) item;
+                nutritionFactTableList.add(nut);
+                ingredientSet.add(nut.getNourishment_name());
+            }
         }
         if (!ingredientSet.isEmpty()) {
             ingredientListAdapter.setNutritionNames(new ArrayList<>(ingredientSet));
@@ -143,5 +149,9 @@ public class CreateMealActivity extends AppCompatActivity implements OnCloseFrag
     @Override
     public void onNutritionListener(int position) {
 
+    }
+
+    public void closeFragment(View view) {
+        closeFragment(new ArrayList<>());
     }
 }

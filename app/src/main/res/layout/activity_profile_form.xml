@@ -1,56 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ui.profile_form.ProfileFormActivity">
-
-    <!-- TODO: Update crappy fragment layout -->
-    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/fragment_padding"
-        android:orientation="horizontal">
+        tools:context=".ui.profile_form.ProfileFormActivity"
+        android:background="@color/color_white"
+        android:padding="10dp">
 
-        <androidx.cardview.widget.CardView
+    <!-- TODO: Update crappy fragment layout -->
+
+    <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/cardview_profile_form"
-                style="@style/cardView_style">
+            style="@style/cardView_style">
 
 
-
-            <LinearLayout
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_margin="25dp"
                 android:layout_below="@+id/title_pfcreator"
                 >
-                <TextView
+
+            <TextView
                     android:id="@+id/title_pfcreator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
                     android:gravity="center"
                     android:textStyle="bold"
-                    android:text="PROFILECREATOR"
+                    android:text="Ein neues Profil erstellen"
                     android:textSize="28sp"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="center_horizontal"/>
 
-                    />
-
-                <EditText
+            <EditText
                     android:id="@+id/edittext_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:ems="10"
-                    android:hint="Username"
-                    />
-                <EditText
+                    android:hint="Username"/>
+
+            <EditText
                     android:id="@+id/edittext_firstname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -59,7 +54,8 @@
                     android:ems="10"
                     android:hint="Firstname"
                     />
-                <EditText
+
+            <EditText
                     android:id="@+id/edittext_surname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -68,49 +64,56 @@
                     android:ems="10"
                     android:hint="Surname"
                     />
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="25dp">
-                <TextView
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="Geschlecht"
-                    android:textSize="25sp"/>
-                <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_margin="25dp">
 
-                    android:orientation="horizontal"
-                    android:layout_gravity="right"
-                    >
-                    <RadioButton
-                        android:id="@+id/radioButton_male"
+                <TextView
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Männlich"
-                       />
-                    <RadioButton
-                        android:id="@+id/radioButton_female"
-                        android:layout_width="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="Geschlecht"
+                        android:textSize="25sp"/>
+
+                <RadioGroup
+                        android:id="@+id/profileForm_radioGroup"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Weiblich"
-                        />
+                        android:gravity="center"
+
+                        android:orientation="horizontal"
+                        android:layout_gravity="right"
+                        >
+
+                    <RadioButton
+                            android:id="@+id/radioButton_male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Männlich"
+                            />
+
+                    <RadioButton
+                            android:id="@+id/radioButton_female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Weiblich"
+                            />
                 </RadioGroup>
 
             </LinearLayout>
 
 
-                <LinearLayout
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center">
-                    <EditText
+
+                <EditText
                         android:id="@+id/edittext_weight"
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
@@ -119,29 +122,31 @@
                         android:inputType="number"
                         />
 
-                    <EditText
+                <EditText
                         android:id="@+id/edittext_height"
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:hint="@string/title_add_edit_data_height"
                         android:textAlignment="center"
                         android:inputType="number"
-                         />
-                </LinearLayout>
+                        />
+            </LinearLayout>
 
-                <LinearLayout
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_margin="25dp">
-                    <TextView
+
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="Krankheit"
                         android:textSize="25sp"/>
-                    <Spinner
+
+                <Spinner
                         android:id="@+id/spinner_condition"
                         android:entries="@array/illnessItems"
                         android:gravity="center"
@@ -151,16 +156,17 @@
                         android:layout_gravity="center"
                         />
 
-                </LinearLayout>
-                <Button
+            </LinearLayout>
+
+            <Button
+                    android:id="@+id/profileForm_actionButton"
                     android:layout_width="240dp"
                     style="@style/button_profile_view_style"
                     android:layout_height="50dp"
                     android:text="Angaben bestätigen"
                     android:layout_gravity="center"
-                    />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+                    android:onClick="createUser"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

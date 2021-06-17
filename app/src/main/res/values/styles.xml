@@ -184,5 +184,8 @@
         <item name="android:layout_margin">10dp</item>
     </style>
 
+    <style name="LaunchTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_launcher</item>
+    </style>
 
 </resources>

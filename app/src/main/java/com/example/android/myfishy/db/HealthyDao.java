@@ -62,4 +62,7 @@ public interface HealthyDao {
 
     @Query("SELECT * FROM meal WHERE date_added >= :time AND username = :user")
     LiveData<List<Meal>> getMealOfPresentDay(String user, long time);
+
+    @Query("SELECT * FROM user")
+    LiveData<List<User>> getUserTable();
 }

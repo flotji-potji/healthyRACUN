@@ -129,7 +129,9 @@
                         android:padding="10dp"
                         android:background="@drawable/button_circle_theme"
                         android:layout_gravity="center_vertical"
-                        android:onClick="searchForNourishment"/>
+                        android:onClick="searchForNourishment"
+                        android:outlineAmbientShadowColor="@color/color_white"
+                        tools:targetApi="p"/>
 
             </LinearLayout>
 
