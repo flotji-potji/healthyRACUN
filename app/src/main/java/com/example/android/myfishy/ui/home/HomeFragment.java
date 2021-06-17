@@ -65,6 +65,7 @@ public class HomeFragment extends Fragment {
     private HorizontalBarChart barChartPotassium;
     private HorizontalBarChart barChartChlorine;
     private HorizontalBarChart barChartSodium;
+    private HorizontalBarChart barchart_water;
 
     private String mParam1;
     private String mParam2;
@@ -87,6 +88,8 @@ public class HomeFragment extends Fragment {
     float natriumMax;
     float calciumMin;
     float calciumMax;
+    float waterMin;
+    float waterMax;
 
     float chlorine;
     float magnesium;
@@ -98,15 +101,75 @@ public class HomeFragment extends Fragment {
     float natrium;
 
     double protein;
-    float calories;
+    int calories;
     float liquid_intake;
     float carbs;
     float fats;
+
+    int consCalories;
 
 
     User userinfo = new User(username, firstname, surname,birthday, gender, weight , height);
 
 
+    private  void loadBarChartWater()
+    {
+        List<BarEntry> entries = new ArrayList<>();
+
+        if(liquid_intake == 0)
+        {
+            liquid_intake = 600f;
+        }
+
+        if (condition_name == "CNI Stufe 5D" )
+        {
+            waterMin = 500;
+            waterMax = 800;
+        }
+        else
+        {
+            waterMin = 2000f;
+        }
+
+        entries.add(new BarEntry(0f, phosphor));
+        BarDataSet set = new BarDataSet(entries, "");
+
+
+        if(liquid_intake > waterMax || liquid_intake < waterMin )
+        {
+            set.setColor(Color.RED);
+        }
+        else
+        {
+            set.setColor(Color.GREEN);
+        }
+
+        //Setting new color, needs to be done
+
+//        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
+
+        BarData data = new BarData(set);
+
+        data.setBarWidth(0.5f); // set custom bar width
+        set.setDrawValues(false);
+
+        LimitLine maXll = new LimitLine(waterMax, "Max");
+        LimitLine miNll = new LimitLine(waterMin , "Min");
+        maXll.setLineWidth(2f);
+        miNll.setLineWidth(2f);
+        maXll.setLineColor(Color.BLACK);
+        miNll.setLineColor(Color.BLACK);
+
+        if(waterMax != 0)
+        {
+            barchart_water.getAxisRight().addLimitLine(maXll);
+        }
+        barchart_water.getAxisRight().addLimitLine(miNll);
+
+//        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+        barchart_water.setData(data);
+        barchart_water.invalidate(); // refresh
+    }
     private void loadBarChartPho()
     {
         List<BarEntry> entries = new ArrayList<>();
@@ -356,6 +419,10 @@ public class HomeFragment extends Fragment {
         miNll.setLineWidth(2f);
         miNll.setLineColor(Color.BLACK);
         barChartPotassium.getAxisRight().addLimitLine(maXll);
+        if(potassiumMin != 0)
+        {
+            barChartPotassium.getAxisRight().addLimitLine(miNll);
+        }
 
 
         barChartPotassium.setData(data);
@@ -404,8 +471,8 @@ public class HomeFragment extends Fragment {
             set.setColor(Color.GREEN);
         }
 
-        LimitLine maXll = new LimitLine(2500f, "Max");
-        LimitLine miNll = new LimitLine(1000f , "Min");
+        LimitLine maXll = new LimitLine(calciumMax, "Max");
+        LimitLine miNll = new LimitLine(calciumMin , "Min");
         maXll.setLineWidth(2f);
         miNll.setLineWidth(2f);
         maXll.setLineColor(Color.BLACK);
@@ -688,6 +755,26 @@ public class HomeFragment extends Fragment {
         barChartSodium.setTouchEnabled(false);
         barChartSodium.setDoubleTapToZoomEnabled(false);
 
+        barchart_water.getAxisRight().setAxisMinimum(0f);
+        barchart_water.getAxisLeft().setAxisMinimum(0f);
+        barchart_water.getAxisRight().setAxisMaximum(3500f);
+        barchart_water.getAxisLeft().setAxisMaximum(3500f);
+        barchart_water.getAxisLeft().setEnabled(false);
+        barchart_water.animateY(1100);
+        barchart_water.getAxisRight().setLabelCount(6, true);
+        barchart_water.getAxisLeft().setLabelCount(6,true);
+
+        barchart_water.getXAxis().setEnabled(false);
+
+        barchart_water.getAxisRight().setDrawAxisLine(false);
+        barchart_water.getLegend().setEnabled(false);
+        barchart_water.getDescription().setEnabled(false);
+
+        //no zoom
+        barchart_water.setPinchZoom(false);
+        barchart_water.setTouchEnabled(false);
+        barchart_water.setDoubleTapToZoomEnabled(false);
+
 
 
     }
@@ -713,8 +800,7 @@ public class HomeFragment extends Fragment {
 
         pieChartCalories.setDrawHoleEnabled(true);
         pieChartCalories.setUsePercentValues(true);
-        pieChartCalories.setEntryLabelTextSize(12);
-        pieChartCalories.setEntryLabelColor(Color.BLACK);
+        pieChartCalories.setDrawCenterText(true);
         pieChartCalories.getLegend().setEnabled(false);
         pieChartCalories.setDrawEntryLabels(false);
         pieChartCalories.getDescription().setEnabled(false);
@@ -831,8 +917,8 @@ public class HomeFragment extends Fragment {
     {
         ArrayList<PieEntry> entries = new ArrayList<>();
 
-        float caloriesmax = 2000f;
-        float caleaten = 1500f;
+        int caloriesmax = 2000;
+        int caleaten = 1500;
 
 
         //value: daten die mitgegeben werden, um anzuzeigen wv der nährstoffe eingenommen wurdem
@@ -852,6 +938,9 @@ public class HomeFragment extends Fragment {
         data.setValueTextSize(12f);
         data.setValueTextColor(Color.BLACK);
 
+
+        pieChartCalories.setCenterText(Integer.toString(caleaten) +"/"+ Integer.toString(caloriesmax) + "kcal");
+        pieChartCalories.setCenterTextSize(22);
         pieChartCalories.setData(data);
         pieChartCalories.invalidate();
         pieChartCalories.animateY(600, Easing.EaseInOutQuad);
@@ -928,13 +1017,8 @@ public class HomeFragment extends Fragment {
         }
 
 
-        txt_cal = (TextView) root.findViewById(R.id.txt_cal);
-        if(calories == 0)
-        {
-            sodium = 1600f;
-            txt_sodVal.setText(Float.toString(sodium));
-        }
-        txt_calActual = (TextView) root.findViewById(R.id.txt_calActual);
+
+
 
 
 
@@ -946,6 +1030,7 @@ public class HomeFragment extends Fragment {
         barChartPotassium = root.findViewById(R.id.barchart_potassium);
         barChartChlorine = root.findViewById(R.id.barchart_chlorine);
         barChartSodium = root.findViewById(R.id.barchart_Sodium);
+        barchart_water = root.findViewById(R.id.barchart_water);
 
         pieChart = root.findViewById(R.id.piechart_standard);
         pieChartUser = root.findViewById(R.id.piechart_user);
@@ -953,6 +1038,7 @@ public class HomeFragment extends Fragment {
 
         setBarChart();
         setupPieChart();
+        loadBarChartWater();
         loadBarChartPot();
         loadBarChartCal();
         loadBarChartIron();

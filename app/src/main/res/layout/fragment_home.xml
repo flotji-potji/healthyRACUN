@@ -91,13 +91,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-
                 <TextView
                     android:id="@+id/today_calories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Deine heutige Kalorieneinnahmen"
+                    android:text="Deine heutige Kalorien- und Wassereinnahmen"
                     android:layout_margin="15dp"
                     android:textSize="24sp"
                     android:textStyle="bold"
@@ -122,49 +120,58 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp">
-                    <TextView
-                        android:id="@+id/txt_calActual"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="VALUE"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
 
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textAlignment="center"/>
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="/"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textAlignment="center"/>
-                    <TextView
-                        android:id="@+id/txt_cal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="VALUE"
-                        android:layout_marginRight="5dp"
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textAlignment="center"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="kcal"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Wasser:"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:id="@+id/txt_watVal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:layout_weight="40"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:text="ml"
+                            android:layout_weight="1"
+                            android:textSize="18sp"/>
 
-                        android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:textAlignment="center"/>
+                    </LinearLayout>
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/barchart_water"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        />
+
+
+
                 </LinearLayout>
-
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
 
         <!-- Card view for displaying the -->
         <!-- Pie chart and details of pie chart -->
