@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.android.myfishy.R;
+import com.example.android.myfishy.db.entities.DietaryRestrictionTable;
 import com.example.android.myfishy.db.entities.User;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
@@ -43,6 +44,7 @@ public class HomeFragment extends Fragment {
 
     private PieChart pieChart;
     private PieChart pieChartUser;
+    private PieChart pieChartCalories;
 
     private TextView txt_iroVal;
     private TextView txt_calVal;
@@ -74,7 +76,26 @@ public class HomeFragment extends Fragment {
     private TextView txtusername;
     private XAxis xAxis;
 
-    User userinfo = new User(username, firstname, surname,birthday, gender,weight,height);
+    String condition_name;
+    float table_salt;
+    float sodium;
+    float potassiumMin;
+    float potassiumMax;
+    float calcium;
+    float phosphor;
+    double protein;
+    float calories;
+    float liquid_intake;
+    float carbs;
+    float natriumMin;
+    float natriumMax;
+    float fats;
+    float fibers;
+
+    User userinfo = new User(username, firstname, surname,birthday, gender, weight , height);
+
+
+
 
     private void loadBarChartPho()
     {
@@ -182,22 +203,31 @@ public class HomeFragment extends Fragment {
 //        txt_natVal.setText((int) yValue);
 
 
+        if (condition_name == "CNI Stufe 1-3a" || condition_name == "CNI Stufe 3b-4" || condition_name == "CNI Stufe 5"  || condition_name == "CNI Stufe 5D")
+        {
+            natriumMax = 100f;
+            natriumMin = 0;
+        }
+        else
+        {
+            natriumMax = 145f;
+            natriumMin = 136f;
+        }
 
-        if(yValue > 2300f)
+
+
+
+        if(yValue > natriumMax || yValue < natriumMin)
         {
             set.setColor(Color.RED);
-        }
-        else if(yValue < 1500f)
-        {
-            set.setColor(Color.rgb( 152,251,152));
         }
         else
         {
             set.setColor(Color.GREEN);
         }
 
-        LimitLine maXll = new LimitLine(2300f, "Max");
-        LimitLine miNll = new LimitLine(1500f, "Min");
+        LimitLine maXll = new LimitLine(natriumMax, "Max");
+        LimitLine miNll = new LimitLine(natriumMin, "Min");
         maXll.setLineWidth(2f);
         miNll.setLineWidth(2f);
         maXll.setLineColor(Color.BLACK);
@@ -275,22 +305,38 @@ public class HomeFragment extends Fragment {
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
-        if(yValue > 4700f)
+        if (condition_name == "CNI Stufe 1-3a" || condition_name == "CNI Stufe 3b-4" )
+        {
+            potassiumMin = 0;
+            potassiumMin = 4700;
+        }
+        else if(condition_name == "CNI Stufe 5"  || condition_name == "CNI Stufe 5D")
+        {
+            potassiumMax = 2700f;
+            potassiumMin = 0;
+        }
+        else
+        {
+            potassiumMax = 4700f;
+            potassiumMin = 0;
+        }
+
+
+        if(yValue > potassiumMax || yValue < potassiumMin )
         {
             set.setColor(Color.RED);
-        }
-        else if(yValue == 4700f)
-        {
-            set.setColor(Color.YELLOW);
         }
         else
         {
             set.setColor(Color.GREEN);
         }
 
-        LimitLine maXll = new LimitLine(4700f, "Max");
+        LimitLine maXll = new LimitLine(potassiumMax, "Max");
+        LimitLine miNll = new LimitLine(potassiumMin, "Min");
         maXll.setLineWidth(2f);
         maXll.setLineColor(Color.BLACK);
+        miNll.setLineWidth(2f);
+        miNll.setLineColor(Color.BLACK);
         barChartPotassium.getAxisRight().addLimitLine(maXll);
 
 
@@ -314,6 +360,22 @@ public class HomeFragment extends Fragment {
         set.setDrawValues(false);
 
 //        String[] yAxisLables = new String[]{"0","1", "2", "3"};
+
+        if (condition_name == "CNI Stufe 1-3a" || condition_name == "CNI Stufe 3b-4" )
+        {
+            potassiumMin = 0;
+            potassiumMin = 4700;
+        }
+        else if(condition_name == "CNI Stufe 5"  || condition_name == "CNI Stufe 5D")
+        {
+            potassiumMax = 2700f;
+            potassiumMin = 0;
+        }
+        else
+        {
+            potassiumMax = 4700f;
+            potassiumMin = 0;
+        }
 
         if(yValue > 2500f)
         {
@@ -345,7 +407,7 @@ public class HomeFragment extends Fragment {
     private void loadBarChartChlorine()
     {
         List<BarEntry> entries = new ArrayList<>();
-        float yValue = 1800f;
+        float yValue = 2.5f;
 
 
 
@@ -359,11 +421,11 @@ public class HomeFragment extends Fragment {
 
 //        String[] yAxisLables = new String[]{"0","1", "2", "3"};
 
-        if(yValue > 2500f)
+        if(yValue > 3f)
         {
             set.setColor(Color.RED);
         }
-        else if(yValue < 1000f)
+        else if(yValue < 1f)
         {
             set.setColor(Color.rgb( 152,251,152));
         }
@@ -372,8 +434,8 @@ public class HomeFragment extends Fragment {
             set.setColor(Color.GREEN);
         }
 
-        LimitLine maXll = new LimitLine(2500f, "Max");
-        LimitLine miNll = new LimitLine(1000f , "Min");
+        LimitLine maXll = new LimitLine(3f, "Max");
+        LimitLine miNll = new LimitLine(1f , "Min");
         maXll.setLineWidth(2f);
         miNll.setLineWidth(2f);
         maXll.setLineColor(Color.BLACK);
@@ -389,7 +451,7 @@ public class HomeFragment extends Fragment {
     private void loadBarChartSod()
     {
         List<BarEntry> entries = new ArrayList<>();
-        float yValue = 1800f;
+        float yValue = 1600f;
 
 
 
@@ -403,11 +465,11 @@ public class HomeFragment extends Fragment {
 
 //        String[] yAxisLables = new String[]{"0","1", "2", "3"};
 
-        if(yValue > 2500f)
+        if(yValue > 2300f)
         {
             set.setColor(Color.RED);
         }
-        else if(yValue < 1000f)
+        else if(yValue < 1500f)
         {
             set.setColor(Color.rgb( 152,251,152));
         }
@@ -416,8 +478,8 @@ public class HomeFragment extends Fragment {
             set.setColor(Color.GREEN);
         }
 
-        LimitLine maXll = new LimitLine(2500f, "Max");
-        LimitLine miNll = new LimitLine(1000f , "Min");
+        LimitLine maXll = new LimitLine(2300f, "Max");
+        LimitLine miNll = new LimitLine(1500f , "Min");
         maXll.setLineWidth(2f);
         miNll.setLineWidth(2f);
         maXll.setLineColor(Color.BLACK);
@@ -451,8 +513,8 @@ public class HomeFragment extends Fragment {
         barChartPotassium.getAxisLeft().setAxisMaximum(8000f);
         barChartPotassium.getAxisLeft().setEnabled(false);
         barChartPotassium.animateY(1100);
-        barChartPotassium.getAxisRight().setLabelCount(9, true);
-        barChartPotassium.getAxisLeft().setLabelCount(9,true);
+        barChartPotassium.getAxisRight().setLabelCount(6, true);
+        barChartPotassium.getAxisLeft().setLabelCount(6,true);
 
         barChartPotassium.getXAxis().setEnabled(false);
 
@@ -471,8 +533,8 @@ public class HomeFragment extends Fragment {
         barChartPhosphor.getAxisLeft().setAxisMaximum(2000f);
         barChartPhosphor.getAxisLeft().setEnabled(false);
         barChartPhosphor.animateY(1100);
-        barChartPhosphor.getAxisRight().setLabelCount(9, true);
-        barChartPhosphor.getAxisLeft().setLabelCount(9,true);
+        barChartPhosphor.getAxisRight().setLabelCount(6, true);
+        barChartPhosphor.getAxisLeft().setLabelCount(6,true);
 
         barChartPhosphor.getXAxis().setEnabled(false);
 
@@ -491,8 +553,8 @@ public class HomeFragment extends Fragment {
         barChartMagensium.getAxisLeft().setAxisMaximum(600f);
         barChartMagensium.getAxisLeft().setEnabled(false);
         barChartMagensium.animateY(1100);
-        barChartMagensium.getAxisRight().setLabelCount(9, true);
-        barChartMagensium.getAxisLeft().setLabelCount(9,true);
+        barChartMagensium.getAxisRight().setLabelCount(6, true);
+        barChartMagensium.getAxisLeft().setLabelCount(6,true);
 
         barChartMagensium.getXAxis().setEnabled(false);
 
@@ -511,8 +573,8 @@ public class HomeFragment extends Fragment {
         barChartIron.getAxisLeft().setAxisMaximum(60f);
         barChartIron.getAxisLeft().setEnabled(false);
         barChartIron.animateY(1100);
-        barChartIron.getAxisRight().setLabelCount(9, true);
-        barChartIron.getAxisLeft().setLabelCount(9,true);
+        barChartIron.getAxisRight().setLabelCount(6, true);
+        barChartIron.getAxisLeft().setLabelCount(6,true);
 
 
 
@@ -535,14 +597,14 @@ public class HomeFragment extends Fragment {
         barChartNatrium.setDoubleTapToZoomEnabled(false);
 
 
-        barChartNatrium.getAxisRight().setAxisMinimum(0f);
-        barChartNatrium.getAxisLeft().setAxisMinimum(0f);
-        barChartNatrium.getAxisRight().setAxisMaximum(4000f);
-        barChartNatrium.getAxisLeft().setAxisMaximum(4000f);
+        barChartNatrium.getAxisRight().setAxisMinimum(80f);
+        barChartNatrium.getAxisLeft().setAxisMinimum(80f);
+        barChartNatrium.getAxisRight().setAxisMaximum(150f);
+        barChartNatrium.getAxisLeft().setAxisMaximum(150f);
         barChartNatrium.getAxisLeft().setEnabled(false);
         barChartNatrium.animateY(1100);
-        barChartNatrium.getAxisRight().setLabelCount(9, true);
-        barChartNatrium.getAxisLeft().setLabelCount(9,true);
+        barChartNatrium.getAxisRight().setLabelCount(6, true);
+        barChartNatrium.getAxisLeft().setLabelCount(6,true);
 
         barChartNatrium.getXAxis().setEnabled(false);
 
@@ -563,8 +625,8 @@ public class HomeFragment extends Fragment {
         barChartCalcium.getAxisLeft().setAxisMaximum(3000f);
         barChartCalcium.getAxisLeft().setEnabled(false);
         barChartCalcium.animateY(1100);
-        barChartCalcium.getAxisRight().setLabelCount(9, true);
-        barChartCalcium.getAxisLeft().setLabelCount(9,true);
+        barChartCalcium.getAxisRight().setLabelCount(6, true);
+        barChartCalcium.getAxisLeft().setLabelCount(6,true);
 
         barChartCalcium.getXAxis().setEnabled(false);
 
@@ -580,12 +642,12 @@ public class HomeFragment extends Fragment {
 
         barChartChlorine.getAxisRight().setAxisMinimum(0f);
         barChartChlorine.getAxisLeft().setAxisMinimum(0f);
-        barChartChlorine.getAxisRight().setAxisMaximum(3000f);
-        barChartChlorine.getAxisLeft().setAxisMaximum(3000f);
+        barChartChlorine.getAxisRight().setAxisMaximum(4f);
+        barChartChlorine.getAxisLeft().setAxisMaximum(4f);
         barChartChlorine.getAxisLeft().setEnabled(false);
         barChartChlorine.animateY(1100);
-        barChartChlorine.getAxisRight().setLabelCount(9, true);
-        barChartChlorine.getAxisLeft().setLabelCount(9,true);
+        barChartChlorine.getAxisRight().setLabelCount(6, true);
+        barChartChlorine.getAxisLeft().setLabelCount(6,true);
 
         barChartChlorine.getXAxis().setEnabled(false);
 
@@ -600,12 +662,12 @@ public class HomeFragment extends Fragment {
 
         barChartSodium.getAxisRight().setAxisMinimum(0f);
         barChartSodium.getAxisLeft().setAxisMinimum(0f);
-        barChartSodium.getAxisRight().setAxisMaximum(5f);
-        barChartSodium.getAxisLeft().setAxisMaximum(5f);
+        barChartSodium.getAxisRight().setAxisMaximum(3500f);
+        barChartSodium.getAxisLeft().setAxisMaximum(3500f);
         barChartSodium.getAxisLeft().setEnabled(false);
         barChartSodium.animateY(1100);
-        barChartSodium.getAxisRight().setLabelCount(9, true);
-        barChartSodium.getAxisLeft().setLabelCount(9,true);
+        barChartSodium.getAxisRight().setLabelCount(6, true);
+        barChartSodium.getAxisLeft().setLabelCount(6,true);
 
         barChartSodium.getXAxis().setEnabled(false);
 
@@ -646,6 +708,20 @@ public class HomeFragment extends Fragment {
         pieChartUser.setExtraBottomOffset(10f);
         pieChartUser.getDescription().setPosition(300f, 505f);
 
+        pieChartCalories.setDrawHoleEnabled(true);
+        pieChartCalories.setUsePercentValues(true);
+        pieChartCalories.setEntryLabelTextSize(12);
+        pieChartCalories.setEntryLabelColor(Color.BLACK);
+        pieChartCalories.getLegend().setEnabled(false);
+        pieChartCalories.setDrawEntryLabels(false);
+        pieChartCalories.getDescription().setEnabled(false);
+        pieChartCalories.setExtraBottomOffset(10f);
+
+        pieChartCalories.setMaxAngle(260.0f);
+        pieChartCalories.setRotationAngle(140.0f);
+
+
+        pieChartCalories.setTouchEnabled(false);
         pieChartUser.setTouchEnabled(false);
         pieChart.setTouchEnabled(false);
     }
@@ -657,9 +733,49 @@ public class HomeFragment extends Fragment {
 
 
         //value: daten die mitgegeben werden, um anzuzeigen wv der nährstoffe eingenommen wurdem
-        entries.add(new PieEntry(0.55f, "Carbs"));
-        entries.add(new PieEntry(0.2f, "Proteins"));
-        entries.add(new PieEntry(0.25f, "Fats"));
+        if(condition_name == null)
+        {
+            condition_name = "";
+        }
+
+        switch (condition_name)
+        {
+            case "CNI Stufe 1-3a" :
+                entries.add(new PieEntry(0.55f, "Carbs"));
+                entries.add(new PieEntry((float) (weight*0.8), "Proteins"));
+                entries.add(new PieEntry(0.28f, "Fats"));
+                break;
+            case "CNI Stufe 3b-4":
+            case "CNI Stufe 5":
+                entries.add(new PieEntry(0.55f, "Carbs"));
+                entries.add(new PieEntry((float) (weight*1), "Proteins"));
+                entries.add(new PieEntry(0.28f, "Fats"));
+                break;
+
+            case "CNI Stufe 5D":
+                entries.add(new PieEntry(0.55f, "Carbs"));
+                entries.add(new PieEntry((float) (weight*1.1), "Proteins"));
+                entries.add(new PieEntry(0.28f, "Fats"));
+
+                break;
+            case "Typ 1":
+            case "Typ 2":
+                entries.add(new PieEntry(0.55f, "Carbs"));
+                entries.add(new PieEntry(0.17f, "Proteins"));
+                entries.add(new PieEntry(0.28f, "Fats"));
+
+                break;
+            case "Morbus Crohn":
+            case "Colitis Ulc.":
+                entries.add(new PieEntry(0.48f, "Carbs"));
+                entries.add(new PieEntry(0.17f, "Proteins"));
+                entries.add(new PieEntry(0.35f, "Fats"));
+                break;
+            default:
+                entries.add(new PieEntry(0.55f, "Carbs"));
+                entries.add(new PieEntry(0.20f, "Proteins"));
+                entries.add(new PieEntry(0.25f, "Fats"));
+        }
 
         //colors liste wurde erstellt um die entries in farben einzukategorisieren.
         int[] colors = { Color.rgb(0,255,0), Color.rgb(255,140,0), Color.rgb(255,0,0)};
@@ -685,8 +801,19 @@ public class HomeFragment extends Fragment {
 
 
         //value: daten die mitgegeben werden, um anzuzeigen wv der nährstoffe eingenommen wurdem
+
+
+//        case "Typ 1":
+//        case "Typ 2":
+//        protein = 17;
+//        carbs = 55;
+//        fats = 28;
+//        break;
+//        case "Morbus Crohn":
+//        case "Colitis Ulc.":
+
         entries.add(new PieEntry(0.55f, "Carbs"));
-        entries.add(new PieEntry(0.2f, "Proteins"));
+        entries.add(new PieEntry(0.20f, "Proteins"));
         entries.add(new PieEntry(0.25f, "Fats"));
 
         //colors liste wurde erstellt um die entries in farben einzukategorisieren.
@@ -703,6 +830,32 @@ public class HomeFragment extends Fragment {
         pieChartUser.setData(data);
         pieChartUser.invalidate();
         pieChartUser.animateY(600, Easing.EaseInOutQuad);
+
+    }
+
+    private void loadPieChartCalories()
+    {
+        ArrayList<PieEntry> entries = new ArrayList<>();
+
+        //value: daten die mitgegeben werden, um anzuzeigen wv der nährstoffe eingenommen wurdem
+        entries.add(new PieEntry(50, ""));
+        entries.add(new PieEntry(100, ""));
+
+
+        //colors liste wurde erstellt um die entries in farben einzukategorisieren.
+        int[] colors = { Color.rgb(0,0,255), Color.rgb(255,255,255), Color.rgb(255,0,0)};
+
+        PieDataSet dataSet = new PieDataSet(entries, "Nutritions:");
+        dataSet.setColors(colors);
+        PieData data = new PieData(dataSet);
+        data.setDrawValues(false);
+        data.setValueFormatter(new PercentFormatter(pieChartCalories));
+        data.setValueTextSize(12f);
+        data.setValueTextColor(Color.BLACK);
+
+        pieChartCalories.setData(data);
+        pieChartCalories.invalidate();
+        pieChartCalories.animateY(600, Easing.EaseInOutQuad);
 
     }
 
@@ -752,6 +905,7 @@ public class HomeFragment extends Fragment {
 
         pieChart = root.findViewById(R.id.piechart_standard);
         pieChartUser = root.findViewById(R.id.piechart_user);
+        pieChartCalories = root.findViewById(R.id.piechart_calories);
 
         setBarChart();
         setupPieChart();
@@ -764,6 +918,7 @@ public class HomeFragment extends Fragment {
         loadBarChartChlorine();
         loadBarChartSod();
 
+        loadPieChartCalories();
         loadPieChartUser();
         loadPieChart();
 

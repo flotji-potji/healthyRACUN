@@ -72,6 +72,100 @@
 
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewGraph_calories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            app:cardCornerRadius="10dp"
+            android:layout_below="@id/cardViewUser">
+
+
+            <!--Linear layout to display pie chart -->
+            <!-- and details of pie chart-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/today_calories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Deine heutige Kalorieneinnahme"
+                    android:layout_margin="15dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    >
+                    <!--Pie chart to display the data-->
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/piechart_calories"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
+                        android:layout_weight="1" />
+                    <!--Creating another linear layout -->
+                    <!-- to display pie chart details -->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+                    <TextView
+                        android:id="@+id/txt_calActual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VALUE"
+
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:id="@+id/txt_cal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VALUE"
+                        android:layout_marginRight="5dp"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="kcal"
+
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
         <!-- Card view for displaying the -->
         <!-- Pie chart and details of pie chart -->
         <androidx.cardview.widget.CardView
@@ -82,7 +176,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
                 app:cardCornerRadius="10dp"
-                android:layout_below="@id/cardViewUser">
+                android:layout_below="@id/cardViewGraph_calories">
 
 
             <!--Linear layout to display pie chart -->
@@ -567,7 +661,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
                             android:gravity="right"
-                            android:text="mg"
+                            android:text="mmol"
                             android:layout_weight="1"
                             android:textSize="18sp"/>
 
@@ -669,7 +763,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
                             android:gravity="right"
-                            android:text="mg"
+                            android:text="ppm"
                             android:layout_weight="1"
                             android:textSize="18sp"/>
 

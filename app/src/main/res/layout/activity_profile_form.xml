@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
@@ -15,104 +15,152 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/cardview_profile_form"
                 style="@style/cardView_style">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="@string/title_edit_data_title"
-                android:textColor="@color/black"
-                android:textSize="28sp"
-                android:layout_gravity="center_horizontal"
-                   />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="96dp"
-                android:ems="10"
-                android:hint="@string/title_add_edit_data_name"
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="25dp"
+                android:layout_below="@+id/title_pfcreator"
+                >
+                <TextView
+                    android:id="@+id/title_pfcreator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:text="PROFILECREATOR"
+                    android:textSize="28sp"
+                    android:layout_gravity="center_horizontal"
+
                     />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="46dp"
-                android:layout_marginTop="172dp"
-                android:text="Geschlecht"
-                android:textSize="18sp"/>
-            <RadioGroup
-                android:layout_width="wrap_content"
+
+                <EditText
+                    android:id="@+id/edittext_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Username"
+                    />
+                <EditText
+                    android:id="@+id/edittext_firstname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Firstname"
+                    />
+                <EditText
+                    android:id="@+id/edittext_surname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Surname"
+                    />
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="172dp"
-                android:orientation="horizontal"
-                android:layout_gravity="right"
+                android:orientation="vertical"
+                android:layout_margin="25dp">
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Geschlecht"
+                    android:textSize="25sp"/>
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+
+                    android:orientation="horizontal"
+                    android:layout_gravity="right"
                     >
+                    <RadioButton
+                        android:id="@+id/radioButton_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Männlich"
+                       />
+                    <RadioButton
+                        android:id="@+id/radioButton_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Weiblich"
+                        />
+                </RadioGroup>
 
-                <RadioButton
+            </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Männlich"
-                    android:onClick="radioButtonhandler"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <EditText
+                        android:id="@+id/edittext_weight"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/title_add_edit_data_weight"
+                        android:textAlignment="center"
+                        android:inputType="number"
+                        />
 
-                <RadioButton
+                    <EditText
+                        android:id="@+id/edittext_height"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/title_add_edit_data_height"
+                        android:textAlignment="center"
+                        android:inputType="number"
+                         />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Weiblich"
-                    android:onClick="radioButtonhandler"/>
-            </RadioGroup>
-            <EditText
-                android:layout_width="164dp"
-                android:layout_height="46dp"
-                android:layout_marginTop="240dp"
-                android:ems="10"
-                android:hint="@string/title_add_edit_data_weight"
-                android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="25dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Krankheit"
+                        android:textSize="25sp"/>
+                    <Spinner
+                        android:id="@+id/spinner_condition"
+                        android:entries="@array/illnessItems"
+                        android:gravity="center"
+                        android:layout_width="200dp"
+                        android:layout_marginTop="25dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        />
+
+                </LinearLayout>
+                <Button
+                    android:layout_width="240dp"
+                    style="@style/button_profile_view_style"
+                    android:layout_height="50dp"
+                    android:text="Angaben bestätigen"
+                    android:layout_gravity="center"
                     />
-
-            <EditText
-                android:layout_width="157dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="240dp"
-                android:ems="10"
-                android:hint="@string/title_add_edit_data_height"
-                android:inputType="number"
-                android:layout_gravity="right" />
-
-            <EditText
-                android:layout_width="157dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="320dp"
-                android:ems="10"
-                android:hint="Da kommt was gscheiteres hin"
-                android:inputType="number"
-                    />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
-                android:layout_marginTop="380dp"
-                android:gravity="center"
-                android:text="Krankheit"
-                android:textSize="18sp"/>
-            <Spinner
-                android:entries="@array/illnessItems"
-                android:layout_width="wrap_content"
-                android:layout_height="44dp"
-                android:layout_marginTop="380dp"
-                android:layout_gravity="right"
-            />
-            <Button
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="460dp"
-                android:text="Angaben bestätigen"
-
-            />
-
-
-
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
-</ScrollView>
+</LinearLayout>
