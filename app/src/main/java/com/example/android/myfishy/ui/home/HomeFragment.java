@@ -56,6 +56,7 @@ public class HomeFragment extends Fragment {
     private TextView txt_sodVal;
     private TextView txt_calActual;
     private TextView txt_cal;
+    private TextView txt_watVal;
 
     private HorizontalBarChart barChartNatrium;
     private HorizontalBarChart barChartCalcium;
@@ -100,28 +101,39 @@ public class HomeFragment extends Fragment {
     float sodium;
     float natrium;
 
-    double protein;
+    String diet_name;
+
+    float protein;
     int calories;
     float liquid_intake;
     float carbs;
     float fats;
+    float fibers;
+
+    int caloriesmax;
+    int caleaten;
 
     int consCalories;
 
 
+    DietaryRestrictionTable drt = new DietaryRestrictionTable(condition_name, diet_name, table_salt, sodium, potassium, calcium, phosphor, protein, calories, liquid_intake, carbs, fats, fibers);
+
     User userinfo = new User(username, firstname, surname,birthday, gender, weight , height);
+
+
 
 
     private  void loadBarChartWater()
     {
         List<BarEntry> entries = new ArrayList<>();
 
+
         if(liquid_intake == 0)
         {
             liquid_intake = 600f;
         }
 
-        if (condition_name == "CNI Stufe 5D" )
+        if (drt.getCondition_name() == "CNI Stufe 5D" )
         {
             waterMin = 500;
             waterMax = 800;
@@ -131,9 +143,8 @@ public class HomeFragment extends Fragment {
             waterMin = 2000f;
         }
 
-        entries.add(new BarEntry(0f, phosphor));
+        entries.add(new BarEntry(0f, liquid_intake));
         BarDataSet set = new BarDataSet(entries, "");
-
 
         if(liquid_intake > waterMax || liquid_intake < waterMin )
         {
@@ -143,10 +154,6 @@ public class HomeFragment extends Fragment {
         {
             set.setColor(Color.GREEN);
         }
-
-        //Setting new color, needs to be done
-
-//        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
 
         BarData data = new BarData(set);
 
@@ -166,7 +173,6 @@ public class HomeFragment extends Fragment {
         }
         barchart_water.getAxisRight().addLimitLine(miNll);
 
-//        String[] yAxisLables = new String[]{"0","1", "2", "3"};
         barchart_water.setData(data);
         barchart_water.invalidate(); // refresh
     }
@@ -178,6 +184,10 @@ public class HomeFragment extends Fragment {
         {
             phosphor = 600f;
         }
+//        else
+//        {
+//            phosphor = drt.getPhosphor();
+//        }
 
         entries.add(new BarEntry(0f, phosphor));
         BarDataSet set = new BarDataSet(entries, "");
@@ -280,7 +290,7 @@ public class HomeFragment extends Fragment {
         entries.add(new BarEntry(0f, natrium));
         BarDataSet set = new BarDataSet(entries, "");
 
-        if (condition_name == "CNI Stufe 1-3a" || condition_name == "CNI Stufe 3b-4" || condition_name == "CNI Stufe 5"  || condition_name == "CNI Stufe 5D")
+        if (drt.getCondition_name() == "CNI Stufe 1-3a" || drt.getCondition_name()  == "CNI Stufe 3b-4" || drt.getCondition_name()  == "CNI Stufe 5"  || drt.getCondition_name()  == "CNI Stufe 5D")
         {
             natriumMax = 100f;
             natriumMin = 0;
@@ -386,12 +396,12 @@ public class HomeFragment extends Fragment {
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
-        if (condition_name == "CNI Stufe 1-3a" || condition_name == "CNI Stufe 3b-4" )
+        if (drt.getCondition_name() == "CNI Stufe 1-3a" || drt.getCondition_name() == "CNI Stufe 3b-4" )
         {
             potassiumMin = 0;
             potassiumMin = 4700;
         }
-        else if(condition_name == "CNI Stufe 5"  || condition_name == "CNI Stufe 5D")
+        else if(drt.getCondition_name() == "CNI Stufe 5"  || drt.getCondition_name() == "CNI Stufe 5D")
         {
             potassiumMax = 2700f;
             potassiumMin = 0;
@@ -418,7 +428,11 @@ public class HomeFragment extends Fragment {
         maXll.setLineColor(Color.BLACK);
         miNll.setLineWidth(2f);
         miNll.setLineColor(Color.BLACK);
-        barChartPotassium.getAxisRight().addLimitLine(maXll);
+
+        if(potassiumMax != 0)
+        {
+            barChartPotassium.getAxisRight().addLimitLine(maXll);
+        }
         if(potassiumMin != 0)
         {
             barChartPotassium.getAxisRight().addLimitLine(miNll);
@@ -448,7 +462,7 @@ public class HomeFragment extends Fragment {
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
-        if (condition_name == "CNI Stufe 3b-4" || condition_name == "CNI Stufe 5"  || condition_name == "CNI Stufe 5D" )
+        if (drt.getCondition_name() == "CNI Stufe 3b-4" || drt.getCondition_name() == "CNI Stufe 5"  || drt.getCondition_name() == "CNI Stufe 5D" )
         {
             calciumMax = 2000;
         }
@@ -477,8 +491,13 @@ public class HomeFragment extends Fragment {
         miNll.setLineWidth(2f);
         maXll.setLineColor(Color.BLACK);
         miNll.setLineColor(Color.BLACK);
+
+        if(calciumMin != 0)
+        {
+            barChartCalcium.getAxisRight().addLimitLine(miNll);
+        }
         barChartCalcium.getAxisRight().addLimitLine(maXll);
-        barChartCalcium.getAxisRight().addLimitLine(miNll);
+
 
 
         barChartCalcium.setData(data);
@@ -821,8 +840,18 @@ public class HomeFragment extends Fragment {
     {
         ArrayList<PieEntry> entries = new ArrayList<>();
 
+//        weight = userinfo.getWeight();
+        weight = userinfo.getWeight();
+        if(weight == 0)
+        {
+            weight = 80;
+        }
+
 
         //value: daten die mitgegeben werden, um anzuzeigen wv der nährstoffe eingenommen wurdem
+
+
+        condition_name = drt.getCondition_name();
         if(condition_name == null)
         {
             condition_name = "";
@@ -832,19 +861,19 @@ public class HomeFragment extends Fragment {
         {
             case "CNI Stufe 1-3a" :
                 entries.add(new PieEntry(0.55f, "Carbs"));
-                entries.add(new PieEntry((float) (weight*0.8), "Proteins"));
+                entries.add(new PieEntry((float) ((weight*0.8)/100), "Proteins"));
                 entries.add(new PieEntry(0.28f, "Fats"));
                 break;
             case "CNI Stufe 3b-4":
             case "CNI Stufe 5":
                 entries.add(new PieEntry(0.55f, "Carbs"));
-                entries.add(new PieEntry((float) (weight*1), "Proteins"));
+                entries.add(new PieEntry((float) ((weight*1)/100), "Proteins"));
                 entries.add(new PieEntry(0.28f, "Fats"));
                 break;
 
             case "CNI Stufe 5D":
                 entries.add(new PieEntry(0.55f, "Carbs"));
-                entries.add(new PieEntry((float) (weight*1.1), "Proteins"));
+                entries.add(new PieEntry((float) ((weight*1.1)/100), "Proteins"));
                 entries.add(new PieEntry(0.28f, "Fats"));
 
                 break;
@@ -917,11 +946,32 @@ public class HomeFragment extends Fragment {
     {
         ArrayList<PieEntry> entries = new ArrayList<>();
 
-        int caloriesmax = 2000;
-        int caleaten = 1500;
+        weight = userinfo.getWeight();
+
+        if(weight == 0)
+        {
+            weight = 80;
+        }
 
 
         //value: daten die mitgegeben werden, um anzuzeigen wv der nährstoffe eingenommen wurdem
+
+        if (drt.getCondition_name() == "CNI Stufe 1-3a" )
+        {
+            caleaten = 1500;
+            caloriesmax = (int) (35*weight);
+        }
+        else if(drt.getCondition_name()  == "CNI Stufe 3b-4" || drt.getCondition_name()  == "CNI Stufe 5"  || drt.getCondition_name()  == "CNI Stufe 5D")
+        {
+            caleaten = 1500;
+            caloriesmax = (int) (40*weight);
+        }
+        else
+        {
+            caloriesmax = 2000;
+            caleaten = 1500;
+        }
+
         entries.add(new PieEntry(caleaten, "eaten"));
         entries.add(new PieEntry(caloriesmax-caleaten , "max cal"));
 
@@ -956,9 +1006,17 @@ public class HomeFragment extends Fragment {
 
         txtusername = (TextView) root.findViewById(R.id.home_username);
 
+
         if(username == null)
         {
             txtusername.setText("Sascha Karottenmann");
+        }
+
+        txt_watVal = (TextView) root.findViewById(R.id.txt_watVal);
+        if(liquid_intake == 0)
+        {
+            liquid_intake = 600f;
+            txt_watVal.setText(Float.toString(liquid_intake));
         }
 
         txt_iroVal = (TextView) root.findViewById(R.id.txt_iroVal);
