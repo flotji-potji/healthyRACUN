@@ -97,7 +97,7 @@
                     android:id="@+id/today_calories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Deine heutige Kalorieneinnahme"
+                    android:text="Deine heutige Kalorieneinnahmen"
                     android:layout_margin="15dp"
                     android:textSize="24sp"
                     android:textStyle="bold"
@@ -113,7 +113,7 @@
 
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/piechart_calories"
-                        android:layout_width="250dp"
+                        android:layout_width="match_parent"
                         android:layout_height="250dp"
                         android:layout_weight="1" />
                     <!--Creating another linear layout -->
@@ -301,6 +301,32 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:textStyle="bold"
+                        android:text="Recommended"
+                        android:layout_weight="1.25"
+                        android:gravity="center"
+                       />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:textStyle="bold"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Actual"
+                       />
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -344,6 +370,106 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="5dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Natrium:"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:id="@+id/txt_natVal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:layout_weight="40"
+                            android:text="VALUE"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:text="mmol"
+                            android:layout_weight="1"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/barchart_natrium"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Sodium:"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:id="@+id/txt_sodVal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:layout_weight="40"
+                            android:text="VALUE"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="right"
+                            android:text="ppm"
+                            android:layout_weight="1"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/barchart_Sodium"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -622,60 +748,6 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         />
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="25dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="Natrium:"
-                            android:textSize="18sp"/>
-                        <TextView
-                            android:id="@+id/txt_natVal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:gravity="right"
-                            android:layout_weight="40"
-                            android:text="VALUE"
-                            android:textSize="18sp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:gravity="right"
-                            android:text="mmol"
-                            android:layout_weight="1"
-                            android:textSize="18sp"/>
-
-                    </LinearLayout>
-
-                    <com.github.mikephil.charting.charts.HorizontalBarChart
-                        android:id="@+id/barchart_natrium"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        />
-
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -729,54 +801,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="25dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="Sodium:"
-                            android:textSize="18sp"/>
-                        <TextView
-                            android:id="@+id/txt_sodVal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:gravity="right"
-                            android:layout_weight="40"
-                            android:text="VALUE"
-                            android:textSize="18sp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:gravity="right"
-                            android:text="ppm"
-                            android:layout_weight="1"
-                            android:textSize="18sp"/>
-
-                    </LinearLayout>
-
-                    <com.github.mikephil.charting.charts.HorizontalBarChart
-                        android:id="@+id/barchart_Sodium"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        />
-
-                </LinearLayout>
 
             </LinearLayout>
 

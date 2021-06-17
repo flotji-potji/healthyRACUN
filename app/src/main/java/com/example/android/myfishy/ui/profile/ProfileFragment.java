@@ -34,9 +34,6 @@ public class ProfileFragment extends Fragment {
     private TextView txtweight;
     private TextView txtheight;
 
-
-
-
     public ProfileFragment() {
         // Required empty public constructor
     }

@@ -53,8 +53,6 @@ public class HomeFragment extends Fragment {
     private TextView txt_phoVal;
     private TextView txt_potVal;
 
-
-
     private HorizontalBarChart barChartNatrium;
     private HorizontalBarChart barChartCalcium;
     private HorizontalBarChart barChartIron;
@@ -78,43 +76,51 @@ public class HomeFragment extends Fragment {
 
     String condition_name;
     float table_salt;
-    float sodium;
+
     float potassiumMin;
     float potassiumMax;
+    float natriumMin;
+    float natriumMax;
+    float calciumMin;
+    float calciumMax;
+
+    float chlorine;
+    float magnesium;
+    float potassium;
     float calcium;
     float phosphor;
+    float iron;
+    float sodium;
+    float natrium;
+
     double protein;
     float calories;
     float liquid_intake;
     float carbs;
-    float natriumMin;
-    float natriumMax;
     float fats;
-    float fibers;
+
 
     User userinfo = new User(username, firstname, surname,birthday, gender, weight , height);
-
-
 
 
     private void loadBarChartPho()
     {
         List<BarEntry> entries = new ArrayList<>();
 
-        float yValue = 600f;
+        if(phosphor == 0)
+        {
+            phosphor = 600f;
+        }
 
-
-
-
-        entries.add(new BarEntry(0f, yValue));
+        entries.add(new BarEntry(0f, phosphor));
         BarDataSet set = new BarDataSet(entries, "");
 
 
-        if(yValue > 700f)
+        if(phosphor > 700f)
         {
             set.setColor(Color.RED);
         }
-        else if(yValue < 700f)
+        else if(phosphor < 700f)
         {
             set.setColor(Color.rgb( 152,251,152));
         }
@@ -148,21 +154,25 @@ public class HomeFragment extends Fragment {
     private void loadBarChartMag()
     {
 
-        float yValue = 450f;
+        if(magnesium == 0)
+        {
+            magnesium = 450f;
+        }
+
         List<BarEntry> entries = new ArrayList<>();
 
 
-        entries.add(new BarEntry(0f, yValue));
+        entries.add(new BarEntry(0f, magnesium));
         BarDataSet set = new BarDataSet(entries, "");
 
         //Setting new color, needs to be done
 //        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
 
-        if(yValue > 420f)
+        if(magnesium > 420f)
         {
             set.setColor(Color.RED);
         }
-        else if(yValue < 310f)
+        else if(magnesium < 310f)
         {
             set.setColor(Color.rgb( 152,251,152));
         }
@@ -191,17 +201,17 @@ public class HomeFragment extends Fragment {
     }
     private void loadBarChartNat()
     {
-        float yValue = 1800f;
+
+        if(natrium == 0)
+        {
+            natrium = 120f;
+        }
+
+
         List<BarEntry> entries = new ArrayList<>();
 
-        entries.add(new BarEntry(0f, yValue));
+        entries.add(new BarEntry(0f, natrium));
         BarDataSet set = new BarDataSet(entries, "");
-
-        //Setting new color, needs to be done
-//        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
-
-//        txt_natVal.setText((int) yValue);
-
 
         if (condition_name == "CNI Stufe 1-3a" || condition_name == "CNI Stufe 3b-4" || condition_name == "CNI Stufe 5"  || condition_name == "CNI Stufe 5D")
         {
@@ -214,10 +224,7 @@ public class HomeFragment extends Fragment {
             natriumMin = 136f;
         }
 
-
-
-
-        if(yValue > natriumMax || yValue < natriumMin)
+        if(natrium > natriumMax || natrium < natriumMin)
         {
             set.setColor(Color.RED);
         }
@@ -247,10 +254,16 @@ public class HomeFragment extends Fragment {
 
     private void loadBarChartIron()
     {
-        List<BarEntry> entries = new ArrayList<>();
-        float yValue = 3f;
 
-        entries.add(new BarEntry(0f, yValue));
+        if(iron == 0)
+        {
+            iron = 3f;
+        }
+
+        List<BarEntry> entries = new ArrayList<>();
+
+
+        entries.add(new BarEntry(0f, iron));
         BarDataSet set = new BarDataSet(entries, "");
 
         //Setting new color, needs to be done
@@ -261,11 +274,11 @@ public class HomeFragment extends Fragment {
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
-        if(yValue > 45f)
+        if(iron > 45f)
         {
             set.setColor(Color.RED);
         }
-        else if(yValue < 8f)
+        else if(iron < 8f)
         {
             set.setColor(Color.rgb( 152,251,152));
         }
@@ -291,15 +304,16 @@ public class HomeFragment extends Fragment {
 
     private void loadBarChartPot()
     {
+        if(potassium == 0)
+        {
+            potassium = 4000f;
+        }
+
         List<BarEntry> entries = new ArrayList<>();
-        float yValue = 4000f;
 
-        entries.add(new BarEntry(0f, yValue));
+
+        entries.add(new BarEntry(0f, potassium));
         BarDataSet set = new BarDataSet(entries, "");
-
-        //Setting new color, needs to be done
-//        set.setColors(new int[] {Color.GRAY, Color.GREEN, Color.RED });
-
         BarData data = new BarData(set);
 
         data.setBarWidth(0.5f); // set custom bar width
@@ -322,7 +336,7 @@ public class HomeFragment extends Fragment {
         }
 
 
-        if(yValue > potassiumMax || yValue < potassiumMin )
+        if(potassium > potassiumMax || potassium < potassiumMin )
         {
             set.setColor(Color.RED);
         }
@@ -347,11 +361,15 @@ public class HomeFragment extends Fragment {
     private void loadBarChartCal()
     {
         List<BarEntry> entries = new ArrayList<>();
-        float yValue = 1800f;
+
+        if(calcium == 0)
+        {
+            calcium = 1800f;
+        }
 
 
 
-        entries.add(new BarEntry(0f, yValue));
+        entries.add(new BarEntry(0f, calcium));
         BarDataSet set = new BarDataSet(entries, "");
 
         BarData data = new BarData(set);
@@ -359,29 +377,21 @@ public class HomeFragment extends Fragment {
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
-//        String[] yAxisLables = new String[]{"0","1", "2", "3"};
-
-        if (condition_name == "CNI Stufe 1-3a" || condition_name == "CNI Stufe 3b-4" )
+        if (condition_name == "CNI Stufe 3b-4" || condition_name == "CNI Stufe 5"  || condition_name == "CNI Stufe 5D" )
         {
-            potassiumMin = 0;
-            potassiumMin = 4700;
-        }
-        else if(condition_name == "CNI Stufe 5"  || condition_name == "CNI Stufe 5D")
-        {
-            potassiumMax = 2700f;
-            potassiumMin = 0;
+            calciumMax = 2000;
         }
         else
         {
-            potassiumMax = 4700f;
-            potassiumMin = 0;
+            calciumMax = 2500f;
+            calciumMin = 1000f;
         }
 
-        if(yValue > 2500f)
+        if(calcium > calciumMax)
         {
             set.setColor(Color.RED);
         }
-        else if(yValue < 1000f)
+        else if(calcium < calciumMin)
         {
             set.setColor(Color.rgb( 152,251,152));
         }
@@ -407,11 +417,16 @@ public class HomeFragment extends Fragment {
     private void loadBarChartChlorine()
     {
         List<BarEntry> entries = new ArrayList<>();
-        float yValue = 2.5f;
+
+
+        if(chlorine == 0)
+        {
+            chlorine = 2.5f;
+        }
 
 
 
-        entries.add(new BarEntry(0f, yValue));
+        entries.add(new BarEntry(0f, chlorine));
         BarDataSet set = new BarDataSet(entries, "");
 
         BarData data = new BarData(set);
@@ -419,13 +434,11 @@ public class HomeFragment extends Fragment {
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
-//        String[] yAxisLables = new String[]{"0","1", "2", "3"};
-
-        if(yValue > 3f)
+        if(chlorine > 3f)
         {
             set.setColor(Color.RED);
         }
-        else if(yValue < 1f)
+        else if(chlorine < 1f)
         {
             set.setColor(Color.rgb( 152,251,152));
         }
@@ -451,11 +464,16 @@ public class HomeFragment extends Fragment {
     private void loadBarChartSod()
     {
         List<BarEntry> entries = new ArrayList<>();
-        float yValue = 1600f;
+
+
+        if(sodium == 0)
+        {
+            sodium = 1600f;
+        }
 
 
 
-        entries.add(new BarEntry(0f, yValue));
+        entries.add(new BarEntry(0f, sodium));
         BarDataSet set = new BarDataSet(entries, "");
 
         BarData data = new BarData(set);
@@ -463,13 +481,11 @@ public class HomeFragment extends Fragment {
         data.setBarWidth(0.5f); // set custom bar width
         set.setDrawValues(false);
 
-//        String[] yAxisLables = new String[]{"0","1", "2", "3"};
-
-        if(yValue > 2300f)
+        if(sodium > 2300f)
         {
             set.setColor(Color.RED);
         }
-        else if(yValue < 1500f)
+        else if(sodium < 1500f)
         {
             set.setColor(Color.rgb( 152,251,152));
         }
@@ -494,18 +510,6 @@ public class HomeFragment extends Fragment {
 
     private void setBarChart()
     {
-
-
-//        ArrayList<HorizontalBarChart> barChartList = new ArrayList<>();
-
-//        private HorizontalBarChart barChartNatrium;
-//        private HorizontalBarChart barChartCalcium;
-//        private HorizontalBarChart barChartIron;
-//        private HorizontalBarChart barChartMagensium;
-//        private HorizontalBarChart barChartPhosphor;
-//        private HorizontalBarChart barChartPotassium;
-
-//        HorizontalBarChart[] horizontalBarChart = new HorizontalBarChart[]{barChartNatrium, barChartCalcium, barChartIron, barChartMagensium, barChartPhosphor, barChartPotassium };
 
         barChartPotassium.getAxisRight().setAxisMinimum(0f);
         barChartPotassium.getAxisLeft().setAxisMinimum(0f);
@@ -691,22 +695,17 @@ public class HomeFragment extends Fragment {
         pieChart.setEntryLabelTextSize(12);
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.getLegend().setEnabled(false);
-        pieChart.getDescription().setEnabled(true);
-        pieChart.getDescription().setText("Recommended");
-        pieChart.getDescription().setTextSize(16f);
-        pieChart.setExtraBottomOffset(10f);
-        pieChart.getDescription().setPosition(380f, 505f);
+        pieChart.getDescription().setEnabled(false);
+
 
         pieChartUser.setDrawHoleEnabled(true);
         pieChartUser.setUsePercentValues(true);
         pieChartUser.setEntryLabelTextSize(12);
         pieChartUser.setEntryLabelColor(Color.BLACK);
         pieChartUser.getLegend().setEnabled(false);
-        pieChartUser.getDescription().setEnabled(true);
-        pieChartUser.getDescription().setText("Actual");
-        pieChartUser.getDescription().setTextSize(16f);
-        pieChartUser.setExtraBottomOffset(10f);
-        pieChartUser.getDescription().setPosition(300f, 505f);
+        pieChartUser.getDescription().setEnabled(false);
+
+
 
         pieChartCalories.setDrawHoleEnabled(true);
         pieChartCalories.setUsePercentValues(true);
@@ -715,7 +714,8 @@ public class HomeFragment extends Fragment {
         pieChartCalories.getLegend().setEnabled(false);
         pieChartCalories.setDrawEntryLabels(false);
         pieChartCalories.getDescription().setEnabled(false);
-        pieChartCalories.setExtraBottomOffset(10f);
+        pieChartCalories.setHoleRadius(80);
+
 
         pieChartCalories.setMaxAngle(260.0f);
         pieChartCalories.setRotationAngle(140.0f);
@@ -802,16 +802,6 @@ public class HomeFragment extends Fragment {
 
         //value: daten die mitgegeben werden, um anzuzeigen wv der nährstoffe eingenommen wurdem
 
-
-//        case "Typ 1":
-//        case "Typ 2":
-//        protein = 17;
-//        carbs = 55;
-//        fats = 28;
-//        break;
-//        case "Morbus Crohn":
-//        case "Colitis Ulc.":
-
         entries.add(new PieEntry(0.55f, "Carbs"));
         entries.add(new PieEntry(0.20f, "Proteins"));
         entries.add(new PieEntry(0.25f, "Fats"));
@@ -837,13 +827,18 @@ public class HomeFragment extends Fragment {
     {
         ArrayList<PieEntry> entries = new ArrayList<>();
 
+        float caloriesmax = 2000f;
+        float caleaten = 1500f;
+
+
         //value: daten die mitgegeben werden, um anzuzeigen wv der nährstoffe eingenommen wurdem
-        entries.add(new PieEntry(50, ""));
-        entries.add(new PieEntry(100, ""));
+        entries.add(new PieEntry(caleaten, "eaten"));
+        entries.add(new PieEntry(caloriesmax-caleaten , "max cal"));
+
 
 
         //colors liste wurde erstellt um die entries in farben einzukategorisieren.
-        int[] colors = { Color.rgb(0,0,255), Color.rgb(255,255,255), Color.rgb(255,0,0)};
+        int[] colors = { Color.rgb(0,255,255), Color.rgb(220,220,220)};
 
         PieDataSet dataSet = new PieDataSet(entries, "Nutritions:");
         dataSet.setColors(colors);
@@ -868,14 +863,9 @@ public class HomeFragment extends Fragment {
 
         txtusername = (TextView) root.findViewById(R.id.home_username);
 
-        if(username != null)
-        {
-            txtusername.setText(username);
-        }
-        else
-        {
-            txtusername.setText("Sascha Karottenmann");
-        }
+
+
+
 
 //        private TextView txt_iroVal;
 //        private TextView txt_calVal;
@@ -885,13 +875,65 @@ public class HomeFragment extends Fragment {
 //        private TextView txt_potVal;
 
 //        txt_iroVal = (TextView) root.findViewById(R.id.txt_iroVal);
+//        if(iron == 0)
+//        {
+//            iron = 3f;
+//            txtusername.setText((int) iron);
+//        }
+//
 //        txt_calVal = (TextView) root.findViewById(R.id.txt_calVal);
-
+//        if(calcium == 0)
+//        {
+//            calcium = 1800f;
+//            txtusername.setText((int) calcium);
+//        }
+//
 //        txt_magVal = (TextView) root.findViewById(R.id.txt_magVal);
+//        if(magnesium == 0)
+//        {
+//            magnesium = 450f;
+//            txtusername.setText((int) magnesium);
+//        }
+//
 //        txt_phoVal = (TextView) root.findViewById(R.id.txt_phoVal);
+//        if(phosphor == 0)
+//        {
+//            phosphor = 600f;
+//            txtusername.setText((int) phosphor);
+//        }
+//
 //        txt_potVal = (TextView) root.findViewById(R.id.txt_potVal);
+//        if(potassium == 0)
+//        {
+//            potassium = 4000f;
+//            txtusername.setText((int) potassium);
+//        }
+//
+//        txt_natVal = (TextView) root.findViewById(R.id.txt_natVal);
+//        if(natrium == 0)
+//        {
+//            natrium = 120f;
+//            txtusername.setText((int) natrium);
+//        }
+//        txt_ = (TextView) root.findViewById(R.id.txt_potVal);
+//        if(potassium == 0)
+//        {
+//            potassium = 4000f;
+//            txtusername.setText((int) potassium);
+//        }
+//
+//        txt_natVal = (TextView) root.findViewById(R.id.txt_natVal);
+//        if(natrium == 0)
+//        {
+//            natrium = 120f;
+//            txtusername.setText((int) natrium);
+//        }
 
-        txt_natVal = (TextView) root.findViewById(R.id.txt_natVal);
+        if(username == null)
+        {
+            txtusername.setText("Sascha Karottenmann");
+        }
+
 
         barChartNatrium = root.findViewById(R.id.barchart_natrium);
         barChartCalcium = root.findViewById(R.id.barchart_calcium);
@@ -901,7 +943,6 @@ public class HomeFragment extends Fragment {
         barChartPotassium = root.findViewById(R.id.barchart_potassium);
         barChartChlorine = root.findViewById(R.id.barchart_chlorine);
         barChartSodium = root.findViewById(R.id.barchart_Sodium);
-
 
         pieChart = root.findViewById(R.id.piechart_standard);
         pieChartUser = root.findViewById(R.id.piechart_user);
