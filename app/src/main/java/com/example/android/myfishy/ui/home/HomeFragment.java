@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.android.myfishy.R;
+import com.example.android.myfishy.db.entities.User;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
@@ -40,6 +41,19 @@ public class HomeFragment extends Fragment {
     private HorizontalBarChart barChart;
     private PieChart pieChart;
     private PieChart pieChartUser;
+
+    private String mParam1;
+    private String mParam2;
+    private String username;
+    private String firstname;
+    private String surname;
+    private long birthday;
+    private String gender;
+    private float weight;
+    private float height;
+    private TextView txtusername;
+
+    User userinfo = new User(username, firstname, surname,birthday, gender,weight,height);
 
 
     private void setBarChart()
@@ -202,6 +216,17 @@ public class HomeFragment extends Fragment {
         final TextView tvPhosphate = root.findViewById(R.id.tvPhosphate);
         final TextView tvCalcium = root.findViewById(R.id.tvCalcium);
         final TextView tvWater = root.findViewById(R.id.tvWater);
+        txtusername = (TextView) root.findViewById(R.id.home_username);
+
+        if(username != null)
+        {
+            txtusername.setText(username);
+        }
+        else
+        {
+            txtusername.setText("Sascha Karottenmann");
+        }
+
 
         barChart = root.findViewById(R.id.barchart_natrium);
         pieChart = root.findViewById(R.id.piechart_standard);

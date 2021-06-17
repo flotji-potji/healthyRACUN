@@ -25,6 +25,8 @@ public class ProfileFragment extends Fragment {
     private float weight;
     private float height;
 
+    User userinfo = new User(username, firstname, surname,birthday, gender,weight,height);
+
     private TextView txtusername;
     private TextView txtname;
     private TextView txtbirthday;
@@ -32,7 +34,7 @@ public class ProfileFragment extends Fragment {
     private TextView txtweight;
     private TextView txtheight;
 
-    User userinfo = new User(username, firstname, surname,birthday, gender,weight,height);
+
 
 
     public ProfileFragment() {
