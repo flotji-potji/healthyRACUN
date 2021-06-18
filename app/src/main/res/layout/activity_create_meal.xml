@@ -60,6 +60,7 @@
                         android:paddingEnd="20dp"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
+                        android:textColorHint="@color/black"
                         android:background="@drawable/collapsable_toolbar_edit_text_shape"
                         android:inputType="textCapWords"/>
 

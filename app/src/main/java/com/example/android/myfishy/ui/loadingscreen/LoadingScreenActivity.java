@@ -12,7 +12,7 @@ import com.example.android.myfishy.ui.profile_form.ProfileFormActivity;
 
 public class LoadingScreenActivity extends AppCompatActivity {
 
-    private LoadingScreenViewModel loadingScreenViewModel;
+    private static LoadingScreenViewModel loadingScreenViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,6 +28,5 @@ public class LoadingScreenActivity extends AppCompatActivity {
                 intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
-
     }
 }

@@ -98,6 +98,7 @@ public class ProfileFormActivity extends AppCompatActivity {
         );
         Log.e(PROFILE_FORM_ACTIVITY_TAG, spCondition.getSelectedItemPosition() + "");
 
+        /*
         profileFormViewModel.getDietaryRestrictionTable().observe(this, dietaryRestrictionTables -> {
             DietaryRestrictionTable drt = dietaryRestrictionTables.get(spCondition.getSelectedItemPosition());
             profileFormViewModel.insertDiet(
@@ -119,8 +120,8 @@ public class ProfileFormActivity extends AppCompatActivity {
                             drt.getFibers()
                     )
             );
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        });
+        });*/
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
