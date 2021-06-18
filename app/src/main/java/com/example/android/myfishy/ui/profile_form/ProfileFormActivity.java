@@ -98,11 +98,6 @@ public class ProfileFormActivity extends AppCompatActivity {
         );
         Log.e(PROFILE_FORM_ACTIVITY_TAG, spCondition.getSelectedItemPosition() + "");
 
-        LiveData<List<DietaryRestrictionTable>> tug = profileFormViewModel.getDietaryRestrictionTable();
-        while (tug == null){
-            tug = profileFormViewModel.getDietaryRestrictionTable();
-        }
-
         profileFormViewModel.getDietaryRestrictionTable().observe(this, dietaryRestrictionTables -> {
             DietaryRestrictionTable drt = dietaryRestrictionTables.get(spCondition.getSelectedItemPosition());
             profileFormViewModel.insertDiet(
