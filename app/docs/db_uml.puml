@@ -17,7 +17,7 @@ table(user) {
 }
 
 table(diet) {
-    *primary_key(diet_id) : int <<generated>>
+    *primary_key(diet_id) : int
     --
     *username : int
     condition_name : String
@@ -65,6 +65,7 @@ table(nourishment) {
     phosphor : float
     iron : float
     proteins : float
+    fibers : float
 }
 
 table(dietary_restriction_table) {
@@ -105,6 +106,7 @@ table(nutrition_fact_table) {
     phosphor : float
     iron : float
     protein : float
+    fibers : float
 }
 
 <> diamond1

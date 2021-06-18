@@ -19,7 +19,8 @@ import java.util.List;
                 Diet.class, DietaryRestrictionTable.class, Meal.class,
                 Nourishment.class, NutritionFactTable.class, User.class
         },
-        version = 4
+        version = 4,
+        exportSchema = false
 )
 public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
 
@@ -249,6 +250,7 @@ public abstract class HealthyDatabase extends androidx.room.RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             HealthyDatabase.class,
                             "healthy_database")
+                            .fallbackToDestructiveMigration()
                             .addCallback(roomDatabaseNutriCallback)
                             .addCallback(roomDatabaseDietCallback)
                             .addMigrations(MIGRATION_1_2)

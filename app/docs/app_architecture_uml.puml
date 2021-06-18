@@ -6,11 +6,11 @@ package "Activity/Fragments" {
     object Activity {
         MainActivity
         CreateMealActivity
+        LoadingScreenActivity
+        ProfileFormActivity
     }
 
     object Fragment {
-        SplashScreenFragment
-        ProfileFormFragment
         HomeFragment
         MealLoggingFragment
         AddQuickMealFragment

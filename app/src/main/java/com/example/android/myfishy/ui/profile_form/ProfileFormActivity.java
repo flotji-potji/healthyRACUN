@@ -1,15 +1,22 @@
 package com.example.android.myfishy.ui.profile_form;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import com.example.android.myfishy.MainActivity;
 import com.example.android.myfishy.R;
+import com.example.android.myfishy.db.entities.Diet;
+import com.example.android.myfishy.db.entities.DietaryRestrictionTable;
 import com.example.android.myfishy.db.entities.User;
 import com.example.android.myfishy.repo.HealthyRepository;
 
+import java.util.List;
 import java.util.Locale;
 
 public class ProfileFormActivity extends AppCompatActivity {
@@ -43,6 +50,8 @@ public class ProfileFormActivity extends AppCompatActivity {
         etWeight = findViewById(R.id.edittext_weight);
         spCondition = findViewById(R.id.spinner_condition);
         radioGroup = findViewById(R.id.profileForm_radioGroup);
+        male = findViewById(R.id.radioButton_male);
+        female = findViewById(R.id.radioButton_female);
     }
 
     private void toasting(String msg) {
@@ -50,30 +59,30 @@ public class ProfileFormActivity extends AppCompatActivity {
     }
 
     public void createUser(View view) {
-        if (etUsername.getText().toString().equals("")) {
-            toasting(etUsername.getContentDescription().toString());
+        if (etUsername == null) {
+            toasting("Username");
             return;
-        } else if (etFirstname.getText().toString().equals("")) {
-            toasting(etFirstname.getContentDescription().toString());
+        } else if (etFirstname == null) {
+            toasting("Vorname");
             return;
-        } else if (etSurname.getText().toString().equals("")) {
-            toasting(etSurname.getContentDescription().toString());
+        } else if (etSurname == null) {
+            toasting("Nachname");
             return;
-        } else if (etHeight.getText().toString().equals("")) {
-            toasting(etHeight.getContentDescription().toString());
+        } else if (etHeight == null) {
+            toasting("Größe");
             return;
-        } else if (etWeight.getText().toString().equals("")) {
-            toasting(etWeight.getContentDescription().toString());
+        } else if (etWeight == null) {
+            toasting("Gewicht");
             return;
-        } else if (!male.isSelected() && !female.isSelected()) {
+        } else if (male == null && female == null) {
             toasting("Geschlecht");
             return;
         }
 
         String sex = "";
-        if (male.isSelected()) {
+        if (male.isChecked()) {
             sex = "male";
-        } else if (female.isSelected()) {
+        } else if (female.isChecked()) {
             sex = "female";
         }
         profileFormViewModel.insertUser(
@@ -87,5 +96,36 @@ public class ProfileFormActivity extends AppCompatActivity {
                         Float.parseFloat(etHeight.getText().toString())
                 )
         );
+        Log.e(PROFILE_FORM_ACTIVITY_TAG, spCondition.getSelectedItemPosition() + "");
+
+        LiveData<List<DietaryRestrictionTable>> tug = profileFormViewModel.getDietaryRestrictionTable();
+        while (tug == null){
+            tug = profileFormViewModel.getDietaryRestrictionTable();
+        }
+
+        profileFormViewModel.getDietaryRestrictionTable().observe(this, dietaryRestrictionTables -> {
+            DietaryRestrictionTable drt = dietaryRestrictionTables.get(spCondition.getSelectedItemPosition());
+            profileFormViewModel.insertDiet(
+                    new Diet(
+                            drt.getDiet_plan_id(),
+                            etUsername.getText().toString().trim(),
+                            drt.getCondition_name(),
+                            drt.getDiet_name(),
+                            drt.getTable_salt(),
+                            drt.getSodium(),
+                            drt.getPotassium(),
+                            drt.getCalcium(),
+                            drt.getPhosphor(),
+                            drt.getProtein(),
+                            drt.getCalories(),
+                            drt.getLiquid_intake(),
+                            drt.getCarbs(),
+                            drt.getFats(),
+                            drt.getFibers()
+                    )
+            );
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        });
     }
 }

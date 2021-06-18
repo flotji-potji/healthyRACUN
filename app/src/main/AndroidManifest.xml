@@ -9,6 +9,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/NoActionBar">
+        <activity android:name=".WelcomePageActivity">
+        </activity>
         <activity
                 android:name=".ui.loadingscreen.LoadingScreenActivity"
                 android:label="@string/title_activity_main"
@@ -19,36 +21,24 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity
-                android:name=".MainActivity">
-
+        <activity android:name=".MainActivity">
         </activity>
-
         <activity
                 android:name=".ui.create_meal.CreateMealActivity"
                 android:parentActivityName=".MainActivity"
                 android:theme="@style/ActionBarTheme">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=
-                            "com.example.android.myfishy.ui.create_meal.CreateMealActivity" />
+                    android:value="com.example.android.myfishy.ui.create_meal.CreateMealActivity"/>
         </activity>
-
-        <activity
-                android:name=".ui.profile_form.ProfileFormActivity">
-
+        <activity android:name=".ui.profile_form.ProfileFormActivity">
         </activity>
-
         <activity android:name=".ProfileActivity">
-
         </activity>
         <activity android:name=".ui.nutrition.NutritionFragment"/>
         <activity
                 android:name=".MaxActivity"
                 android:theme="@style/AppTheme"/>
-
-
     </application>
 
 </manifest>

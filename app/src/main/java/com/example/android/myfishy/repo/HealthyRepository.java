@@ -110,6 +110,7 @@ public class HealthyRepository {
                     break;
                 case LOADING_SCREEN_TAG:
                     userTable = healthyDao.getUser(MainActivity.getCurrUser());
+                    dietaryRestrictionTable = healthyDao.getDietaryRestrictionTable();
                     break;
                 case PROFILE_FORM_TAG:
                     dietaryRestrictionTable = healthyDao.getDietaryRestrictionTable();

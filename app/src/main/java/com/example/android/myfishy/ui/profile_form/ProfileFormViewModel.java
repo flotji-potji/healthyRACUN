@@ -3,11 +3,16 @@ package com.example.android.myfishy.ui.profile_form;
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.android.myfishy.db.HealthyDatabase;
+import com.example.android.myfishy.db.entities.Diet;
+import com.example.android.myfishy.db.entities.DietaryRestrictionTable;
 import com.example.android.myfishy.db.entities.User;
 import com.example.android.myfishy.repo.HealthyRepository;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class ProfileFormViewModel extends AndroidViewModel {
 
@@ -25,4 +30,11 @@ public class ProfileFormViewModel extends AndroidViewModel {
         healthyRepository.insertUser(user);
     }
 
+    public void insertDiet(Diet diet){
+        healthyRepository.insertDiet(diet);
+    }
+
+    public LiveData<List<DietaryRestrictionTable>> getDietaryRestrictionTable() {
+        return healthyRepository.getDietaryRestrictionTable();
+    }
 }
