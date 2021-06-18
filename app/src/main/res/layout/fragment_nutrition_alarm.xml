@@ -30,28 +30,272 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/nutritioncard_warning_card"
+            android:id="@+id/nutritioncard_title"
             style="@style/cardView_style"
             >
             <TextView
-                android:id="@+id/nutritioncard_warning_textView"
+                android:id="@+id/nutritioncard_warning_title"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:background="@color/orange_orange"
-                android:textSize="18dp"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:textSize="30dp"
                 android:gravity="center"
-                android:text="Warning! You are exceeding your daily limit! "/>
+                android:text="Ihr Krankheitsbild: "/>
 
         </androidx.cardview.widget.CardView>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/add_exceeding_nutrition_recyclerview"
-            android:layout_marginTop="5dp"
+
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/recycler_item_nutrition_info"
-            android:layout_below="@+id/nutritioncard_warning_textView"
-            />
+            android:id="@+id/nutritioncard_warning_card"
+            style="@style/cardView_style"
+            android:layout_below="@id/nutritioncard_title"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <ImageView
+
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/imageView_condition"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp">
+
+                </ImageView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/text_condition_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="35dp"
+                        android:gravity="center"
+                        android:text="INSERT TEXT "/>
+
+                    <TextView
+                        android:id="@+id/text_condition_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:gravity="center"
+                        android:layout_margin="15dp"
+
+                        android:text="INSERT TEXT "/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/cardView_style"
+            android:layout_marginBottom="80dp"
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/txt_nutinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:textSize="23dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="Einzuschränkende Nährstoffe: "/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_margin="30dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Kochsalz:">
+                        </TextView>
+                        <TextView
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Natrium:">
+                        </TextView>
+                        <TextView
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Kalium:">
+                        </TextView>
+                        <TextView
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Kalzium:">
+                        </TextView>
+                        <TextView
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Phosphat:">
+                        </TextView>
+                        <TextView
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Trinkmenge:">
+                        </TextView>
+                        <TextView
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Kohlenhydrate:">
+                        </TextView>
+                        <TextView
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Eiweiß:">
+                        </TextView>
+                        <TextView
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Fett:">
+                        </TextView>
+                        <TextView
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Energie:">
+                        </TextView>
+
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/text_salt"
+                            android:layout_marginLeft="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:textSize="18dp"
+                            android:text="none">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/text_natrium"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="none">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/text_kalium"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="none">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/text_kalzium"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="none">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/text_phosphat"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="none">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/text_drink"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="none">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/text_kohlenhydrate"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="none">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/text_eiweiss"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="none">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/text_fett"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="none">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/text_energie"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="18dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="none">
+                        </TextView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </ScrollView>
