@@ -66,6 +66,7 @@ public class NutritionAlarmFragment extends Fragment {
                 new ViewModelProvider(this).get(NutritionAlarmViewModel.class);
         View root = inflater.inflate(R.layout.fragment_nutrition_alarm, container, false);
 
+
         condition_name = drt.getCondition_name();
 
         condTitle = (TextView) root.findViewById(R.id.text_condition_title);
@@ -83,6 +84,12 @@ public class NutritionAlarmFragment extends Fragment {
          fett = (TextView) root.findViewById(R.id.text_fett);
          energie = (TextView) root.findViewById(R.id.text_energie);
 
+         if(condition_name == null)
+         {
+             condition_name = "";
+         }
+
+
 
         switch (condition_name)
         {
@@ -97,6 +104,7 @@ public class NutritionAlarmFragment extends Fragment {
                 proteine.setText("0.8 g/kg");
                 imgCond.setImageResource(R.drawable.image_green_ribbon);
                 break;
+
             case "CNI Stufe 3b-4":
                 condTitle.setText(condition_name);
                 condText.setText(CNI + CNI3b4);
@@ -122,6 +130,7 @@ public class NutritionAlarmFragment extends Fragment {
                 energie.setText("30-40 kcal/kg");
                 proteine.setText("0.8-1.0 g/kg");
                 break;
+
             case "CNI Stufe 5D":
                 condTitle.setText(condition_name);
                 condText.setText(CNI + CNI5);
@@ -135,6 +144,7 @@ public class NutritionAlarmFragment extends Fragment {
                 proteine.setText("> 1.1 g/kg");
                 drinkforkimi.setText("500-800 ml");
                 break;
+
             case "Typ 1":
                 condTitle.setText("Diabetes " + condition_name);
                 condText.setText(diaTyp1);
@@ -142,6 +152,7 @@ public class NutritionAlarmFragment extends Fragment {
                 carbss.setText("55% vom Tagesbedarf");
                 proteine.setText("17% vom Tagesbedarf");
                 fett.setText("28% vom Tagesbedarf");
+
                 break;
             case "Typ 2":
                 condTitle.setText("Diabetes " + condition_name);
@@ -158,6 +169,7 @@ public class NutritionAlarmFragment extends Fragment {
                 carbss.setText("485% vom Tagesbedarf");
                 proteine.setText("17% vom Tagesbedarf");
                 fett.setText("35% vom Tagesbedarf");
+
                 break;
             case "Colitis Ulc.":
                 condTitle.setText(condition_name);
@@ -166,16 +178,14 @@ public class NutritionAlarmFragment extends Fragment {
                 carbss.setText("485% vom Tagesbedarf");
                 proteine.setText("17% vom Tagesbedarf");
                 fett.setText("35% vom Tagesbedarf");
+
                 break;
             default:
                 condTitle.setText("Keine Erkrankung");
                 condText.setText("Sie haben kein Krankheitsbild ausgewählt");
+                break;
 
         }
-
-
-
-
 
         return root;
     }
